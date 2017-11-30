@@ -5,6 +5,8 @@
 #ifndef URHO3DCOPY_VECTORBASE_H
 #define URHO3DCOPY_VECTORBASE_H
 
+#include "Swap.h"
+
 namespace Urho3D
 {
     template <class T>
@@ -128,7 +130,7 @@ namespace Urho3D
         {
         }
 
-        RandomAccessConstIterator(const RandomAccessIterator<T>& rhs) :
+        explicit RandomAccessConstIterator(const RandomAccessIterator<T>& rhs) :
             ptr_(rhs.ptr_)
         {
         }
@@ -223,6 +225,31 @@ namespace Urho3D
         bool operator >=(const RandomAccessConstIterator& rhs) const { return ptr_ >= rhs.ptr_; }
 
         T* ptr_;
+    };
+
+    using byte = unsigned char;
+    class VectorBase
+    {
+    public:
+	    VectorBase() :
+			size_(0),
+			capacity_(0),
+			buffer_(nullptr)
+	    {
+	    }
+
+	    void Swap(VectorBase& rhs)
+	    {
+		    Urho3D::Swap(size_, rhs.size_);
+		    Urho3D::Swap(capacity_, rhs.capacity_);
+		    Urho3D::Swap(buffer_, rhs.buffer_);
+	    }
+
+    protected:
+        static byte* AllocateBuffer(unsigned size);
+	    unsigned size_;
+	    unsigned capacity_;
+	    byte* buffer_;
     };
 }
 

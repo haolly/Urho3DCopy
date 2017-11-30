@@ -3,3 +3,12 @@
 //
 
 #include "VectorBase.h"
+
+namespace Urho3D
+{
+
+	byte *VectorBase::AllocateBuffer(unsigned size)
+	{
+		return new unsigned char[size];
+	}
+}

@@ -6,6 +6,7 @@
 #define URHO3DCOPY_STR_H
 
 #include <cstring>
+#include <cassert>
 #include "VectorBase.h"
 
 namespace Urho3D
@@ -108,7 +109,7 @@ namespace Urho3D
 
         String&operator =(const char* str)
         {
-            unsigned rhsLength = CStringLength(rhs);
+            unsigned rhsLength = CStringLength(str);
             Resize(rhsLength);
             CopyChars(buffer_, str, rhsLength);
             return *this;
@@ -176,7 +177,79 @@ namespace Urho3D
             return ret;
         }
 
-        //todo
+        bool operator ==(const String& rhs) const
+        {
+            return strcmp(CString(), rhs.CString()) == 0;
+        }
+
+        bool operator !=(const String& rhs) const
+        {
+            return strcmp(CString(), rhs.CString()) != 0;
+        }
+
+        bool operator <(const String& rhs) const
+        {
+            return strcmp(CString(), rhs.CString()) < 0;
+        }
+
+        bool operator >(const String& rhs) const
+        {
+            return strcmp(CString(), rhs.CString()) > 0;
+        }
+
+        bool operator ==(const char* rhs) const
+        {
+            return strcmp(CString(), rhs) == 0;
+        }
+
+        bool operator !=(const char* rhs) const
+        {
+            return  strcmp(CString(), rhs) !=0;
+        }
+
+        bool operator <(const char* rhs) const
+        {
+            return strcmp(CString(), rhs) < 0;
+        }
+
+        bool operator >(const char* rhs) const
+        {
+            return strcmp(CString(), rhs) > 0;
+        }
+
+        char&operator [](unsigned index)
+        {
+            assert(index < length_);
+            return buffer_[index];
+        }
+
+	    const char&operator [](unsigned index) const
+	    {
+		    assert(index < length_);
+		    return buffer_[index];
+	    }
+
+	    char& At(unsigned index)
+	    {
+		    assert(index < length_);
+		    return buffer_[index];
+	    }
+
+	    char& At(unsigned index) const
+	    {
+		    assert(index < length_);
+		    return buffer_[index];
+	    }
+
+	    void Replace(char replaceThis, char replaceWith, bool caseSensitive = true);
+	    void Replace(const String& replaceThis, const String& replaceWith, bool caseSensitive = true);
+	    void Replace(unsigned pos, unsigned length, const String& replaceWith);
+	    void Replace(unsigned pos, unsigned length, const char* replaceWith);
+
+	    Iterator Replace(const Iterator& start, const Iterator& end, const String& replaceWith);
+
+	    String Replace(char replaceThis, char replaceWith, bool caseSensitive = true) const;
+	    //todo
 
 
         //Note, this determinate whether the String is null terminated
@@ -185,6 +258,10 @@ namespace Urho3D
         void Compact();
         void Clear();
         void Swap(String& str);
+
+
+        const char* CString() const { return buffer_;}
+
 
 
         void SetUTF8FromLatin1(const char* str);
@@ -214,6 +291,11 @@ namespace Urho3D
         }
 
         //todo
+
+        static unsigned CStringLength(const char* str)
+        {
+            return str ? (unsigned)strlen(str) : 0;
+        }
 
     private:
         void MoveRange(unsigned dest, unsigned src, unsigned count)
