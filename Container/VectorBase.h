@@ -20,12 +20,13 @@ namespace Urho3D
         {
         }
 
-        //Note, the return value is not const !!
+        //Note, the return value is not const, so you can change the value of T !!
         T*operator ->() const
         {
             return ptr_;
         }
 
+        //Note, the return value is not const, so you can change the value of T !!
         T&operator *() const
         {
             return *ptr_;
@@ -142,12 +143,13 @@ namespace Urho3D
         }
 
 
-        //Note return value is const
+        //Note, the return value is not const, so you can NOT change the value of T !!
         const T*operator ->() const
         {
             return ptr_;
         }
 
+        //Note, the return value is not const, so you can NOT change the value of T !!
         const T&operator *() const
         {
             return *ptr_;
@@ -227,6 +229,10 @@ namespace Urho3D
         T* ptr_;
     };
 
+    /**
+     * Note that to prevent extra memory use due to VTABLE pointer, VectorBase intentionally does not declare a virtual destructor
+     * so, NEVER use VectorBase pointers !!
+     */
     using byte = unsigned char;
     class VectorBase
     {

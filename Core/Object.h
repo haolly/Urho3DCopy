@@ -99,13 +99,16 @@ namespace Urho3D
 
 	    //Subscribe to an event that can be sent by any sender
 	    void SubscribeToEvent(StringHash eventType, EventHandler* handler);
+	    void SubscribeToEvent(StringHash eventType, const std::function<void(StringHash, VariantMap&)>& function, void* userData = nullptr);
 	    //Subscribe to an event that can be sent by a specific sender
 	    void SubscribeToEvent(Object* sender, StringHash eventType, EventHandler* handler);
-	    void SubscribeToEvent(StringHash eventType, const std::function<void(StringHash, VariantMap&)>& function, void* userData = nullptr);
+	    void SubscribeToEvent(Object* sender, StringHash eventType, const std::function<void(StringHash, VariantMap)>& function, void* userData = nullptr);
+
 
 	    void UnsubscribeFromEvent(StringHash eventType);
 	    void UnsubscribeFromEvent(Object* sender, StringHash eventType);
 	    void UnsubscribeFromEvent(Object* sender);
+
 	    void UnsubscribeFromAllEvents();
 		void UnsubscribeFromEventsExcept(const PODVector<StringHash>& exceptions, bool onlyUserData);
 
@@ -128,14 +131,32 @@ namespace Urho3D
 	    Object* GetSubsystem(StringHash type) const;
 	    Object* GetEventSender() const;
 	    EventHandler* GetEventHandler() const;
-	    //todo
+
+	    bool HasSubscribedToEvent(StringHash eventType) const;
+	    bool HasSubscribedToEvent(Object* sender, StringHash eventType);
+
+	    bool HasEventHandlers() const
+	    {
+		    return !eventHandlers_.Empty();
+	    }
+
+	    template <class T>
+		T* GetSubsystem() const;
+
+	    const String& GetCategory() const;
+
+	    void SetBlockEvents(bool block) { blockEvents_ = block; }
+	    bool GetBlockEvents() const { return blockEvents_; }
 
 
 
     protected:
 	    Context* context_;
     private:
-	    //todo
+	    EventHandler* FindEventHandler(StringHash eventType, EventHandler** previous = nullptr) const;
+	    EventHandler* FindSpecificEventHandler(Object* sender, EventHandler** previous = nullptr) const;
+	    EventHandler* FindSepcificEventHandler(Object* sender, StringHash eventType, EventHandler** previous = nullptr) const;
+	    void RemoveEventSender(Object* sender);
 	    LinkedList<EventHandler> eventHandlers_;
 	    bool blockEvents_;
     };

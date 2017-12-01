@@ -45,5 +45,17 @@ namespace Urho3D
         }
         return false;
     }
+
+    Object::Object(Context *context) :
+		context_(context),
+		blockEvents_(false)
+    {
+    }
+
+	Object::~Object()
+	{
+		UnsubscribeFromAllEvents();
+		context_->RemoveEventSender(this);
+	}
 }
 

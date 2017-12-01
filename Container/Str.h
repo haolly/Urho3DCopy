@@ -8,6 +8,7 @@
 #include <cstring>
 #include <cassert>
 #include "VectorBase.h"
+#include "Vector.h"
 
 namespace Urho3D
 {
@@ -259,8 +260,54 @@ namespace Urho3D
         void Clear();
         void Swap(String& str);
 
+	    Iterator Begin()
+	    {
+		    return Iterator(buffer_);
+	    }
+
+	    ConstIterator Begin() const
+	    {
+		    return ConstIterator(buffer_);
+	    }
+
+	    Iterator End()
+	    {
+		    return Iterator(buffer_ + length_);
+	    }
+
+	    ConstIterator End() const
+	    {
+		    return ConstIterator(buffer_ + length_);
+	    }
+
+	    char Front() const { return buffer_[0]; }
+	    char Back() const { return length_ ? buffer_[length_ -1] : buffer_[0]; }
+
+	    String SubString(unsigned pos) const ;
+	    String SubString(unsigned pos, unsigned length) const;
+	    String Trimmed() const;
+	    String ToUpper() const;
+	    String ToLower() const ;
+
+		Vector<String> Split(char separator, bool keepEmptyStrings = false) const ;
+	    void Joint(const Vector<String>& subStrings, const String& glue);
+	    unsigned Find(const String& string, unsigned startPos = 0, bool caseSensitive = true) const ;
+	    unsigned Find(char c, unsigned startPos = 0, bool caseSensitive = true) const;
+
+	    unsigned FindLast(const String& str, unsigned startPos = NPOS, bool caseSensitive = true) const;
+	    unsigned FindLast(char c, unsigned startPos = NPOS, bool caseSensitive = true) const;
+
+	    bool StartWith(const String& str, bool caseSensitive = true) const;
+	    bool EndWith(const String& str, bool caseSensitive = true) const;
+
 
         const char* CString() const { return buffer_;}
+	    unsigned Length() const { return length_ ;}
+	    unsigned Capacity() const { return capacity_; }
+	    bool Empty() const { return length_ == 0;}
+
+	    int Compare(const String& str, bool caseSensitive = true) const;
+	    int Compare(const char* str, bool caseSensitive = true) const;
 
 
 
@@ -297,6 +344,13 @@ namespace Urho3D
             return str ? (unsigned)strlen(str) : 0;
         }
 
+	    static int Compare(const char* str1, const char* str2, bool caseSenstive);
+
+        static const unsigned NPOS = 0xffffffff;
+        static const unsigned MIN_CAPACITY = 8;
+
+        static const String EMPTY;
+
     private:
         void MoveRange(unsigned dest, unsigned src, unsigned count)
         {
@@ -325,6 +379,17 @@ namespace Urho3D
         char* buffer_;
         static char endZero;
     };
+
+	int String::Compare(const String &str, bool caseSensitive) const
+	{
+		return Compare(CString(), str.CString(), caseSensitive);
+	}
+
+	int String::Compare(const char *str, bool caseSensitive) const
+	{
+		return Compare(CString(), str, caseSensitive);
+	}
+
 }
 
 class WString

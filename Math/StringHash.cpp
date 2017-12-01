@@ -30,4 +30,10 @@ namespace Urho3D
         }
         return hash;
     }
+
+    StringHash::StringHash(const String &str) :
+        value_(Calculate(str.CString()))
+    {
+
+    }
 }

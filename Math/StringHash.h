@@ -5,8 +5,14 @@
 #ifndef URHO3DCOPY_STRINGHASH_H
 #define URHO3DCOPY_STRINGHASH_H
 
+#include "../Container/Str.h"
+
 namespace Urho3D
 {
+	/**
+	 *
+	 * Note, StringHash's semantic is **value type**
+	 */
     class StringHash
     {
     public:
@@ -22,19 +28,23 @@ namespace Urho3D
 
         }
 
-        StringHash&operator=(const StringHash& rhs)
-        {
-            value_ = rhs.value_;
-            return *this;
-        }
-
         explicit StringHash(unsigned value) :
                 value_(value)
         {
 
         }
 
-        StringHash(const char* str);
+	    explicit StringHash(const char* str);
+
+	    explicit StringHash(const String& str);
+
+        StringHash&operator=(const StringHash& rhs)
+        {
+            value_ = rhs.value_;
+            return *this;
+        }
+
+
 
         StringHash operator+(const StringHash& rhs) const
         {
