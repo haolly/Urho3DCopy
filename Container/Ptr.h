@@ -238,6 +238,159 @@ namespace Urho3D
     template <class T> class WeakPtr
     {
     public:
+        WeakPtr() :
+            ptr_(0),
+			refCount_(nullptr)
+        {
+        }
+
+	    WeakPtr(std::nullptr_t) :
+	        ptr_(0),
+			refCount_(nullptr)
+	    {
+	    }
+
+	    WeakPtr(const WeakPtr<T>& rhs) : ptr_(rhs.ptr_), refCount_(rhs.refCount_)
+	    {
+		    AddRef();
+	    }
+
+	    template<class U>
+	    WeakPtr(const WeakPtr<U>& rhs) :
+			    ptr_(rhs.ptr_),
+			    refCount_(rhs.refCount_)
+	    {
+		    AddRef();
+	    }
+
+	    WeakPtr(const SharedPtr<T>& rhs) : ptr_(rhs.Get()), refCount_(rhs.RefCountPtr())
+	    {
+		    AddRef();
+	    }
+
+	    explicit WeakPtr(T* ptr) : ptr_(ptr), refCount_(ptr ? ptr->RefCountPtr() : 0)
+	    {
+			AddRef();
+	    }
+
+	    ~WeakPtr()
+	    {
+		    ReleaseRef();
+	    }
+
+	    WeakPtr<T>&operator =(const SharedPtr<T>& rhs)
+	    {
+		    if(ptr_ == rhs.Get() && refCount_ == rhs.RefCountPtr())
+			    return *this;
+		    ReleaseRef();
+		    ptr_ = rhs.Get();
+		    refCount_ = rhs.RefCountPtr();
+		    AddRef();
+		    return *this;
+	    }
+
+	    WeakPtr<T>&operator =(const WeakPtr<T>& rhs)
+	    {
+		    if(ptr_ == rhs.ptr_ && refCount_ == rhs.refCount_)
+			    return *this;
+
+		    ReleaseRef();
+		    ptr_ = rhs.ptr_;
+		    refCount_ = rhs.refCount_;
+		    AddRef();
+		    return *this;
+	    }
+
+	    template <class U> WeakPtr<T>&operator =(const WeakPtr<U>& rhs)
+	    {
+		    if(ptr_ == rhs.ptr_ && refCount_ == rhs.refCount_)
+			    return *this;
+		    ReleaseRef();
+		    ptr_ = rhs.ptr_;
+		    refCount_ = rhs.refCount_;
+		    AddRef();
+			return *this;
+	    }
+
+	    WeakPtr<T>&operator =(T* ptr)
+	    {
+		    RefCount* refCount = ptr ? ptr->RefCountPtr() : 0;
+		    if(ptr_ == ptr && refCount_ == refCount)
+			    return *this;
+		    ReleaseRef();
+		    ptr_ = ptr;
+		    refCount_ = refCount;
+		    AddRef();
+		    return *this;
+	    }
+
+	    SharedPtr<T> Lock() const
+	    {
+		    if(Expired())
+			    return SharedPtr<T>();
+		    else
+			    return SharedPtr<T>(ptr_);
+	    }
+
+	    T* Get() const
+	    {
+		    if(Expired())
+			    return 0;
+		    else
+			    return ptr_;
+	    }
+
+	    T*operator ->() const
+	    {
+		    T* rawPtr = Get();
+		    assert(rawPtr);
+		    return rawPtr;
+	    }
+
+	    T&operator *() const
+	    {
+		    T* rawPtr = Get();
+		    assert(rawPtr);
+		    return *rawPtr;
+	    }
+
+	    T&operator [](const int index)
+	    {
+		    T* rawPtr = Get();
+		    assert(rawPtr);
+		    return (*rawPtr)[index];
+	    }
+
+	    template <class U>
+	    bool operator ==(const WeakPtr<U>& rhs) const
+	    {
+		    return ptr_ == rhs.ptr_ && refCount_ == rhs.refCount_;
+	    }
+
+	    template <class U>
+	    bool operator !=(const WeakPtr<U>& rhs) const
+	    {
+		    return ptr_ != rhs.ptr_ || refCount_ != rhs.refCount_;
+	    }
+
+	    template <class U>
+	    bool operator <(const WeakPtr<U>& rhs) const
+	    {
+		    return ptr_ < rhs.ptr_;
+	    }
+
+	    operator T*()
+	    {
+		    return Get();
+	    }
+
+	    void Reset()
+	    {
+		    ReleaseRef();
+	    }
+
+
+
         //todo
         bool Expired() const
         {
@@ -259,6 +412,8 @@ namespace Urho3D
             {
                 assert(refCount_->weakRefs_ >0);
                 --(refCount_->weakRefs_);
+
+	            //todo, may be memory leaks when this conditions are met
                 if(Expired() && !refCount_->weakRefs_)
                 {
                     delete refCount_;
@@ -267,7 +422,8 @@ namespace Urho3D
             ptr_ = 0;
             refCount_ = 0;
         }
-        //todo, why friend with self
+	    //note, make WeakPtr<U> is a friend of WeakPtr<T>, regardless what T and U is
+	    // ref https://stackoverflow.com/questions/8967521/class-template-with-template-class-friend-whats-really-going-on-here
         template <class U> friend class WeakPtr;
         T* ptr_;
         RefCount* refCount_;

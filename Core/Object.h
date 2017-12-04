@@ -102,7 +102,7 @@ namespace Urho3D
 	    void SubscribeToEvent(StringHash eventType, const std::function<void(StringHash, VariantMap&)>& function, void* userData = nullptr);
 	    //Subscribe to an event that can be sent by a specific sender
 	    void SubscribeToEvent(Object* sender, StringHash eventType, EventHandler* handler);
-	    void SubscribeToEvent(Object* sender, StringHash eventType, const std::function<void(StringHash, VariantMap)>& function, void* userData = nullptr);
+	    void SubscribeToEvent(Object* sender, StringHash eventType, const std::function<void(StringHash, VariantMap&)>& function, void* userData = nullptr);
 
 
 	    void UnsubscribeFromEvent(StringHash eventType);
@@ -155,11 +155,12 @@ namespace Urho3D
     private:
 	    EventHandler* FindEventHandler(StringHash eventType, EventHandler** previous = nullptr) const;
 	    EventHandler* FindSpecificEventHandler(Object* sender, EventHandler** previous = nullptr) const;
-	    EventHandler* FindSepcificEventHandler(Object* sender, StringHash eventType, EventHandler** previous = nullptr) const;
+	    EventHandler* FindSpecificEventHandler(Object* sender, StringHash eventType, EventHandler** previous = nullptr) const;
 	    void RemoveEventSender(Object* sender);
 	    LinkedList<EventHandler> eventHandlers_;
 	    bool blockEvents_;
     };
+
 
 	class ObjectFactory : public RefCount
 	{

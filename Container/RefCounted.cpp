@@ -35,6 +35,7 @@ namespace Urho3D
         (refCount_->refs_)++;
     }
 
+    //todo find usage
     void RefCounted::ReleaseRef()
     {
         assert(refCount_->refs_ > 0);

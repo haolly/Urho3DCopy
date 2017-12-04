@@ -206,16 +206,100 @@ namespace Urho3D
 			return Begin() + pos;
 		}
 
+		Iterator Insert(const Iterator& dest, const PODVector<T>& vector)
+		{
+			unsigned pos = (unsigned)(dest - Begin());
+			if(pos > size_)
+				pos = size_;
+			Insert(pos, vector);
+			return Begin() + pos;
+		}
+
 		Iterator Insert(const Iterator& dest, const ConstIterator& start, const ConstIterator& end)
 		{
 			unsigned pos = (unsigned) (dest - Begin());
 			if(pos > size_)
 				pos = size_;
+			unsigned oldSize = size_;
 			unsigned length = (unsigned)(end - start);
 			Resize(size_ + length);
+			MoveRange(pos + length, pos, oldSize - pos);
+			CopyElements(buffer_ + pos, &(*start), length);
+			return Begin() + pos;
+		}
+
+		Iterator Insert(const Iterator& dest, const T* start, const T* end)
+		{
+			unsigned pos = (unsigned)(dest - Begin());
+			if(pos > size_)
+				pos = size_;
+			unsigned oldSize = size_;
+			unsigned length = (unsigned)(end - start);
+			Resize(size_ + length);
+			MoveRange(pos + length, pos, oldSize - pos);
+			CopyElements(buffer_ + pos, start, length);
+			return Begin() + pos;
+		}
+
+		void Erase(unsigned pos, const unsigned length=1)
+		{
+			if(!length || pos + length > size_)
+				return;
+			MoveRange(pos, pos + length, size_ - pos - length);
+			Resize(size_ - length);
+		}
+
+		Iterator Erase(const Iterator& it)
+		{
+			unsigned pos = (unsigned)(it - Begin());
+			if(pos >= size_)
+				return End();
+
+			Erase(pos);
+			return Begin() + pos;
+		}
+
+		Iterator Erase(const Iterator& start, const Iterator& end)
+		{
+			unsigned pos = (unsigned)(start - Begin());
+			if(pos > size_)
+				return End();
+			unsigned length = (unsigned)(end - start);
+			Erase(pos, length);
+			return Begin() + pos;
+		}
+
+		/// Erase a range of elements by swapping elements from the end of the array
+		void EraseSwap(unsigned pos, unsigned length = 1)
+		{
+			unsigned shiftStartIndex = pos + length;
+			if (shiftStartIndex > size_ || !length)
+				return;
+
+			unsigned newSize = size_ - length;
+			unsigned trailingCount = size_ - shiftStartIndex;
 			//todo
 		}
 
+		bool Remove(const T& value)
+		{
+
+		}
+
+		/// Erase an element by value by swapping with the last element
+		/// \param value
+		/// \return
+		bool RemoveSwap(const T& value)
+		{
+			Iterator i = Find(value);
+			if(i != End())
+			{
+				EraseSwap(i - Begin());
+				return true;
+			}
+			else
+				return false;
+		}
 
 		void Clear()
 		{
@@ -262,6 +346,34 @@ namespace Urho3D
 					CopyElements(newBuffer, buffer_, size_);
 				}
 			}
+		}
+
+		void Compact() { Reserve(size_); }
+
+		Iterator Find(const T& value)
+		{
+			Iterator it = Begin();
+			while (it != End() && *it != value)
+				++it;
+			return it;
+		}
+
+		ConstIterator Find(const T& value) const
+		{
+			ConstIterator it = Begin();
+			while (it != End() && *it != value)
+				++it;
+			return it;
+		}
+
+		unsigned IndexOf(const T& value) const
+		{
+			return Find(value) - Begin();
+		}
+
+		bool Contains(const T& value) const
+		{
+			return Find(value) != End();
 		}
 
 

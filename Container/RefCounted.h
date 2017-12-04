@@ -19,10 +19,12 @@ namespace Urho3D
             weakRefs_ = -1;
         }
         int refs_;
+        //todo, what's difference with refs_ ??
         int weakRefs_;
     };
 
 
+    //todo, what is this for?
     class RefCounted
     {
     public:
