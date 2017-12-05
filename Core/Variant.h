@@ -469,6 +469,14 @@ namespace Urho3D
 		static VariantType GetTypeFromName(const String& typeName);
 		static VariantType GetTypeFromName(const char* typeName);
 
+		static const Variant EMPTY;
+		static const PODVector<unsigned char> emptyBuffer;
+		static const ResourceRef emptyResourceRef;
+		static const ResourceRefList emptyResourceRefList;
+		static const VariantMap emptyVariantMap;
+		static const VariantVector emptyVariantVector;
+		static const StringVector emptyStringVector;
+
 
 
 	private:

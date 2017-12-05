@@ -8,6 +8,15 @@
 namespace Urho3D
 {
 
+	const Variant Variant::EMPTY;
+	const PODVector<unsigned char> Variant::emptyBuffer;
+	const ResourceRef Variant::emptyResourceRef;
+	const ResourceRefList Variant::emptyResourceRefList;
+	const VariantMap Variant::emptyVariantMap;
+	const VariantVector Variant::emptyVariantVector;
+	const StringVector Variant::emptyStringVector;
+
+
 	//Note, need to maintain the same order with VariantType
 	static const char * typeNames[] = {
 		"None",

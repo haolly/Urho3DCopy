@@ -19,6 +19,8 @@ namespace Urho3D
 		LinkedListNode* next_;
 	};
 
+	/// Singly-linked list, Elements must inhert from LinkedListNode
+	/// \tparam T
 	template <class T>
 	class LinkedList
 	{

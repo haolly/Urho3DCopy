@@ -360,6 +360,7 @@ namespace Urho3D
 
 		context->BeginSendEvent(this, eventType);
 
+		// First check specific event receiver
 		SharedPtr<EventReceiverGroup> group(context->GetEventReceivers(this, eventType));
 		if(group)
 		{
@@ -385,23 +386,43 @@ namespace Urho3D
 			group->EndSendEvent();
 		}
 
+		// Second check no specific receiver
 		group = context->GetEventReceivers(eventType);
 		if(group)
 		{
-			//todo
+			group->BeginSendEvent();
+			const unsigned numReceivers = group->receivers_.Size();
+			for(unsigned i=0; i<numReceivers; ++i)
+			{
+				Object* receiver = group->receivers_[i];
+				if(!receiver || processed.Contains(receiver))
+					continue;
+				receiver->OnEvent(this, eventType, eventData);
+
+				if(self.Expired())
+				{
+					group->EndSendEvent();
+					context->EndSendEvent();
+					return;
+				}
+			}
+			group->EndSendEvent();
 		}
-
+		context->EndSendEvent();
 	}
 
-	VariantMap &Object::GetEventDataMap() const {
-		return <#initializer#>;
+	VariantMap &Object::GetEventDataMap() const
+	{
+		return context_->GetEventDataMap();
 	}
 
-	const Variant &Object::GetGlobalVar(StringHash key) const {
-		return <#initializer#>;
+	const Variant &Object::GetGlobalVar(StringHash key) const
+	{
+		return context_->GetGlobalVar(key);
 	}
 
-	const VariantMap &Object::GetGlobalVars() const {
+	const VariantMap &Object::GetGlobalVars() const
+	{
 		return <#initializer#>;
 	}
 

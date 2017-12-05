@@ -19,7 +19,8 @@ namespace Urho3D
 
 		if(inSend_ == 0 && dirty_)
 		{
-			for (unsigned i = receivers_.Size() -1; i >= 0; --i) {
+			//Note, the second condition could NOT be i >=0, because unsigned i always >= 0
+			for (unsigned i = receivers_.Size() -1; i < receivers_.Size(); --i) {
 				if(!receivers_[i])
 					receivers_.Erase(i);
 			}
@@ -95,6 +96,25 @@ namespace Urho3D
 
 	void Context::EndSendEvent()
 	{
+		//todo usage
 		eventSenders_.Pop();
+	}
+
+	Object *Context::GetEventSender() const
+	{
+		if(!eventSenders_.Empty())
+			return eventSenders_.Back();
+		return nullptr;
+	}
+
+	const Variant &Context::GetGlobalVar(StringHash key) const
+	{
+		auto it = globalVars_.Find(key);
+		return it != globalVars_.End() ? it->second_ : Variant::EMPTY;
+	}
+
+	void Context::SetGlobalVar(StringHash key, const Variant &value)
+	{
+		globalVars_[key] = value;
 	}
 }

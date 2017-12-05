@@ -75,8 +75,37 @@ namespace Urho3D
 		template <class T> void RegisterFactory(const char* category);
 		template <class T> T* RegisterSubsystem();
 		template <class T> void RemoveSubsystem();
-//		template <class T> AttributeHandle RegisterAttribute(const AttributeInfo& attr);
+		template <class T> AttributeHandle RegisterAttribute(const AttributeInfo& attr);
 		//todo
+
+		Object* GetSubsystem(StringHash key) const;
+
+		const Variant& GetGlobalVar(StringHash key) const;
+
+		const VariantMap& GetGlobalVars() const
+		{
+			return globalVars_;
+		}
+
+		void SetGlobalVar(StringHash key, const Variant& value);
+
+		const HashMap<StringHash, SharedPtr<Object> >& GetSubsystems() const
+		{
+			return subSystems_;
+		};
+
+		const HashMap<String, Vector<StringHash> >& GetObjectCategories() const
+		{
+			return objectCategories_;
+		};
+
+		Object* GetEventSender() const;
+
+		EventHandler* GetEventHandler() const { return eventHandler_; }
+		const String& GetTypeName(StringHash objectType) const;
+
+
+
 
 
 		EventReceiverGroup* GetEventReceivers(Object* sender, StringHash eventType)
@@ -120,6 +149,7 @@ namespace Urho3D
 		PODVector<Object*> eventSenders_;
 		PODVector<VariantMap*> eventDataMaps_;
 		EventHandler* eventHandler_;
+		// todo, what is this usage
 		HashMap<String, Vector<StringHash> > objectCategories_;
 		VariantMap globalVars_;
     };
