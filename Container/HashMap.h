@@ -283,6 +283,7 @@ namespace Urho3D
 			return node ? node->pair_.second_ : InsertNode(key, U(), false)->pair_.second_;
 		}
 
+		// Retrun null if key is not found
 		U* operator [](const T& key) const
 		{
 			if(!ptrs_)

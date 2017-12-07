@@ -53,8 +53,8 @@ namespace Urho3D
 
 	void Context::AddEventReceiver(Object *receiver, StringHash eventType)
 	{
+		//if there is no group found, the new group will be added to map
 		SharedPtr<EventReceiverGroup>& group = eventReceivers_[eventType];
-		//TODO, if there is no group found, the new group will be added to map???
 		if(!group)
 		{
 			group = new EventReceiverGroup();
@@ -116,5 +116,17 @@ namespace Urho3D
 	void Context::SetGlobalVar(StringHash key, const Variant &value)
 	{
 		globalVars_[key] = value;
+	}
+
+	VariantMap &Context::GetEventDataMap()
+	{
+		unsigned nestingLevel = eventSenders_.Size();
+		while (eventDataMaps_.Size() < nestingLevel + 1)
+		{
+			eventDataMaps_.Push(new VariantMap());
+		}
+		VariantMap& ret = *eventDataMaps_[nestingLevel];
+		ret.Clear();
+		return ret;
 	}
 }

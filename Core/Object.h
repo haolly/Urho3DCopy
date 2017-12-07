@@ -58,7 +58,7 @@ namespace Urho3D
 		using ClassName = typeName; \
 		using BaseClassName = baseTypeName; \
 		virtual Urho3D::StringHash GetType() const override { return GetTypeInfoStatic() ->GetType();} \
-		virtual const Urho3D::String& GetTypeInfo() const override { return GetTypeInfoStatic() ->GetTypeName(); } \
+		virtual const Urho3D::String& GetTypeName() const override { return GetTypeInfoStatic() ->GetTypeName(); } \
 		virtual const Urho3D::TypeInfo* GetTypeInfo() const override { return GetTypeInfoStatic();} \
 		static Urho3D::StringHash GetTypeStatic() { return GetTypeInfoStatic() ->GetType();} \
 		static const Urho3D::String& GetTypeNameStatic() { return GetTypeInfoStatic() ->GetTypeName();} \
@@ -71,6 +71,8 @@ namespace Urho3D
         friend class Context;
     public:
 	    Object(Context* context);
+
+	    //Todo, destructor need override ??
 	    virtual ~Object() override;
 
 	    virtual StringHash GetType() const = 0;
@@ -288,7 +290,21 @@ namespace Urho3D
 
 	};
 
+	struct EventNameRegistrar
+	{
+		static StringHash RegisterEventName(const char* eventName);
+		static const String& GetEventName(StringHash eventID);
+		static HashMap<StringHash, String>& GetEventNameMap();
+	};
+
+#define URHO3D_EVENT(eventID, eventName) \
+	static const Urho3D::StringHash eventID(Urho3D::EventNameRegistrar::RegisterEventName(#eventName)); \
+	namespace eventName
+#define URHO3D_PARAM(paramID, paramName) \
+	static const Urho3D::StringHash paramID(#paramName)
+#define URHO3D_HANDLER(className, function) \
+	(new Urho3D::EventHandlerImpl<className>(this, &className::function))
+#define URHO3D_HANDLER_USERDATA(className, function, userData) \
+	(new Urho3D::EventHandlerImpl<className>(this, &className::function, userData))
 }
-
-
 #endif //URHO3DCOPY_OBJECT_H

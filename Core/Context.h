@@ -147,6 +147,8 @@ namespace Urho3D
 		HashMap<Object*, HashMap<StringHash, SharedPtr<EventReceiverGroup> > > specificEventReceivers_;
 
 		PODVector<Object*> eventSenders_;
+		// cache eventDataMap
+		// ref https://urho3d.github.io/documentation/1.7/_events.html
 		PODVector<VariantMap*> eventDataMaps_;
 		EventHandler* eventHandler_;
 		// todo, what is this usage

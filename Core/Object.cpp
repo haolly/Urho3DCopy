@@ -458,5 +458,24 @@ namespace Urho3D
 	const String &Object::GetCategory() const {
 		return <#initializer#>;
 	}
+
+	StringHash EventNameRegistrar::RegisterEventName(const char *eventName)
+	{
+		StringHash id(eventName);
+		GetEventNameMap()[id] = eventName;
+		return id;
+	}
+
+	const String &EventNameRegistrar::GetEventName(StringHash eventID)
+	{
+		auto iter = GetEventNameMap().Find(eventID);
+		return iter != GetEventNameMap().End() ? iter->second_ : String::EMPTY;
+	}
+
+	HashMap<StringHash, String> &EventNameRegistrar::GetEventNameMap()
+	{
+		static HashMap<StringHash, String> eventNames_;
+		return eventNames_;
+	}
 }
 

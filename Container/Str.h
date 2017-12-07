@@ -249,12 +249,15 @@ namespace Urho3D
 
 	    Iterator Replace(const Iterator& start, const Iterator& end, const String& replaceWith);
 
-	    String Replace(char replaceThis, char replaceWith, bool caseSensitive = true) const;
+	    String Replaced(char replaceThis, char replaceWith, bool caseSensitive = true) const;
+	    String Replaced(const String &replaceThis, const String &replaceWith, bool caseSensitive = true) const;
+
+
 	    //todo
 
 
-        //Note, this determinate whether the String is null terminated
-        void Resize(unsigned newLenght);
+        //Note, this determinate whether the String is null terminated, and actually it does
+        void Resize(unsigned newLength);
         void Reserve(unsigned newCapacity);
         void Compact();
         void Clear();
@@ -380,22 +383,27 @@ namespace Urho3D
         static char endZero;
     };
 
-	int String::Compare(const String &str, bool caseSensitive) const
+
+	inline String operator +(const char* lhs, const String& rhs)
 	{
-		return Compare(CString(), str.CString(), caseSensitive);
+		String ret(lhs);
+		ret += rhs;
+		return ret;
 	}
 
-	int String::Compare(const char *str, bool caseSensitive) const
+	inline String operator +(const wchar_t* lhs, const String& rhs)
 	{
-		return Compare(CString(), str, caseSensitive);
+		String ret(lhs);
+		ret += rhs;
+		return ret;
 	}
 
+	class WString
+	{
+		//todo
+	};
 }
 
-class WString
-{
-    //todo
-};
 
 
 
