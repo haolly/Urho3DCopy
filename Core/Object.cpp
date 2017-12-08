@@ -195,7 +195,7 @@ namespace Urho3D
 	}
 
 
-	/// Find **THE FIRST** eventHandler with eventType
+	/// Find **THE FIRST** eventHandler(and previous) with eventType
 	/// \param eventType
 	/// \param previous
 	/// \return
@@ -423,40 +423,45 @@ namespace Urho3D
 
 	const VariantMap &Object::GetGlobalVars() const
 	{
-		return <#initializer#>;
+		return context_->GetGlobalVars();
 	}
 
-	void Object::SetGlobalVar(StringHash key, const Variant &value) {
-
+	void Object::SetGlobalVar(StringHash key, const Variant &value)
+	{
+		context_->SetGlobalVar(key, value);
 	}
 
-	Object *Object::GetSubsystem(StringHash type) const {
-		return nullptr;
+	Object *Object::GetSubsystem(StringHash type) const
+	{
+		return context_->GetSubsystem(type);
 	}
 
-	Object *Object::GetEventSender() const {
-		return nullptr;
+	Object *Object::GetEventSender() const
+	{
+		return context_->GetEventSender();
 	}
 
-	EventHandler *Object::GetEventHandler() const {
-		return nullptr;
+	EventHandler *Object::GetEventHandler() const
+	{
+		return context_->GetEventHandler();
 	}
 
-	bool Object::HasSubscribedToEvent(StringHash eventType) const {
-		return false;
+	bool Object::HasSubscribedToEvent(StringHash eventType) const
+	{
+		return FindEventHandler(eventType) != nullptr;
 	}
 
-	bool Object::HasSubscribedToEvent(Object *sender, StringHash eventType) {
-		return false;
+	bool Object::HasSubscribedToEvent(Object *sender, StringHash eventType)
+	{
+		if(!sender)
+			return false;
+		else
+			return FindSpecificEventHandler(sender, eventType) != nullptr;
 	}
 
-	template<class T>
-	T *Object::GetSubsystem() const {
-		return nullptr;
-	}
-
-	const String &Object::GetCategory() const {
-		return <#initializer#>;
+	const String &Object::GetCategory() const
+	{
+		//todo
 	}
 
 	StringHash EventNameRegistrar::RegisterEventName(const char *eventName)

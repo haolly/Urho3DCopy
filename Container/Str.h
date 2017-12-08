@@ -340,12 +340,23 @@ namespace Urho3D
             return hash;
         }
 
-        //todo
+	    static Vector<String> Split(const char* str, char seporator, bool keepEmptyStrings = false);
+	    static String Joined(const Vector<String>& subStrings, const String& glue);
+	    static void EncodeUTF8(char*& dest, unsigned unicodeChar);
+	    static unsigned DecodeUTF8(const char*& src);
+
+#ifdef _WIN32
+		static void EncodeUTF16(wchar_t*& dest, unsigned unicodeChar);
+	    static unsigned DecodeUTF16(const wchar_t*& src);
+#endif
 
         static unsigned CStringLength(const char* str)
         {
             return str ? (unsigned)strlen(str) : 0;
         }
+
+	    String& AppendWithFormat(const char* formatString, ...);
+	    String& AppendWithFormatArgs(const char* formatString, va_list args);
 
 	    static int Compare(const char* str1, const char* str2, bool caseSenstive);
 
@@ -400,7 +411,44 @@ namespace Urho3D
 
 	class WString
 	{
-		//todo
+	public:
+		WString();
+		WString(const String& str);
+		~WString();
+
+		wchar_t&operator [](unsigned index)
+		{
+			assert(index < length_);
+			return buffer_[index];
+		}
+
+		const wchar_t& operator [](unsigned index) const
+		{
+			assert(index < length_);
+			return buffer_[index];
+		}
+
+		wchar_t& At(unsigned index)
+		{
+			assert(index < length_);
+			return buffer_[index];
+		}
+
+		const wchar_t& At(unsigned index) const
+		{
+			assert(index < length_);
+			return buffer_[index];
+		}
+
+		void Resize(unsigned newLength);
+		bool Empty() const { return length_ == 0; }
+		unsigned Length() const { return length_; }
+		const wchar_t* CString() const { return buffer_; }
+
+
+	private:
+		unsigned length_;
+		wchar_t* buffer_;
 	};
 }
 

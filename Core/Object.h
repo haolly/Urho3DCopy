@@ -72,7 +72,9 @@ namespace Urho3D
     public:
 	    Object(Context* context);
 
-	    //Todo, destructor need override ??
+	    //Note, destructor need override ??
+	    //No, but this ensure the base class has an virtual destructor
+	    //Destructor of the child class will always be virtual if base class destructor is virtual, no matter how it is declared
 	    virtual ~Object() override;
 
 	    virtual StringHash GetType() const = 0;
@@ -162,6 +164,11 @@ namespace Urho3D
 	    LinkedList<EventHandler> eventHandlers_;
 	    bool blockEvents_;
     };
+
+	template <class T> T* Object::GetSubsystem() const
+	{
+		return static_cast<T*>(GetSubsystem(T::GetSypeStatic()));
+	}
 
 
 	class ObjectFactory : public RefCount

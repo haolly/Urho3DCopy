@@ -247,4 +247,172 @@ namespace Urho3D
 		return Begin() + pos;
 	}
 
+	unsigned String::NextUTF8Char(unsigned &byteOffset) const
+	{
+		return 0;
+	}
+
+	unsigned String::LengthUTF8() const
+	{
+		return 0;
+	}
+
+	//Todo, read
+	void String::EncodeUTF8(char *&dest, unsigned unicodeChar)
+	{
+		if (unicodeChar < 0x80)
+			*dest++ = unicodeChar;
+		else if (unicodeChar < 0x800)
+		{
+			dest[0] = (char)(0xc0 | ((unicodeChar >> 6) & 0x1f));
+			dest[1] = (char)(0x80 | (unicodeChar & 0x3f));
+			dest += 2;
+		}
+		else if (unicodeChar < 0x10000)
+		{
+			dest[0] = (char)(0xe0 | ((unicodeChar >> 12) & 0xf));
+			dest[1] = (char)(0x80 | ((unicodeChar >> 6) & 0x3f));
+			dest[2] = (char)(0x80 | (unicodeChar & 0x3f));
+			dest += 3;
+		}
+		else if (unicodeChar < 0x200000)
+		{
+			dest[0] = (char)(0xf0 | ((unicodeChar >> 18) & 0x7));
+			dest[1] = (char)(0x80 | ((unicodeChar >> 12) & 0x3f));
+			dest[2] = (char)(0x80 | ((unicodeChar >> 6) & 0x3f));
+			dest[3] = (char)(0x80 | (unicodeChar & 0x3f));
+			dest += 4;
+		}
+		else if (unicodeChar < 0x4000000)
+		{
+			dest[0] = (char)(0xf8 | ((unicodeChar >> 24) & 0x3));
+			dest[1] = (char)(0x80 | ((unicodeChar >> 18) & 0x3f));
+			dest[2] = (char)(0x80 | ((unicodeChar >> 12) & 0x3f));
+			dest[3] = (char)(0x80 | ((unicodeChar >> 6) & 0x3f));
+			dest[4] = (char)(0x80 | (unicodeChar & 0x3f));
+			dest += 5;
+		}
+		else
+		{
+			dest[0] = (char)(0xfc | ((unicodeChar >> 30) & 0x1));
+			dest[1] = (char)(0x80 | ((unicodeChar >> 24) & 0x3f));
+			dest[2] = (char)(0x80 | ((unicodeChar >> 18) & 0x3f));
+			dest[3] = (char)(0x80 | ((unicodeChar >> 12) & 0x3f));
+			dest[4] = (char)(0x80 | ((unicodeChar >> 6) & 0x3f));
+			dest[5] = (char)(0x80 | (unicodeChar & 0x3f));
+			dest += 6;
+		}
+	}
+
+#define GET_NEXT_CONTINUATION_BYTE(ptr) *ptr; if ((unsigned char)*ptr < 0x80 || (unsigned char)*ptr >= 0xc0) return '?'; else ++ptr;
+
+	//Todo read
+	unsigned String::DecodeUTF8(const char *&src)
+	{
+		if (src == nullptr)
+			return 0;
+
+		unsigned char char1 = *src++;
+
+		// Check if we are in the middle of a UTF8 character
+		if (char1 >= 0x80 && char1 < 0xc0)
+		{
+			while ((unsigned char)*src >= 0x80 && (unsigned char)*src < 0xc0)
+				++src;
+			return '?';
+		}
+
+		if (char1 < 0x80)
+			return char1;
+		else if (char1 < 0xe0)
+		{
+			unsigned char char2 = GET_NEXT_CONTINUATION_BYTE(src);
+			return (unsigned)((char2 & 0x3f) | ((char1 & 0x1f) << 6));
+		}
+		else if (char1 < 0xf0)
+		{
+			unsigned char char2 = GET_NEXT_CONTINUATION_BYTE(src);
+			unsigned char char3 = GET_NEXT_CONTINUATION_BYTE(src);
+			return (unsigned)((char3 & 0x3f) | ((char2 & 0x3f) << 6) | ((char1 & 0xf) << 12));
+		}
+		else if (char1 < 0xf8)
+		{
+			unsigned char char2 = GET_NEXT_CONTINUATION_BYTE(src);
+			unsigned char char3 = GET_NEXT_CONTINUATION_BYTE(src);
+			unsigned char char4 = GET_NEXT_CONTINUATION_BYTE(src);
+			return (unsigned)((char4 & 0x3f) | ((char3 & 0x3f) << 6) | ((char2 & 0x3f) << 12) | ((char1 & 0x7) << 18));
+		}
+		else if (char1 < 0xfc)
+		{
+			unsigned char char2 = GET_NEXT_CONTINUATION_BYTE(src);
+			unsigned char char3 = GET_NEXT_CONTINUATION_BYTE(src);
+			unsigned char char4 = GET_NEXT_CONTINUATION_BYTE(src);
+			unsigned char char5 = GET_NEXT_CONTINUATION_BYTE(src);
+			return (unsigned)((char5 & 0x3f) | ((char4 & 0x3f) << 6) | ((char3 & 0x3f) << 12) | ((char2 & 0x3f) << 18) |
+							  ((char1 & 0x3) << 24));
+		}
+		else
+		{
+			unsigned char char2 = GET_NEXT_CONTINUATION_BYTE(src);
+			unsigned char char3 = GET_NEXT_CONTINUATION_BYTE(src);
+			unsigned char char4 = GET_NEXT_CONTINUATION_BYTE(src);
+			unsigned char char5 = GET_NEXT_CONTINUATION_BYTE(src);
+			unsigned char char6 = GET_NEXT_CONTINUATION_BYTE(src);
+			return (unsigned)((char6 & 0x3f) | ((char5 & 0x3f) << 6) | ((char4 & 0x3f) << 12) | ((char3 & 0x3f) << 18) |
+							  ((char2 & 0x3f) << 24) | ((char1 & 0x1) << 30));
+		}
+	}
+
+
+	WString::WString() :
+		length_(0),
+		buffer_(nullptr)
+	{
+	}
+
+	WString::WString(const String &str) :
+		length_(0),
+		buffer_(nullptr)
+	{
+#ifdef _WIN32
+		unsigned neededSize = 0;
+		wchar_t temp[3];
+		unsigned byteOffset = 0;
+		while(byteOffset < str.Length())
+		{
+			wchar_t* dest = temp;
+			String::EncodeUTF16(dest, str.NextUTF8Char(byteOffset));
+			neededSize += dest - temp;
+		}
+
+		Resize(neededSize);
+
+		byteOffset = 0;
+		wchar_t* dest = buffer_;
+		while(byteOffset < str.Length())
+		{
+			String::EncodeUTF16(dest, str.NextUTF8Char(byteOffset));
+		}
+#else
+		Resize(str.LengthUTF8());
+
+		unsigned byteOffset = 0;
+		wchar_t* dest = buffer_;
+		while(byteOffset < str.Length())
+		{
+			*dest++ = (wchar_t)str.NextUTF8Char(byteOffset);
+		}
+
+#endif
+	}
+
+	WString::~WString()
+	{
+		delete [] buffer_;
+	}
+
+	void WString::Resize(unsigned newLength)
+	{
+		//todo
+	}
 }
