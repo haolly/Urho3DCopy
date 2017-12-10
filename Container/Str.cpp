@@ -413,6 +413,25 @@ namespace Urho3D
 
 	void WString::Resize(unsigned newLength)
 	{
-		//todo
+		if (!newLength)
+		{
+			delete[] buffer_;
+			buffer_ = nullptr;
+			length_ = 0;
+		}
+		else
+		{
+			//Note ,Null terminated
+			wchar_t* newBuffer = new wchar_t[newLength + 1];
+			if(buffer_)
+			{
+				unsigned copyLength = length_ < newLength ? length_ : newLength;
+				memcpy(newBuffer, buffer_, copyLength * sizeof(wchar_t));
+				delete[] buffer_;
+			}
+			newBuffer[newLength] = 0;
+			buffer_ = newBuffer;
+			length_ = newLength;
+		}
 	}
 }
