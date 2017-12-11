@@ -10,6 +10,7 @@
 
 namespace Urho3D
 {
+	//todo, 和 SharedPtr 有啥区别， 好像很类似呀。。。
 	template <class T>
 	class SharedArrayPtr
 	{

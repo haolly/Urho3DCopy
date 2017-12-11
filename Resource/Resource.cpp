@@ -4,6 +4,7 @@
 
 #include "Resource.h"
 #include "../Core/Thread.h"
+#include "../IO/File.h"
 
 namespace Urho3D
 {
@@ -52,25 +53,83 @@ namespace Urho3D
 
 	bool Resource::SaveFile(const String &fileName) const
 	{
-		return false;
+		File file(context_);
+		return file.Open(fileName, FILE_WRITE) && Save(file);
 	}
 
 	void Resource::SetName(const String &name)
 	{
-
+		name_ = name;
+		nameHash_ = StringHash(name);
 	}
 
 	void Resource::SetMemoryUse(unsigned size)
 	{
-
+		memoryUse_ = size;
 	}
 
 	void Resource::ResetUseTimer()
 	{
-
+		useTimer_.Reset();
 	}
 
 	void Resource::SetAsyncLoadState(AsyncLoadState newState)
+	{
+		asyncLoadState_ = newState;
+	}
+
+	unsigned Resource::GetUseTimer()
+	{
+		if(Refs() > 1)
+		{
+			useTimer_.Reset();
+			return 0;
+		}
+		else
+			return useTimer_.GetMSec(false);
+	}
+
+	void ResourceWithMetadata::AddMetadata(const String &name, const VariantMap &value)
+	{
+
+	}
+
+	void ResourceWithMetadata::RemoveMetadata(const String &name)
+	{
+
+	}
+
+	void ResourceWithMetadata::RemoveAllMetadata()
+	{
+
+	}
+
+	const VariantMap &ResourceWithMetadata::GetMetadata(const String &name) const
+	{
+		return <#initializer#>;
+	}
+
+	bool ResourceWithMetadata::HasMetadata() const
+	{
+		return false;
+	}
+
+	void ResourceWithMetadata::LoadMetadataFromXML(const XMLElement &source)
+	{
+
+	}
+
+	void ResourceWithMetadata::LoadMetadataFromJSON(const JSONArray &array)
+	{
+
+	}
+
+	void ResourceWithMetadata::SaveMetadataToXML(XMLElement &destination) const
+	{
+
+	}
+
+	void ResourceWithMetadata::CopyMetadata(const ResourceWithMetadata &source)
 	{
 
 	}

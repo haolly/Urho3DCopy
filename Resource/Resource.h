@@ -45,6 +45,10 @@ namespace Urho3D
 		void SetAsyncLoadState(AsyncLoadState newState);
 
 		const String& GetName() const { return name_; }
+		StringHash GetNameHash() const { return nameHash_; }
+		unsigned GetMemoryUse() const { return memoryUse_; }
+		unsigned GetUseTimer();
+		AsyncLoadState GetAsyncLoadState() const { return asyncLoadState_; }
 
 	private:
 		String name_;
@@ -52,6 +56,32 @@ namespace Urho3D
 		Timer useTimer_;
 		unsigned memoryUse_;
 		AsyncLoadState asyncLoadState_;
+	};
+
+	class ResourceWithMetadata : public Resource
+	{
+		URHO3D_OBJECT(ResourceWithMetadata, Resource);
+	public:
+		ResourceWithMetadata(Context* context) :
+				Resource(context)
+		{
+		}
+
+		void AddMetadata(const String& name, const VariantMap& value);
+		void RemoveMetadata(const String& name);
+		void RemoveAllMetadata();
+		const VariantMap& GetMetadata(const String& name) const;
+		bool HasMetadata() const;
+
+	protected:
+		void LoadMetadataFromXML(const XMLElement& source);
+		void LoadMetadataFromJSON(const JSONArray& array);
+		void SaveMetadataToXML(XMLElement& destination) const;
+		void CopyMetadata(const ResourceWithMetadata& source);
+
+	private:
+		VariantMap metadata_;
+		StringVector metadataKeys_;
 	};
 
 }

@@ -12,7 +12,12 @@
 
 namespace Urho3D
 {
+	static const int CONVERSION_BUFFER_LENGTH = 128;
+	static const int MATRIX_CONVERSION_BUFFER_LENGTH = 256;
+
     //null terminated string
+	class WString;
+
     class String
     {
     public:
@@ -252,9 +257,21 @@ namespace Urho3D
 	    String Replaced(char replaceThis, char replaceWith, bool caseSensitive = true) const;
 	    String Replaced(const String &replaceThis, const String &replaceWith, bool caseSensitive = true) const;
 
+	    String& Append(const String& str);
+	    String& Append(const char* str);
+	    String& Append(char c);
+	    String& Append(const char* str, unsigned length);
 
-	    //todo
+	    void Insert(unsigned pos, const String& str);
+	    void Insert(unsigned pos, char c);
 
+	    Iterator Insert(const Iterator& dest, const String& str);
+	    Iterator Insret(const Iterator& dest, const Iterator& start, const Iterator& end);
+	    Iterator Insert(const Iterator& dest, char c);
+
+	    void Erase(unsigned pos, unsigned length = 1);
+	    Iterator Erase(const Iterator& it);
+	    Iterator Erase(const Iterator& start, const Iterator& end);
 
         //Note, this determinate whether the String is null terminated, and actually it does
         void Resize(unsigned newLength);
@@ -312,6 +329,15 @@ namespace Urho3D
 	    int Compare(const String& str, bool caseSensitive = true) const;
 	    int Compare(const char* str, bool caseSensitive = true) const;
 
+	    bool Contains(const String& str, bool caseSensitive = true) const
+	    {
+		    return Find(str, 0, caseSensitive) != NPOS;
+	    }
+
+	    bool Contains(char c, bool caseSensitive = true) const
+	    {
+		    return Find(c, 0, caseSensitive) != NPOS;
+	    }
 
 
         void SetUTF8FromLatin1(const char* str);

@@ -19,7 +19,7 @@ namespace Urho3D
 		virtual unsigned Read(void* dest, unsigned size) = 0;
 		virtual unsigned Seek(unsigned position) = 0;
 		virtual const String& GetName() const;
-		virtual unsigned GetCheckSum();
+		virtual unsigned GetChecksum();
 		virtual bool IsEof() const
 		{
 			return position_ >= size_;

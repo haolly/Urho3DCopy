@@ -12,38 +12,701 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c252dcf7-f23f-4ef3-a0a1-fb7416ecb4bb" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/IO/FileSystem.cpp" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/IO/FileSystem.h" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/IO/MemoryBuffer.cpp" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/IO/MemoryBuffer.h" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/LZ4/CMakeFiles/CMakeDirectoryInformation.cmake" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/LZ4/CMakeFiles/LZ4.dir/C.includecache" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/LZ4/CMakeFiles/LZ4.dir/DependInfo.cmake" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/LZ4/CMakeFiles/LZ4.dir/build.make" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/LZ4/CMakeFiles/LZ4.dir/cmake_clean.cmake" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/LZ4/CMakeFiles/LZ4.dir/cmake_clean_target.cmake" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/LZ4/CMakeFiles/LZ4.dir/depend.internal" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/LZ4/CMakeFiles/LZ4.dir/depend.make" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/LZ4/CMakeFiles/LZ4.dir/flags.make" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/LZ4/CMakeFiles/LZ4.dir/link.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/LZ4/CMakeFiles/LZ4.dir/lz4.c.o" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/LZ4/CMakeFiles/LZ4.dir/lz4hc.c.o" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/LZ4/CMakeFiles/LZ4.dir/progress.make" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/LZ4/CMakeFiles/progress.marks" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/LZ4/CMakeLists.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/LZ4/LICENSE" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/LZ4/Makefile" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/LZ4/cmake_install.cmake" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/LZ4/libLZ4.a" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/LZ4/lz4.c" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/LZ4/lz4.h" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/LZ4/lz4hc.c" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/LZ4/lz4hc.h" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/LZ4/lz4opt.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/Container/List.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/Container/ListBase.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/BUGS.txt" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/CMakeLists.txt" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/COPYING.txt" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/CREDITS.txt" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/INSTALL.txt" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/README-SDL.txt" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/README.txt" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/TODO.txt" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/WhatsNew.txt" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/cmake/macros.cmake" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/cmake/sdlchecks.cmake" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/include/SDL.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/include/SDL_assert.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/include/SDL_atomic.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/include/SDL_audio.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/include/SDL_bits.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/include/SDL_blendmode.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/include/SDL_clipboard.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/include/SDL_config.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/include/SDL_config.h.cmake" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/include/SDL_config_android.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/include/SDL_config_iphoneos.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/include/SDL_config_macosx.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/include/SDL_config_minimal.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/include/SDL_config_pandora.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/include/SDL_config_psp.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/include/SDL_config_windows.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/include/SDL_config_winrt.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/include/SDL_config_wiz.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/include/SDL_copying.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/include/SDL_cpuinfo.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/include/SDL_egl.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/include/SDL_endian.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/include/SDL_error.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/include/SDL_events.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/include/SDL_filesystem.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/include/SDL_gamecontroller.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/include/SDL_gesture.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/include/SDL_haptic.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/include/SDL_hints.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/include/SDL_joystick.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/include/SDL_keyboard.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/include/SDL_keycode.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/include/SDL_loadso.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/include/SDL_log.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/include/SDL_main.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/include/SDL_messagebox.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/include/SDL_mouse.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/include/SDL_mutex.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/include/SDL_name.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/include/SDL_opengl.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/include/SDL_opengl_glext.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/include/SDL_opengles.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/include/SDL_opengles2.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/include/SDL_opengles2_gl2.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/include/SDL_opengles2_gl2ext.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/include/SDL_opengles2_gl2platform.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/include/SDL_opengles2_khrplatform.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/include/SDL_pixels.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/include/SDL_platform.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/include/SDL_power.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/include/SDL_quit.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/include/SDL_rect.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/include/SDL_render.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/include/SDL_revision.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/include/SDL_rwops.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/include/SDL_scancode.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/include/SDL_shape.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/include/SDL_stdinc.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/include/SDL_surface.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/include/SDL_system.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/include/SDL_syswm.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/include/SDL_thread.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/include/SDL_timer.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/include/SDL_touch.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/include/SDL_types.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/include/SDL_version.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/include/SDL_video.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/include/begin_code.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/include/close_code.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/SDL.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/SDL_assert.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/SDL_assert_c.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/SDL_error.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/SDL_error_c.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/SDL_hints.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/SDL_internal.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/SDL_log.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/atomic/SDL_atomic.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/atomic/SDL_spinlock.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/audio/SDL_audio.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/audio/SDL_audio_c.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/audio/SDL_audiocvt.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/audio/SDL_audiodev.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/audio/SDL_audiodev_c.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/audio/SDL_audiotypecvt.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/audio/SDL_mixer.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/audio/SDL_sysaudio.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/audio/SDL_wave.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/audio/SDL_wave.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/audio/alsa/SDL_alsa_audio.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/audio/alsa/SDL_alsa_audio.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/audio/android/SDL_androidaudio.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/audio/android/SDL_androidaudio.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/audio/arts/SDL_artsaudio.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/audio/arts/SDL_artsaudio.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/audio/bsd/SDL_bsdaudio.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/audio/bsd/SDL_bsdaudio.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/audio/coreaudio/SDL_coreaudio.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/audio/coreaudio/SDL_coreaudio.m" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/audio/directsound/SDL_directsound.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/audio/directsound/SDL_directsound.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/audio/disk/SDL_diskaudio.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/audio/disk/SDL_diskaudio.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/audio/dsp/SDL_dspaudio.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/audio/dsp/SDL_dspaudio.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/audio/dummy/SDL_dummyaudio.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/audio/dummy/SDL_dummyaudio.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/audio/emscripten/SDL_emscriptenaudio.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/audio/emscripten/SDL_emscriptenaudio.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/audio/esd/SDL_esdaudio.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/audio/esd/SDL_esdaudio.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/audio/fusionsound/SDL_fsaudio.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/audio/fusionsound/SDL_fsaudio.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/audio/haiku/SDL_haikuaudio.cc" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/audio/haiku/SDL_haikuaudio.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/audio/nacl/SDL_naclaudio.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/audio/nacl/SDL_naclaudio.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/audio/nas/SDL_nasaudio.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/audio/nas/SDL_nasaudio.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/audio/paudio/SDL_paudio.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/audio/paudio/SDL_paudio.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/audio/psp/SDL_pspaudio.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/audio/psp/SDL_pspaudio.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/audio/pulseaudio/SDL_pulseaudio.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/audio/pulseaudio/SDL_pulseaudio.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/audio/qsa/SDL_qsa_audio.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/audio/qsa/SDL_qsa_audio.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/audio/sdlgenaudiocvt.pl" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/audio/sndio/SDL_sndioaudio.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/audio/sndio/SDL_sndioaudio.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/audio/sun/SDL_sunaudio.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/audio/sun/SDL_sunaudio.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/audio/winmm/SDL_winmm.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/audio/winmm/SDL_winmm.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/audio/xaudio2/SDL_xaudio2.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/audio/xaudio2/SDL_xaudio2.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/audio/xaudio2/SDL_xaudio2_winrthelpers.cpp" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/audio/xaudio2/SDL_xaudio2_winrthelpers.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/core/android/SDL_android.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/core/android/SDL_android.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/core/linux/SDL_dbus.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/core/linux/SDL_dbus.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/core/linux/SDL_evdev.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/core/linux/SDL_evdev.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/core/linux/SDL_evdev_kbd.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/core/linux/SDL_evdev_kbd.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/core/linux/SDL_evdev_kbd_default_accents.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/core/linux/SDL_evdev_kbd_default_keymap.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/core/linux/SDL_fcitx.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/core/linux/SDL_fcitx.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/core/linux/SDL_ibus.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/core/linux/SDL_ibus.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/core/linux/SDL_ime.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/core/linux/SDL_ime.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/core/linux/SDL_udev.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/core/linux/SDL_udev.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/core/windows/SDL_directx.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/core/windows/SDL_windows.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/core/windows/SDL_windows.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/core/windows/SDL_xinput.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/core/windows/SDL_xinput.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/core/winrt/SDL_winrtapp_common.cpp" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/core/winrt/SDL_winrtapp_common.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/core/winrt/SDL_winrtapp_direct3d.cpp" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/core/winrt/SDL_winrtapp_direct3d.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/core/winrt/SDL_winrtapp_xaml.cpp" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/core/winrt/SDL_winrtapp_xaml.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/cpuinfo/SDL_cpuinfo.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/dynapi/SDL_dynapi.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/dynapi/SDL_dynapi.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/dynapi/SDL_dynapi_overrides.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/dynapi/SDL_dynapi_procs.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/dynapi/gendynapi.pl" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/events/SDL_clipboardevents.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/events/SDL_clipboardevents_c.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/events/SDL_dropevents.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/events/SDL_dropevents_c.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/events/SDL_events.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/events/SDL_events_c.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/events/SDL_gesture.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/events/SDL_gesture_c.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/events/SDL_keyboard.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/events/SDL_keyboard_c.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/events/SDL_mouse.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/events/SDL_mouse_c.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/events/SDL_quit.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/events/SDL_sysevents.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/events/SDL_touch.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/events/SDL_touch_c.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/events/SDL_windowevents.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/events/SDL_windowevents_c.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/events/blank_cursor.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/events/default_cursor.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/events/scancodes_darwin.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/events/scancodes_linux.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/events/scancodes_windows.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/events/scancodes_xfree86.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/file/SDL_rwops.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/file/cocoa/SDL_rwopsbundlesupport.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/file/cocoa/SDL_rwopsbundlesupport.m" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/filesystem/android/SDL_sysfilesystem.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/filesystem/cocoa/SDL_sysfilesystem.m" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/filesystem/dummy/SDL_sysfilesystem.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/filesystem/emscripten/SDL_sysfilesystem.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/filesystem/haiku/SDL_sysfilesystem.cc" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/filesystem/nacl/SDL_sysfilesystem.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/filesystem/unix/SDL_sysfilesystem.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/filesystem/windows/SDL_sysfilesystem.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/filesystem/winrt/SDL_sysfilesystem.cpp" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/haptic/SDL_haptic.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/haptic/SDL_haptic_c.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/haptic/SDL_syshaptic.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/haptic/darwin/SDL_syshaptic.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/haptic/darwin/SDL_syshaptic_c.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/haptic/dummy/SDL_syshaptic.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/haptic/linux/SDL_syshaptic.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/haptic/windows/SDL_dinputhaptic.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/haptic/windows/SDL_dinputhaptic_c.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/haptic/windows/SDL_windowshaptic.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/haptic/windows/SDL_windowshaptic_c.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/haptic/windows/SDL_xinputhaptic.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/haptic/windows/SDL_xinputhaptic_c.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/joystick/SDL_gamecontroller.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/joystick/SDL_gamecontrollerdb.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/joystick/SDL_joystick.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/joystick/SDL_joystick_c.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/joystick/SDL_sysjoystick.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/joystick/android/SDL_sysjoystick.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/joystick/android/SDL_sysjoystick_c.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/joystick/bsd/SDL_sysjoystick.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/joystick/darwin/SDL_sysjoystick.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/joystick/darwin/SDL_sysjoystick_c.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/joystick/dummy/SDL_sysjoystick.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/joystick/emscripten/SDL_sysjoystick.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/joystick/emscripten/SDL_sysjoystick_c.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/joystick/haiku/SDL_haikujoystick.cc" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/joystick/iphoneos/SDL_sysjoystick.m" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/joystick/iphoneos/SDL_sysjoystick_c.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/joystick/linux/SDL_sysjoystick.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/joystick/linux/SDL_sysjoystick_c.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/joystick/psp/SDL_sysjoystick.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/joystick/sort_controllers.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/joystick/windows/SDL_dinputjoystick.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/joystick/windows/SDL_dinputjoystick_c.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/joystick/windows/SDL_mmjoystick.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/joystick/windows/SDL_windowsjoystick.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/joystick/windows/SDL_windowsjoystick_c.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/joystick/windows/SDL_xinputjoystick.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/joystick/windows/SDL_xinputjoystick_c.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/libm/e_atan2.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/libm/e_log.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/libm/e_pow.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/libm/e_rem_pio2.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/libm/e_sqrt.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/libm/k_cos.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/libm/k_rem_pio2.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/libm/k_sin.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/libm/k_tan.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/libm/math_libm.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/libm/math_private.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/libm/s_atan.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/libm/s_copysign.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/libm/s_cos.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/libm/s_fabs.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/libm/s_floor.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/libm/s_scalbn.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/libm/s_sin.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/libm/s_tan.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/loadso/dlopen/SDL_sysloadso.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/loadso/dummy/SDL_sysloadso.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/loadso/haiku/SDL_sysloadso.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/loadso/windows/SDL_sysloadso.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/main/android/SDL_android_main.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/main/dummy/SDL_dummy_main.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/main/haiku/SDL_BApp.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/main/haiku/SDL_BeApp.cc" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/main/haiku/SDL_BeApp.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/main/nacl/SDL_nacl_main.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/main/psp/SDL_psp_main.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/main/windows/SDL_windows_main.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/main/windows/version.rc" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/main/winrt/SDL2-WinRTResource_BlankCursor.cur" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/main/winrt/SDL2-WinRTResources.rc" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/main/winrt/SDL_winrt_main_NonXAML.cpp" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/power/SDL_power.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/power/android/SDL_syspower.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/power/emscripten/SDL_syspower.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/power/haiku/SDL_syspower.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/power/linux/SDL_syspower.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/power/macosx/SDL_syspower.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/power/psp/SDL_syspower.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/power/uikit/SDL_syspower.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/power/uikit/SDL_syspower.m" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/power/windows/SDL_syspower.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/power/winrt/SDL_syspower.cpp" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/render/SDL_d3dmath.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/render/SDL_d3dmath.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/render/SDL_render.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/render/SDL_sysrender.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/render/SDL_yuv_mmx.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/render/SDL_yuv_sw.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/render/SDL_yuv_sw_c.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/render/direct3d/SDL_render_d3d.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/render/direct3d11/SDL_render_d3d11.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/render/direct3d11/SDL_render_winrt.cpp" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/render/direct3d11/SDL_render_winrt.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/render/mmx.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/render/opengl/SDL_glfuncs.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/render/opengl/SDL_render_gl.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/render/opengl/SDL_shaders_gl.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/render/opengl/SDL_shaders_gl.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/render/opengles/SDL_glesfuncs.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/render/opengles/SDL_render_gles.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/render/opengles2/SDL_gles2funcs.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/render/opengles2/SDL_render_gles2.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/render/opengles2/SDL_shaders_gles2.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/render/opengles2/SDL_shaders_gles2.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/render/psp/SDL_render_psp.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/render/software/SDL_blendfillrect.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/render/software/SDL_blendfillrect.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/render/software/SDL_blendline.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/render/software/SDL_blendline.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/render/software/SDL_blendpoint.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/render/software/SDL_blendpoint.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/render/software/SDL_draw.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/render/software/SDL_drawline.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/render/software/SDL_drawline.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/render/software/SDL_drawpoint.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/render/software/SDL_drawpoint.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/render/software/SDL_render_sw.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/render/software/SDL_render_sw_c.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/render/software/SDL_rotate.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/render/software/SDL_rotate.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/stdlib/SDL_getenv.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/stdlib/SDL_iconv.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/stdlib/SDL_malloc.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/stdlib/SDL_qsort.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/stdlib/SDL_stdlib.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/stdlib/SDL_string.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/thread/SDL_systhread.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/thread/SDL_thread.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/thread/SDL_thread_c.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/thread/generic/SDL_syscond.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/thread/generic/SDL_sysmutex.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/thread/generic/SDL_sysmutex_c.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/thread/generic/SDL_syssem.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/thread/generic/SDL_systhread.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/thread/generic/SDL_systhread_c.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/thread/generic/SDL_systls.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/thread/psp/SDL_syscond.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/thread/psp/SDL_sysmutex.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/thread/psp/SDL_sysmutex_c.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/thread/psp/SDL_syssem.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/thread/psp/SDL_systhread.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/thread/psp/SDL_systhread_c.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/thread/pthread/SDL_syscond.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/thread/pthread/SDL_sysmutex.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/thread/pthread/SDL_sysmutex_c.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/thread/pthread/SDL_syssem.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/thread/pthread/SDL_systhread.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/thread/pthread/SDL_systhread_c.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/thread/pthread/SDL_systls.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/thread/stdcpp/SDL_syscond.cpp" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/thread/stdcpp/SDL_sysmutex.cpp" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/thread/stdcpp/SDL_sysmutex_c.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/thread/stdcpp/SDL_systhread.cpp" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/thread/stdcpp/SDL_systhread_c.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/thread/windows/SDL_sysmutex.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/thread/windows/SDL_syssem.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/thread/windows/SDL_systhread.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/thread/windows/SDL_systhread_c.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/thread/windows/SDL_systls.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/timer/SDL_timer.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/timer/SDL_timer_c.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/timer/dummy/SDL_systimer.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/timer/haiku/SDL_systimer.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/timer/psp/SDL_systimer.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/timer/unix/SDL_systimer.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/timer/windows/SDL_systimer.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/SDL_RLEaccel.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/SDL_RLEaccel_c.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/SDL_blit.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/SDL_blit.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/SDL_blit_0.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/SDL_blit_1.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/SDL_blit_A.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/SDL_blit_N.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/SDL_blit_auto.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/SDL_blit_auto.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/SDL_blit_copy.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/SDL_blit_copy.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/SDL_blit_slow.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/SDL_blit_slow.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/SDL_bmp.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/SDL_clipboard.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/SDL_egl.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/SDL_egl_c.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/SDL_fillrect.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/SDL_pixels.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/SDL_pixels_c.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/SDL_rect.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/SDL_rect_c.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/SDL_shape.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/SDL_shape_internals.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/SDL_stretch.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/SDL_surface.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/SDL_sysvideo.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/SDL_video.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/android/SDL_androidclipboard.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/android/SDL_androidclipboard.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/android/SDL_androidevents.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/android/SDL_androidevents.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/android/SDL_androidgl.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/android/SDL_androidkeyboard.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/android/SDL_androidkeyboard.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/android/SDL_androidmessagebox.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/android/SDL_androidmessagebox.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/android/SDL_androidmouse.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/android/SDL_androidmouse.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/android/SDL_androidtouch.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/android/SDL_androidtouch.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/android/SDL_androidvideo.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/android/SDL_androidvideo.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/android/SDL_androidwindow.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/android/SDL_androidwindow.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/cocoa/SDL_cocoaclipboard.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/cocoa/SDL_cocoaclipboard.m" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/cocoa/SDL_cocoaevents.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/cocoa/SDL_cocoaevents.m" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/cocoa/SDL_cocoakeyboard.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/cocoa/SDL_cocoakeyboard.m" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/cocoa/SDL_cocoamessagebox.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/cocoa/SDL_cocoamessagebox.m" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/cocoa/SDL_cocoamodes.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/cocoa/SDL_cocoamodes.m" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/cocoa/SDL_cocoamouse.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/cocoa/SDL_cocoamouse.m" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/cocoa/SDL_cocoamousetap.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/cocoa/SDL_cocoamousetap.m" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/cocoa/SDL_cocoaopengl.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/cocoa/SDL_cocoaopengl.m" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/cocoa/SDL_cocoashape.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/cocoa/SDL_cocoashape.m" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/cocoa/SDL_cocoavideo.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/cocoa/SDL_cocoavideo.m" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/cocoa/SDL_cocoawindow.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/cocoa/SDL_cocoawindow.m" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/directfb/SDL_DirectFB_WM.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/directfb/SDL_DirectFB_WM.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/directfb/SDL_DirectFB_dyn.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/directfb/SDL_DirectFB_dyn.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/directfb/SDL_DirectFB_events.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/directfb/SDL_DirectFB_events.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/directfb/SDL_DirectFB_modes.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/directfb/SDL_DirectFB_modes.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/directfb/SDL_DirectFB_mouse.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/directfb/SDL_DirectFB_mouse.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/directfb/SDL_DirectFB_opengl.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/directfb/SDL_DirectFB_opengl.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/directfb/SDL_DirectFB_render.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/directfb/SDL_DirectFB_render.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/directfb/SDL_DirectFB_shape.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/directfb/SDL_DirectFB_shape.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/directfb/SDL_DirectFB_video.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/directfb/SDL_DirectFB_video.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/directfb/SDL_DirectFB_window.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/directfb/SDL_DirectFB_window.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/dummy/SDL_nullevents.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/dummy/SDL_nullevents_c.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/dummy/SDL_nullframebuffer.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/dummy/SDL_nullframebuffer_c.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/dummy/SDL_nullvideo.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/dummy/SDL_nullvideo.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/emscripten/SDL_emscriptenevents.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/emscripten/SDL_emscriptenevents.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/emscripten/SDL_emscriptenframebuffer.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/emscripten/SDL_emscriptenframebuffer.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/emscripten/SDL_emscriptenmouse.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/emscripten/SDL_emscriptenmouse.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/emscripten/SDL_emscriptenopengles.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/emscripten/SDL_emscriptenopengles.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/emscripten/SDL_emscriptenvideo.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/emscripten/SDL_emscriptenvideo.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/haiku/SDL_BWin.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/haiku/SDL_bclipboard.cc" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/haiku/SDL_bclipboard.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/haiku/SDL_bevents.cc" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/haiku/SDL_bevents.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/haiku/SDL_bframebuffer.cc" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/haiku/SDL_bframebuffer.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/haiku/SDL_bkeyboard.cc" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/haiku/SDL_bkeyboard.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/haiku/SDL_bmodes.cc" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/haiku/SDL_bmodes.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/haiku/SDL_bopengl.cc" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/haiku/SDL_bopengl.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/haiku/SDL_bvideo.cc" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/haiku/SDL_bvideo.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/haiku/SDL_bwindow.cc" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/haiku/SDL_bwindow.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/mir/SDL_mirdyn.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/mir/SDL_mirdyn.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/mir/SDL_mirevents.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/mir/SDL_mirevents.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/mir/SDL_mirframebuffer.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/mir/SDL_mirframebuffer.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/mir/SDL_mirmouse.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/mir/SDL_mirmouse.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/mir/SDL_miropengl.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/mir/SDL_miropengl.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/mir/SDL_mirsym.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/mir/SDL_mirvideo.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/mir/SDL_mirvideo.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/mir/SDL_mirwindow.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/mir/SDL_mirwindow.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/nacl/SDL_naclevents.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/nacl/SDL_naclevents_c.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/nacl/SDL_naclglue.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/nacl/SDL_naclopengles.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/nacl/SDL_naclopengles.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/nacl/SDL_naclvideo.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/nacl/SDL_naclvideo.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/nacl/SDL_naclwindow.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/nacl/SDL_naclwindow.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/pandora/SDL_pandora.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/pandora/SDL_pandora.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/pandora/SDL_pandora_events.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/pandora/SDL_pandora_events.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/psp/SDL_pspevents.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/psp/SDL_pspevents_c.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/psp/SDL_pspgl.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/psp/SDL_pspgl_c.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/psp/SDL_pspmouse.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/psp/SDL_pspmouse_c.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/psp/SDL_pspvideo.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/psp/SDL_pspvideo.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/raspberry/SDL_rpievents.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/raspberry/SDL_rpievents_c.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/raspberry/SDL_rpimouse.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/raspberry/SDL_rpimouse.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/raspberry/SDL_rpiopengles.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/raspberry/SDL_rpiopengles.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/raspberry/SDL_rpivideo.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/raspberry/SDL_rpivideo.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/sdlgenblit.pl" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/uikit/SDL_uikitappdelegate.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/uikit/SDL_uikitappdelegate.m" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/uikit/SDL_uikitclipboard.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/uikit/SDL_uikitclipboard.m" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/uikit/SDL_uikitevents.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/uikit/SDL_uikitevents.m" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/uikit/SDL_uikitmessagebox.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/uikit/SDL_uikitmessagebox.m" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/uikit/SDL_uikitmodes.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/uikit/SDL_uikitmodes.m" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/uikit/SDL_uikitopengles.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/uikit/SDL_uikitopengles.m" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/uikit/SDL_uikitopenglview.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/uikit/SDL_uikitopenglview.m" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/uikit/SDL_uikitvideo.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/uikit/SDL_uikitvideo.m" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/uikit/SDL_uikitview.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/uikit/SDL_uikitview.m" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/uikit/SDL_uikitviewcontroller.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/uikit/SDL_uikitviewcontroller.m" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/uikit/SDL_uikitwindow.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/uikit/SDL_uikitwindow.m" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/uikit/keyinfotable.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/vivante/SDL_vivanteopengles.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/vivante/SDL_vivanteopengles.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/vivante/SDL_vivanteplatform.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/vivante/SDL_vivanteplatform.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/vivante/SDL_vivantevideo.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/vivante/SDL_vivantevideo.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/wayland/SDL_waylanddyn.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/wayland/SDL_waylanddyn.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/wayland/SDL_waylandevents.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/wayland/SDL_waylandevents_c.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/wayland/SDL_waylandmouse.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/wayland/SDL_waylandmouse.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/wayland/SDL_waylandopengles.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/wayland/SDL_waylandopengles.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/wayland/SDL_waylandsym.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/wayland/SDL_waylandtouch.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/wayland/SDL_waylandtouch.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/wayland/SDL_waylandvideo.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/wayland/SDL_waylandvideo.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/wayland/SDL_waylandwindow.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/wayland/SDL_waylandwindow.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/windows/SDL_msctf.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/windows/SDL_vkeys.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/windows/SDL_windowsclipboard.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/windows/SDL_windowsclipboard.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/windows/SDL_windowsevents.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/windows/SDL_windowsevents.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/windows/SDL_windowsframebuffer.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/windows/SDL_windowsframebuffer.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/windows/SDL_windowskeyboard.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/windows/SDL_windowskeyboard.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/windows/SDL_windowsmessagebox.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/windows/SDL_windowsmessagebox.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/windows/SDL_windowsmodes.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/windows/SDL_windowsmodes.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/windows/SDL_windowsmouse.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/windows/SDL_windowsmouse.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/windows/SDL_windowsopengl.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/windows/SDL_windowsopengl.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/windows/SDL_windowsopengles.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/windows/SDL_windowsopengles.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/windows/SDL_windowsshape.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/windows/SDL_windowsshape.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/windows/SDL_windowsvideo.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/windows/SDL_windowsvideo.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/windows/SDL_windowswindow.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/windows/SDL_windowswindow.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/windows/wmmsg.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/winrt/SDL_winrtevents.cpp" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/winrt/SDL_winrtevents_c.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/winrt/SDL_winrtgamebar.cpp" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/winrt/SDL_winrtgamebar_cpp.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/winrt/SDL_winrtkeyboard.cpp" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/winrt/SDL_winrtmessagebox.cpp" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/winrt/SDL_winrtmessagebox.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/winrt/SDL_winrtmouse.cpp" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/winrt/SDL_winrtmouse_c.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/winrt/SDL_winrtopengles.cpp" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/winrt/SDL_winrtopengles.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/winrt/SDL_winrtpointerinput.cpp" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/winrt/SDL_winrtvideo.cpp" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/winrt/SDL_winrtvideo_cpp.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/x11/SDL_x11clipboard.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/x11/SDL_x11clipboard.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/x11/SDL_x11dyn.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/x11/SDL_x11dyn.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/x11/SDL_x11events.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/x11/SDL_x11events.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/x11/SDL_x11framebuffer.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/x11/SDL_x11framebuffer.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/x11/SDL_x11keyboard.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/x11/SDL_x11keyboard.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/x11/SDL_x11messagebox.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/x11/SDL_x11messagebox.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/x11/SDL_x11modes.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/x11/SDL_x11modes.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/x11/SDL_x11mouse.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/x11/SDL_x11mouse.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/x11/SDL_x11opengl.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/x11/SDL_x11opengl.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/x11/SDL_x11opengles.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/x11/SDL_x11opengles.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/x11/SDL_x11shape.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/x11/SDL_x11shape.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/x11/SDL_x11sym.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/x11/SDL_x11touch.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/x11/SDL_x11touch.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/x11/SDL_x11video.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/x11/SDL_x11video.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/x11/SDL_x11window.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/x11/SDL_x11window.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/x11/SDL_x11xinput2.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/x11/SDL_x11xinput2.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/x11/edid-parse.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/x11/edid.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/x11/imKStoUCS.c" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/SDL/src/video/x11/imKStoUCS.h" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/CMakeLists.txt" afterPath="$PROJECT_DIR$/CMakeLists.txt" />
-      <change beforePath="$PROJECT_DIR$/Container/Str.cpp" afterPath="$PROJECT_DIR$/Container/Str.cpp" />
+      <change beforePath="$PROJECT_DIR$/Container/ArrayPtr.h" afterPath="$PROJECT_DIR$/Container/ArrayPtr.h" />
+      <change beforePath="$PROJECT_DIR$/Container/HashMap.h" afterPath="$PROJECT_DIR$/Container/HashMap.h" />
+      <change beforePath="$PROJECT_DIR$/Container/HashSet.h" afterPath="$PROJECT_DIR$/Container/HashSet.h" />
+      <change beforePath="$PROJECT_DIR$/Container/LinkedList.h" afterPath="$PROJECT_DIR$/Container/LinkedList.h" />
+      <change beforePath="$PROJECT_DIR$/Container/Ptr.h" afterPath="$PROJECT_DIR$/Container/Ptr.h" />
+      <change beforePath="$PROJECT_DIR$/Container/Str.h" afterPath="$PROJECT_DIR$/Container/Str.h" />
+      <change beforePath="$PROJECT_DIR$/IO/Deserializer.h" afterPath="$PROJECT_DIR$/IO/Deserializer.h" />
       <change beforePath="$PROJECT_DIR$/IO/File.cpp" afterPath="$PROJECT_DIR$/IO/File.cpp" />
+      <change beforePath="$PROJECT_DIR$/IO/File.h" afterPath="$PROJECT_DIR$/IO/File.h" />
+      <change beforePath="$PROJECT_DIR$/IO/FileSystem.cpp" afterPath="$PROJECT_DIR$/IO/FileSystem.cpp" />
+      <change beforePath="$PROJECT_DIR$/IO/FileSystem.h" afterPath="$PROJECT_DIR$/IO/FileSystem.h" />
+      <change beforePath="$PROJECT_DIR$/Math/MathDefs.h" afterPath="$PROJECT_DIR$/Math/MathDefs.h" />
+      <change beforePath="$PROJECT_DIR$/Resource/Resource.cpp" afterPath="$PROJECT_DIR$/Resource/Resource.cpp" />
+      <change beforePath="$PROJECT_DIR$/Resource/Resource.h" afterPath="$PROJECT_DIR$/Resource/Resource.h" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -59,34 +722,81 @@
       <file leaf-file-name="FileSystem.cpp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/IO/FileSystem.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="File.cpp" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/IO/File.cpp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="579">
-              <caret line="238" column="17" lean-forward="false" selection-start-line="238" selection-start-column="17" selection-end-line="238" selection-end-column="17" />
+            <state relative-caret-position="298">
+              <caret line="145" column="8" lean-forward="true" selection-start-line="145" selection-start-column="8" selection-end-line="145" selection-end-column="8" />
               <folding>
-                <element signature="e#42#59#0" expanded="true" />
-                <element signature="e#180#271#0" expanded="true" />
-                <element signature="e#1636#1642#0" expanded="true" />
-                <element signature="e#4316#4322#0" expanded="true" />
-                <element signature="e#4347#4353#0" expanded="true" />
+                <element signature="e#42#65#0" expanded="true" />
+                <element signature="e#299#1326#0" expanded="false" />
+                <element signature="e#423#433#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Deserializer.h" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/IO/Deserializer.h">
+      <file leaf-file-name="File.cpp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/IO/File.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="291">
-              <caret line="51" column="17" lean-forward="false" selection-start-line="51" selection-start-column="17" selection-end-line="51" selection-end-column="17" />
+            <state relative-caret-position="-906">
+              <caret line="319" column="15" lean-forward="false" selection-start-line="319" selection-start-column="15" selection-end-line="319" selection-end-column="15" />
+              <folding>
+                <element signature="e#42#59#0" expanded="true" />
+                <element signature="e#1366#3279#0" expanded="false" />
+                <element signature="e#1663#1669#0" expanded="true" />
+                <element signature="e#3282#4043#0" expanded="false" />
+                <element signature="e#5052#5529#0" expanded="false" />
+                <element signature="e#5153#5159#0" expanded="true" />
+                <element signature="e#5533#5782#0" expanded="false" />
+                <element signature="e#5576#5582#0" expanded="true" />
+                <element signature="e#5920#6021#0" expanded="false" />
+                <element signature="e#5970#5976#0" expanded="true" />
+                <element signature="e#6537#6543#0" expanded="true" />
+                <element signature="e#6650#6717#0" expanded="true" />
+                <element signature="e#6874#6880#0" expanded="true" />
+                <element signature="e#7385#7519#0" expanded="false" />
+                <element signature="e#7522#7657#0" expanded="false" />
+                <element signature="e#7592#7598#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Resource.h" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Resource/Resource.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="474">
+              <caret line="69" column="20" lean-forward="true" selection-start-line="69" selection-start-column="20" selection-end-line="69" selection-end-column="20" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Resource.cpp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Resource/Resource.cpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="700">
+              <caret line="92" column="5" lean-forward="false" selection-start-line="92" selection-start-column="5" selection-end-line="92" selection-end-column="5" />
+              <folding>
+                <element signature="e#42#63#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Pair.h" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Container/Pair.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="176">
+              <caret line="8" column="8" lean-forward="false" selection-start-line="8" selection-start-column="8" selection-end-line="8" selection-end-column="8" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ListBase.h" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Container/ListBase.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="242">
+              <caret line="11" column="0" lean-forward="false" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -107,10 +817,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/Container/Swap.h" />
-        <option value="$PROJECT_DIR$/Container/VectorBase.cpp" />
-        <option value="$PROJECT_DIR$/Math/Vector2.h" />
-        <option value="/Dummy.txt" />
         <option value="$PROJECT_DIR$/Math/StringHash.cpp" />
         <option value="$PROJECT_DIR$/Math/StringHash.h" />
         <option value="$PROJECT_DIR$/Core/StringUtils.h" />
@@ -119,54 +825,58 @@
         <option value="$PROJECT_DIR$/Container/Vector.h" />
         <option value="$PROJECT_DIR$/Core/Thread.h" />
         <option value="$PROJECT_DIR$/Core/Thread.cpp" />
-        <option value="$PROJECT_DIR$/Container/Ptr.h" />
         <option value="$PROJECT_DIR$/Container/RefCounted.h" />
-        <option value="$PROJECT_DIR$/Container/HashSet.h" />
         <option value="$PROJECT_DIR$/Container/RefCounted.cpp" />
         <option value="$PROJECT_DIR$/Container/Allocator.cpp" />
         <option value="$PROJECT_DIR$/Container/HashBase.cpp" />
         <option value="$PROJECT_DIR$/Container/Hash.h" />
         <option value="$PROJECT_DIR$/Container/HashBase.h" />
         <option value="$PROJECT_DIR$/Container/Allocator.h" />
-        <option value="$PROJECT_DIR$/Container/LinkedList.h" />
         <option value="$PROJECT_DIR$/Container/Pair.h" />
         <option value="$PROJECT_DIR$/Core/Attribute.h" />
         <option value="$PROJECT_DIR$/Core/Variant.h" />
         <option value="$PROJECT_DIR$/Core/Variant.cpp" />
         <option value="$PROJECT_DIR$/Resource/ResourceCache.cpp" />
         <option value="$PROJECT_DIR$/Resource/ResourceCache.h" />
-        <option value="$PROJECT_DIR$/Container/HashMap.h" />
         <option value="$PROJECT_DIR$/Core/Context.cpp" />
         <option value="$PROJECT_DIR$/Core/Context.h" />
         <option value="$PROJECT_DIR$/Core/CoreEvent.h" />
         <option value="$PROJECT_DIR$/Core/Timer.h" />
         <option value="$PROJECT_DIR$/Core/Timer.cpp" />
-        <option value="$PROJECT_DIR$/Resource/Resource.h" />
-        <option value="$PROJECT_DIR$/Resource/Resource.cpp" />
         <option value="$PROJECT_DIR$/IO/Serializer.cpp" />
-        <option value="$PROJECT_DIR$/IO/Deserializer.h" />
         <option value="$PROJECT_DIR$/IO/Serializer.h" />
         <option value="$PROJECT_DIR$/IO/Deserializer.cpp" />
         <option value="$PROJECT_DIR$/IO/AbstractFile.h" />
-        <option value="$PROJECT_DIR$/Container/ArrayPtr.h" />
-        <option value="$PROJECT_DIR$/IO/File.h" />
         <option value="$PROJECT_DIR$/Core/Object.h" />
         <option value="$PROJECT_DIR$/Core/Object.cpp" />
-        <option value="$PROJECT_DIR$/Container/Str.h" />
         <option value="$PROJECT_DIR$/Container/Str.cpp" />
         <option value="$PROJECT_DIR$/IO/MemoryBuffer.h" />
         <option value="$PROJECT_DIR$/IO/MemoryBuffer.cpp" />
-        <option value="$PROJECT_DIR$/IO/FileSystem.h" />
+        <option value="$PROJECT_DIR$/Container/Str.h" />
+        <option value="$PROJECT_DIR$/Container/LinkedList.h" />
+        <option value="$PROJECT_DIR$/Container/HashMap.h" />
+        <option value="$PROJECT_DIR$/Container/HashSet.h" />
+        <option value="$PROJECT_DIR$/Container/ArrayPtr.h" />
+        <option value="$PROJECT_DIR$/Container/Ptr.h" />
+        <option value="$PROJECT_DIR$/Math/MathDefs.h" />
+        <option value="$PROJECT_DIR$/IO/Deserializer.h" />
         <option value="$PROJECT_DIR$/IO/File.cpp" />
+        <option value="$PROJECT_DIR$/IO/File.h" />
+        <option value="$PROJECT_DIR$/IO/FileSystem.cpp" />
+        <option value="$PROJECT_DIR$/Container/ListBase.h" />
+        <option value="$PROJECT_DIR$/Container/List.h" />
+        <option value="$PROJECT_DIR$/IO/FileSystem.h" />
+        <option value="$PROJECT_DIR$/Resource/Resource.h" />
+        <option value="$PROJECT_DIR$/Resource/Resource.cpp" />
       </list>
     </option>
   </component>
   <component name="OCFindUsagesOptions" text="true" ivars="false" properties="true" derivedClasses="false" />
-  <component name="ProjectFrameBounds">
-    <option name="x" value="960" />
-    <option name="y" value="23" />
-    <option name="width" value="960" />
-    <option name="height" value="993" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
+    <option name="width" value="1696" />
+    <option name="height" value="1035" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -256,12 +966,17 @@
             <path>
               <item name="Urho3DCopy" type="dad4c3:CidrFilesViewHelper$MyProjectTreeStructure$1" />
               <item name="Urho3DCopy" type="462c0819:PsiDirectoryNode" />
-              <item name="Core" type="462c0819:PsiDirectoryNode" />
+              <item name="IO" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Urho3DCopy" type="dad4c3:CidrFilesViewHelper$MyProjectTreeStructure$1" />
               <item name="Urho3DCopy" type="462c0819:PsiDirectoryNode" />
-              <item name="IO" type="462c0819:PsiDirectoryNode" />
+              <item name="Resource" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Urho3DCopy" type="dad4c3:CidrFilesViewHelper$MyProjectTreeStructure$1" />
+              <item name="Urho3DCopy" type="462c0819:PsiDirectoryNode" />
+              <item name="ThirdParty" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -273,7 +988,7 @@
     <property name="settings.editor.selected.configurable" value="com.maddyhome.idea.vim.ui.VimEmulationConfigurable" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../Urho3D/BuildWithDoc" />
-    <property name="SearchEverywhereHistoryKey" value="vector.h&#9;FILE&#9;file://D:/GitSources/Urho3DCopy/Container/Vector.h&#10;vecto&#9;FILE&#9;file://D:/GitSources/Urho3DCopy/Container/VectorBase.h&#10;string&#9;FILE&#9;file://D:/GitSources/Urho3DCopy/Core/StringUtils.h&#10;variant.h&#9;FILE&#9;file://D:/GitSources/Urho3DCopy/Core/Variant.h&#10;object.h&#9;FILE&#9;file://D:/GitSources/Urho3DCopy/Core/Object.h&#10;str.h&#9;FILE&#9;file://D:/GitSources/Urho3DCopy/Container/Str.h" />
+    <property name="SearchEverywhereHistoryKey" value="filec&#9;FILE&#9;file://D:/GitSources/Urho3DCopy/IO/File.cpp&#10;mathdef&#9;FILE&#9;file://D:/GitSources/Urho3DCopy/Math/MathDefs.h&#10;sharedpt&#9;null&#9;null&#10;hashmap&#9;FILE&#9;file://D:/GitSources/Urho3DCopy/Container/HashMap.h&#10;vector.h&#9;FILE&#9;file://D:/GitSources/Urho3DCopy/Container/Vector.h&#10;vecto&#9;FILE&#9;file://D:/GitSources/Urho3DCopy/Container/VectorBase.h&#10;string&#9;FILE&#9;file://D:/GitSources/Urho3DCopy/Core/StringUtils.h&#10;variant.h&#9;FILE&#9;file://D:/GitSources/Urho3DCopy/Core/Variant.h&#10;object.h&#9;FILE&#9;file://D:/GitSources/Urho3DCopy/Core/Object.h&#10;str.h&#9;FILE&#9;file://D:/GitSources/Urho3DCopy/Container/Str.h" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -451,6 +1166,7 @@
       <workItem from="1512618745372" duration="24417000" />
       <workItem from="1512714151059" duration="13796000" />
       <workItem from="1512804130671" duration="9670000" />
+      <workItem from="1512973384577" duration="18159000" />
     </task>
     <task id="LOCAL-00001" summary="continue add fundamental infrastructure">
       <created>1512033205574</created>
@@ -491,7 +1207,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="165486000" />
+    <option name="totallyTimeSpent" value="183645000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -504,26 +1220,26 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="960" y="23" width="960" height="993" extended-state="0" />
+    <frame x="-8" y="-8" width="1696" height="1035" extended-state="6" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.26252723" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26222494" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32837528" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="CMake" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32899022" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="LuaJ" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3294621" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.31235698" sideWeight="0.50488997" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.31085715" sideWeight="0.49511003" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32951945" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2951945" sideWeight="0.49511003" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32962137" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32962137" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32951945" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
@@ -568,85 +1284,7 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Core/Thread.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="572">
-          <caret line="36" column="22" lean-forward="false" selection-start-line="36" selection-start-column="22" selection-end-line="36" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Container/HashSet.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Container/Ptr.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="326">
-          <caret line="396" column="44" lean-forward="false" selection-start-line="396" selection-start-column="44" selection-end-line="396" selection-end-column="44" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Container/Swap.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="264">
-          <caret line="12" column="16" lean-forward="false" selection-start-line="12" selection-start-column="16" selection-end-line="12" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Container/HashSet.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="242">
-          <caret line="14" column="0" lean-forward="true" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Container/LinkedList.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Container/HashBase.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="418">
-          <caret line="20" column="19" lean-forward="false" selection-start-line="20" selection-start-column="19" selection-end-line="20" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Container/Hash.h" />
-    <entry file="file://$PROJECT_DIR$/Container/LinkedList.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="462">
-          <caret line="21" column="67" lean-forward="false" selection-start-line="21" selection-start-column="67" selection-end-line="21" selection-end-column="67" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Container/Pair.h" />
     <entry file="file://$PROJECT_DIR$/Container/Allocator.cpp" />
-    <entry file="file://$PROJECT_DIR$/Container/HashBase.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="540">
-          <caret line="50" column="13" lean-forward="false" selection-start-line="50" selection-start-column="13" selection-end-line="50" selection-end-column="13" />
-          <folding>
-            <element signature="e#0#2#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Container/Allocator.h" />
     <entry file="file://$PROJECT_DIR$/Container/RefCounted.cpp">
       <provider selected="true" editor-type-id="text-editor">
@@ -678,19 +1316,6 @@
           <caret line="57" column="13" lean-forward="false" selection-start-line="57" selection-start-column="13" selection-end-line="57" selection-end-column="13" />
           <folding>
             <element signature="e#113#146#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Container/HashMap.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="411">
-          <caret line="282" column="52" lean-forward="false" selection-start-line="282" selection-start-column="52" selection-end-line="282" selection-end-column="52" />
-          <folding>
-            <element signature="e#348#986#1" expanded="false" />
-            <element signature="e#991#1326#1" expanded="false" />
-            <element signature="e#1331#1997#1" expanded="false" />
-            <element signature="e#2002#2924#1" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -730,33 +1355,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/IO/Log.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Resource/Resource.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="320">
-          <caret line="31" column="11" lean-forward="false" selection-start-line="31" selection-start-column="11" selection-end-line="31" selection-end-column="11" />
-          <folding>
-            <element signature="e#103#130#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Resource/Resource.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="484">
-          <caret line="50" column="0" lean-forward="false" selection-start-line="50" selection-start-column="0" selection-end-line="50" selection-end-column="0" />
-          <folding>
-            <element signature="e#42#63#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/IO/Serializer.cpp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="326">
@@ -770,14 +1368,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="22">
           <caret line="9" column="11" lean-forward="false" selection-start-line="9" selection-start-column="11" selection-end-line="9" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Container/Str.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="287">
-          <caret line="251" column="19" lean-forward="false" selection-start-line="251" selection-start-column="19" selection-end-line="251" selection-end-column="19" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -821,29 +1411,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/IO/AbstractFile.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="203">
-          <caret line="12" column="39" lean-forward="false" selection-start-line="12" selection-start-column="39" selection-end-line="12" selection-end-column="39" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/IO/Deserializer.cpp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="189">
           <caret line="9" column="11" lean-forward="false" selection-start-line="9" selection-start-column="11" selection-end-line="9" selection-end-column="11" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Container/Str.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-597">
-          <caret line="181" column="15" lean-forward="false" selection-start-line="181" selection-start-column="15" selection-end-line="181" selection-end-column="15" />
-          <folding>
-            <element signature="e#9018#9418#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -855,35 +1427,77 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/IO/File.h">
+    <entry file="file://$PROJECT_DIR$/Container/Str.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="396">
-          <caret line="71" column="17" lean-forward="false" selection-start-line="71" selection-start-column="17" selection-end-line="71" selection-end-column="17" />
+        <state relative-caret-position="-2530">
+          <caret line="333" column="20" lean-forward="false" selection-start-line="333" selection-start-column="20" selection-end-line="333" selection-end-column="20" />
           <folding>
-            <element signature="e#95#122#0" expanded="true" />
+            <element signature="e#94#112#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Container/LinkedList.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="451">
+          <caret line="31" column="40" lean-forward="false" selection-start-line="31" selection-start-column="40" selection-end-line="31" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Container/Hash.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="12" column="13" lean-forward="false" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Container/HashBase.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2112">
+          <caret line="12" column="11" lean-forward="false" selection-start-line="12" selection-start-column="11" selection-end-line="12" selection-end-column="11" />
+          <folding>
+            <element signature="e#0#2#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Container/Str.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="22">
+          <caret line="100" column="21" lean-forward="false" selection-start-line="100" selection-start-column="21" selection-end-line="100" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Container/Ptr.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="42" column="15" lean-forward="false" selection-start-line="42" selection-start-column="15" selection-end-line="42" selection-end-column="15" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Container/ArrayPtr.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-569">
-          <caret line="13" column="10" lean-forward="false" selection-start-line="13" selection-start-column="10" selection-end-line="13" selection-end-column="10" />
+        <state relative-caret-position="128">
+          <caret line="157" column="21" lean-forward="false" selection-start-line="157" selection-start-column="21" selection-end-line="157" selection-end-column="21" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/IO/FileSystem.cpp">
+    <entry file="file://$PROJECT_DIR$/IO/Deserializer.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="462">
+          <caret line="21" column="33" lean-forward="false" selection-start-line="21" selection-start-column="33" selection-end-line="21" selection-end-column="33" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Core/Object.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="694">
+        <state relative-caret-position="496">
           <caret line="167" column="34" lean-forward="false" selection-start-line="167" selection-start-column="34" selection-end-line="167" selection-end-column="34" />
           <folding>
             <element signature="e#5700#6187#1" expanded="false" />
@@ -895,33 +1509,171 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/IO/Deserializer.h">
+    <entry file="file://$PROJECT_DIR$/Math/MathDefs.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="291">
-          <caret line="51" column="17" lean-forward="false" selection-start-line="51" selection-start-column="17" selection-end-line="51" selection-end-column="17" />
+        <state relative-caret-position="110">
+          <caret line="25" column="20" lean-forward="false" selection-start-line="25" selection-start-column="20" selection-end-line="25" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/IO/AbstractFile.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="203">
+          <caret line="12" column="37" lean-forward="true" selection-start-line="12" selection-start-column="37" selection-end-line="12" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Container/HashMap.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2570">
+          <caret line="405" column="35" lean-forward="false" selection-start-line="405" selection-start-column="35" selection-end-line="405" selection-end-column="35" />
+          <folding>
+            <element signature="e#348#986#1" expanded="false" />
+            <element signature="e#991#1326#1" expanded="false" />
+            <element signature="e#1331#1997#1" expanded="false" />
+            <element signature="e#2002#2924#1" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/msys64/mingw64/x86_64-w64-mingw32/include/stdio.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="282">
+          <caret line="728" column="8" lean-forward="false" selection-start-line="728" selection-start-column="8" selection-end-line="728" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Container/ListBase.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="242">
+          <caret line="11" column="0" lean-forward="false" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/IO/Log.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Container/List.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="220">
+          <caret line="12" column="27" lean-forward="false" selection-start-line="12" selection-start-column="27" selection-end-line="12" selection-end-column="27" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/IO/FileSystem.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="67" column="28" lean-forward="false" selection-start-line="67" selection-start-column="28" selection-end-line="67" selection-end-column="28" />
+        <state relative-caret-position="374">
+          <caret line="66" column="9" lean-forward="true" selection-start-line="66" selection-start-column="9" selection-end-line="66" selection-end-column="9" />
+          <folding>
+            <element signature="e#132#159#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/IO/File.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="264">
+          <caret line="71" column="41" lean-forward="false" selection-start-line="71" selection-start-column="41" selection-end-line="71" selection-end-column="41" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Container/HashSet.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1948">
+          <caret line="170" column="15" lean-forward="false" selection-start-line="170" selection-start-column="15" selection-end-line="170" selection-end-column="15" />
+          <folding>
+            <element signature="e#101#128#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/IO/FileSystem.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="298">
+          <caret line="145" column="8" lean-forward="true" selection-start-line="145" selection-start-column="8" selection-end-line="145" selection-end-column="8" />
+          <folding>
+            <element signature="e#42#65#0" expanded="true" />
+            <element signature="e#299#1326#0" expanded="false" />
+            <element signature="e#423#433#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/IO/File.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="579">
-          <caret line="238" column="17" lean-forward="false" selection-start-line="238" selection-start-column="17" selection-end-line="238" selection-end-column="17" />
+        <state relative-caret-position="-906">
+          <caret line="319" column="15" lean-forward="false" selection-start-line="319" selection-start-column="15" selection-end-line="319" selection-end-column="15" />
           <folding>
             <element signature="e#42#59#0" expanded="true" />
-            <element signature="e#180#271#0" expanded="true" />
-            <element signature="e#1636#1642#0" expanded="true" />
-            <element signature="e#4316#4322#0" expanded="true" />
-            <element signature="e#4347#4353#0" expanded="true" />
+            <element signature="e#1366#3279#0" expanded="false" />
+            <element signature="e#1663#1669#0" expanded="true" />
+            <element signature="e#3282#4043#0" expanded="false" />
+            <element signature="e#5052#5529#0" expanded="false" />
+            <element signature="e#5153#5159#0" expanded="true" />
+            <element signature="e#5533#5782#0" expanded="false" />
+            <element signature="e#5576#5582#0" expanded="true" />
+            <element signature="e#5920#6021#0" expanded="false" />
+            <element signature="e#5970#5976#0" expanded="true" />
+            <element signature="e#6537#6543#0" expanded="true" />
+            <element signature="e#6650#6717#0" expanded="true" />
+            <element signature="e#6874#6880#0" expanded="true" />
+            <element signature="e#7385#7519#0" expanded="false" />
+            <element signature="e#7522#7657#0" expanded="false" />
+            <element signature="e#7592#7598#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Math/StringHash.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="682">
+          <caret line="33" column="16" lean-forward="false" selection-start-line="33" selection-start-column="16" selection-end-line="33" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Math/StringHash.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="352">
+          <caret line="36" column="13" lean-forward="false" selection-start-line="36" selection-start-column="13" selection-end-line="36" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Resource/Resource.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="474">
+          <caret line="69" column="20" lean-forward="true" selection-start-line="69" selection-start-column="20" selection-end-line="69" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Resource/Resource.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="700">
+          <caret line="92" column="5" lean-forward="false" selection-start-line="92" selection-start-column="5" selection-end-line="92" selection-end-column="5" />
+          <folding>
+            <element signature="e#42#63#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Container/Pair.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="176">
+          <caret line="8" column="8" lean-forward="false" selection-start-line="8" selection-start-column="8" selection-end-line="8" selection-end-column="8" />
+          <folding />
         </state>
       </provider>
     </entry>

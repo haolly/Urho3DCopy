@@ -195,6 +195,7 @@ namespace Urho3D
 
 		HashMap(const HashMap<T, U>& map)
 		{
+			// Reserve the tail node + initial capacity according to the map's size
 			allocator_ = AllocatorInitialize((unsigned) sizeof(Node), map.Size() + 1);
 			head_ = tail_ = ReserveNode();
 			//call assignment operator
@@ -400,6 +401,10 @@ namespace Urho3D
 		Iterator End() { return Iterator(End()); }
 		ConstIterator End() const { return ConstIterator(End()); }
 
+		const KeyValue& Front() const { return *Begin(); }
+
+		//Note, return the past last
+		const KeyValue& Back() const { return *(--End()); }
 
 	private:
 		Node* Head() const

@@ -29,7 +29,7 @@ namespace Urho3D
 		{
 		}
 
-		//todo what is initializer_list ?
+		// Note, call default constructor first
 		LinkedList(const std::initializer_list<T>& list) : LinkedList()
 		{
 			for (auto it = list.begin(); it != list.end(); it++)

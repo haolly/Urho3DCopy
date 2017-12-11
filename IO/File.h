@@ -40,7 +40,7 @@ namespace Urho3D
 			return fileName_;
 		}
 
-		virtual unsigned GetChecksum() const override;
+		virtual unsigned GetChecksum() override;
 		bool Open(const String& fileName, FileMode mode = FILE_READ);
 		bool Open(PackageFile* package, const String& fileName);
 		void Close();
@@ -69,6 +69,7 @@ namespace Urho3D
 
 		unsigned readBufferOffset_;
 		unsigned readBufferSize_;
+		//Start Position within a package file, 0 for regular files
 		unsigned offset_;
 		unsigned checksum_;
 		bool compressed_;

@@ -5,11 +5,15 @@
 #ifndef URHO3DCOPY_FILESYSTEM_H
 #define URHO3DCOPY_FILESYSTEM_H
 
+class AsyncExecRequest;
+
 #include "../Core/Object.h"
 #include "../Container/HashSet.h"
+#include "../Container/List.h"
 
 namespace Urho3D
 {
+
 	class FileSystem : public Object
 	{
 		URHO3D_OBJECT(FileSystem, Object);
@@ -65,8 +69,20 @@ namespace Urho3D
 		bool executeConsoleCommands_;
 	};
 
-	//todo, why define here ?
+	//Some helper functions
+	void SplitPath(const String& fullPath, String& pathName, String& fileName, String& extension, bool lowercaseExtension = true);
 	String GetPath(const String& fullPath);
+	String GetFileName(const String& fullPath);
+	String GetExtension(const String& fullPath, bool lowercaseExtension = true);
+	String GetFileNameAndExtension(const String& fullPath, bool lowercaseExtension = false);
+	String ReplaceExtension(const String& fullPath, const String& newExtension);
+	String AddTrailingSlash(const String& pathName);
+	String RemoveTrailingSlash(const String& pathName);
+	String GetParentPath(const String& pathName);
+	String GetInternalPath(const String& pathName);
+	String GetNativePath(const String& pathName);
+	WString GetWideNativePath(const String& pathName);
+	bool IsAbsolutePath(const String& pathName);
 }
 
 
