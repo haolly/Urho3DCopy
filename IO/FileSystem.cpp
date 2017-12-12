@@ -2,6 +2,8 @@
 // Created by liuhao on 2017/12/9.
 //
 
+#include <processthreadsapi.h>
+#include <winbase.h>
 #include "FileSystem.h"
 #include "../Core/Thread.h"
 #include "../Math/MathDefs.h"
@@ -9,6 +11,7 @@
 #include "../ThirdParty/SDL/include/SDL_filesystem.h"
 #include "File.h"
 #include "../Core/CoreEvent.h"
+#include "../Engine/EngineEvents.h"
 
 
 namespace Urho3D
@@ -60,7 +63,35 @@ namespace Urho3D
 
 	int DoSystemRun(const String& fileName, const Vector<String>& arguments)
 	{
+		String fixedFileName = GetNativePath(fileName);
+#ifdef _WIN32
+		if(GetExtension(fixedFileName).Empty())
+			fixedFileName += ".exe";
+		String commandLine = "\"" + fixedFileName + "\"";
+		for(unsigned i = 0; i<arguments.Size(); ++i)
+			commandLine += " " + arguments[i];
+
+		STARTUPINFOW startupInfo;
+		PROCESS_INFORMATION processInfo;
+		memset(&startupInfo, 0, sizeof(startupInfo));
+		memset(&processInfo, 0, sizeof(processInfo));
+
+		WString commandLineW(commandLine);
+		if(!CreateProcessW(nullptr, (wchar_t*)commandLineW.CString(), nullptr, nullptr, 0, CREATE_NO_WINDOW, nullptr,
+		                   nullptr, &startupInfo, &processInfo))
+		{
+			return -1;
+		}
+		WaitForSingleObject(processInfo.hProcess, INFINITE);
+		DWORD exitCode;
+		GetExitCodeProcess(processInfo.hProcess, &exitCode);
+
+		CloseHandle(processInfo.hProcess);
+		CloseHandle(processInfo.hThread);
+		return exitCode;
+#else
 		//todo
+#endif
 	}
 
 	class AsyncExecRequest : public Thread
@@ -148,7 +179,20 @@ namespace Urho3D
 
 	bool FileSystem::SetCurrentDir(const String &pathName)
 	{
-		return false;
+		if(!CheckAccess(pathName))
+		{
+			//todo  log error ("Access denied to " + pathName)
+			return false;
+		}
+#ifdef _WIN32
+		if(SetCurrentDirectoryW(GetWideNativePath(pathName).CString()) == FALSE)
+		{
+			//todo log error (Failed to change directory to " pathName
+			return false;
+		}
+#else
+		//todo
+#endif
 	}
 
 	bool FileSystem::CreateDir(const String &pathName)

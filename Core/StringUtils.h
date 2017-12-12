@@ -33,6 +33,13 @@ namespace Urho3D
 	unsigned long long ToUInt64(const String& source, int base = 10);
 	unsigned long long ToUInt64(const char* source, int base = 10);
 
+	//todo
+
+	String ToString(void* value);
+	String ToStringHex(unsigned value);
+	// todo
+
+	String ToString(const char* formatString, ...);
 
 }
 

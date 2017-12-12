@@ -15,7 +15,156 @@ namespace Urho3D
 	template <class T>
 	class Vector : public VectorBase
 	{
+	public:
+		using ValueType = T;
+		using Iterator = RandomAccessIterator<T>;
+		using ConstIterator = RandomAccessConstIterator<T>;
+
+		Vector()
+		{
+		}
 		//todo
+
+		Iterator Begin() { return Iterator(Buffer()); }
+		ConstIterator Begin() const { return ConstIterator(Buffer()); }
+		Iterator End() { return Iterator(Buffer() + size_); }
+		ConstIterator End() const { return ConstIterator(Buffer() + size_); }
+
+		T& Front()
+		{
+			assert(size_);
+			return Buffer()[0];
+		}
+
+		const T& Front() const
+		{
+			assert(size_);
+			return Buffer()[0];
+		}
+
+		T& Back()
+		{
+			assert(size_);
+			return Buffer()[size_ -1];
+		}
+
+		const T& Back() const
+		{
+			assert(size_);
+			return Buffer()[size_ -1];
+		}
+
+		unsigned Size() const { return size_; }
+		unsigned Capacity() const { return capacity_; }
+
+		bool Empty() const { return size_ == 0; }
+
+		T* Buffer() const { return static_cast<T*>(buffer_); }
+	private:
+		void Resize(unsigned newSize, const T* src, Vector<T>& tempBuffer)
+		{
+			if(newSize < size_)
+				DestructElements(Buffer() + newSize, size_ - newSize);
+			else
+			{
+				if(newSize > capacity_)
+				{
+					Swap(tempBuffer);
+					size_ = tempBuffer.size_;
+					capacity_ = tempBuffer.capacity_;
+
+					if(!capacity_)
+						capacity_ = newSize;
+					else
+					{
+						while(capacity_ < newSize)
+							capacity_ += (capacity_ + 1) >> 1;
+					}
+					buffer_ = AllocateBuffer((unsigned)(capacity_ * sizeof(T)));
+					if(tempBuffer.Buffer())
+					{
+						//Initialize the new elements with origin elements
+						ConstructElements(Buffer(), tempBuffer.Buffer(), size_);
+					}
+				}
+				// Initialize the new elements
+				ConstructElements(Buffer() + size_, src, newSize - size_);
+			}
+			size_ = newSize;
+		}
+
+		template <typename RandomIteratorT>
+		Iterator InsertElements(unsigned pos, RandomIteratorT start, RandomIteratorT end)
+		{
+			assert(start <= end);
+			if(pos > size_)
+				pos = size_;
+
+			unsigned length = (unsigned)(end - start);
+			Vector<T> tempBuffer;
+			Resize(size_ + length, 0, tempBuffer);
+			MoveRange(pos + length, pos, size_ - pos - length);
+
+			T* destPtr = Buffer() + pos;
+			for(RandomIteratorT it = start; it != end; ++it)
+				*destPtr++ = *it;
+			return Begin() + pos;
+		}
+
+		//Note, need to check carefully to avoid overlap
+		void MoveRange(unsigned dest, unsigned src, unsigned count)
+		{
+			T* buffer = Buffer();
+			if(src < dest)
+			{
+				while(count--)
+				{
+					*(buffer + dest + (count - 1)) = *(buffer + src + (count - 1));
+				}
+			}
+			if(src > dest)
+			{
+				while(count--)
+				{
+					*(buffer + dest) = *(buffer + src);
+					dest++;
+					src++;
+				}
+			}
+		}
+
+		static void ConstructElements(T* dest, const T* src, unsigned count)
+		{
+			if(!src)
+			{
+				for(unsigned i = 0; i < count; ++i)
+				{
+					new(dest + i) T();
+				}
+			}
+			else
+			{
+				for(unsigned i = 0; i< count; ++i)
+				{
+					new(dest + i) T(*(src + i));
+				}
+			}
+		}
+
+		static void CopyElements(T* dest, const T* src, unsigned count)
+		{
+			while(count--)
+				*dest++ = *src++;
+		}
+
+		static void DestructElements(T* dest, unsigned count)
+		{
+			while(count--)
+			{
+				dest->~T();
+				++dest;
+			}
+		}
 	};
 
 

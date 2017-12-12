@@ -5,6 +5,8 @@
 #ifndef URHO3DCOPY_SERIALIZER_H
 #define URHO3DCOPY_SERIALIZER_H
 
+#include "../Container/Str.h"
+
 namespace Urho3D
 {
 	class Color;
@@ -39,6 +41,7 @@ namespace Urho3D
 		bool WriteIntRect(const IntRect& value);
 		bool WriteIntVector2(const IntVector2& value);
 		//todo ..
+		bool WriteLine(const String& value);
 	};
 
 }

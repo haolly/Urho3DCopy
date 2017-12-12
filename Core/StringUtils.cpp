@@ -2,6 +2,8 @@
 // Created by LIUHAO on 2017/12/1.
 //
 
+#include <cstdio>
+#include <cstdarg>
 #include "StringUtils.h"
 #include "../Container/Str.h"
 
@@ -107,5 +109,27 @@ namespace Urho3D
 
 	unsigned long long Urho3D::ToUInt64(const char *source, int base) {
 		return 0;
+	}
+
+	String ToString(void *value)
+	{
+		return ToStringHex((unsigned)(size_t)value);
+	}
+
+	String ToStringHex(unsigned value)
+	{
+		char tempBuffer[CONVERSION_BUFFER_LENGTH];
+		sprintf(tempBuffer, "%08x", value);
+		return String(tempBuffer);
+	}
+
+	String ToString(const char *formatString, ...)
+	{
+		String ret;
+		va_list args;
+		va_start(args, formatString);
+		ret.AppendWithFormatArgs(formatString, args);
+		va_end(args);
+		return ret;
 	}
 }

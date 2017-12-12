@@ -3,6 +3,7 @@
 //
 
 #include <cctype>
+#include <cstdarg>
 #include "Str.h"
 
 namespace Urho3D
@@ -194,6 +195,7 @@ namespace Urho3D
 		Resize(0);
 	}
 
+	//Note, used in swap.h
 	void String::Swap(String &str)
 	{
 		Urho3D::Swap(length_, str.length_);
@@ -360,6 +362,29 @@ namespace Urho3D
 			unsigned char char6 = GET_NEXT_CONTINUATION_BYTE(src);
 			return (unsigned)((char6 & 0x3f) | ((char5 & 0x3f) << 6) | ((char4 & 0x3f) << 12) | ((char3 & 0x3f) << 18) |
 							  ((char2 & 0x3f) << 24) | ((char1 & 0x1) << 30));
+		}
+	}
+
+	String &String::AppendWithFormat(const char *formatString, ...)
+	{
+		va_list args;
+		va_start(args, formatString);
+		AppendWithFormatArgs(formatString, args);
+		va_end(args);
+		return *this;
+	}
+
+	String &String::AppendWithFormatArgs(const char *formatString, va_list args)
+	{
+		int pos = 0, lastPos = 0;
+		int length = (int)strlen(formatString);
+		while(true)
+		{
+			while(pos < length && formatString[pos] != '%')
+				pos++;
+
+			Append(formatString + lastPos, (unsigned) (pos - lastPos));
+			//todo
 		}
 	}
 

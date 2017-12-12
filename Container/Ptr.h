@@ -155,7 +155,6 @@ namespace Urho3D
 
         void Swap(SharedPtr& rhs)
         {
-            //Todo
             Urho3D::Swap(ptr_, rhs.ptr_);
         }
 

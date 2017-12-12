@@ -77,4 +77,14 @@ namespace Urho3D
 	{
 		return false;
 	}
+
+	bool Serializer::WriteLine(const String &value)
+	{
+		bool success = true;
+		success &= Write(value.CString(), value.Length()) == value.Length();
+		//crlf
+		success &= WriteUByte(13);
+		success &= WriteUByte(10);
+		return success;
+	}
 }

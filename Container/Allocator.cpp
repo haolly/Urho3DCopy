@@ -98,7 +98,7 @@ namespace Urho3D
 		byte* dataPtr = static_cast<byte *>(ptr);
 		AllocatorNode* node = reinterpret_cast<AllocatorNode*>(dataPtr - sizeof(AllocatorNode));
 
-		// Chain the node back to free node
+		// Chain the node back to free node, insert into head
 		node->next_ = allocator->free_;
 		allocator->free_ = node;
 	}

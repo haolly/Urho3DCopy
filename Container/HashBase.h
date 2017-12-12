@@ -122,6 +122,7 @@ namespace Urho3D
 		HashNodeBase** ptrs_;
 		AllocatorBlock* allocator_;
 	};
+
 }
 
 
