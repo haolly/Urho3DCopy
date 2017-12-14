@@ -5,6 +5,7 @@
 #include "Resource.h"
 #include "../Core/Thread.h"
 #include "../IO/File.h"
+#include "../IO/Log.h"
 
 namespace Urho3D
 {
@@ -31,17 +32,19 @@ namespace Urho3D
 
 	bool Resource::BeginLoad(Deserializer &source)
 	{
+		// This always needs to be overriden by subclasses
 		return false;
 	}
 
 	bool Resource::EndLoad()
 	{
-		return false;
+		// If no GPU upload step is necessary, no override is necessary
+		return true;
 	}
 
 	bool Resource::Save(Serializer &dest) const
 	{
-		//todo add Error Log
+		URHO3D_LOGERROR("Save not supported for " + GetTypeName());
 		return false;
 	}
 
@@ -89,29 +92,36 @@ namespace Urho3D
 			return useTimer_.GetMSec(false);
 	}
 
-	void ResourceWithMetadata::AddMetadata(const String &name, const VariantMap &value)
+	void ResourceWithMetadata::AddMetadata(const String &name, const Variant &value)
 	{
-
+		bool exists;
+		metadata_.Insert(MakePair(StringHash(name), value), exists);
+		if(!exists)
+			metadataKeys_.Push(name);
 	}
 
 	void ResourceWithMetadata::RemoveMetadata(const String &name)
 	{
-
+		metadata_.Erase(StringHash(name));
+		metadataKeys_.Remove(name);
 	}
 
 	void ResourceWithMetadata::RemoveAllMetadata()
 	{
-
+		metadata_.Clear();
+		metadataKeys_.Clear();
 	}
 
-	const VariantMap &ResourceWithMetadata::GetMetadata(const String &name) const
+	const Variant &ResourceWithMetadata::GetMetadata(const String &name) const
 	{
-		return <#initializer#>;
+		//todo error ??
+		const Variant* value = metadata_[name];
+		return value ? *value : Variant::EMPTY;
 	}
 
 	bool ResourceWithMetadata::HasMetadata() const
 	{
-		return false;
+		return !metadata_.Empty();
 	}
 
 	void ResourceWithMetadata::LoadMetadataFromXML(const XMLElement &source)
@@ -131,7 +141,8 @@ namespace Urho3D
 
 	void ResourceWithMetadata::CopyMetadata(const ResourceWithMetadata &source)
 	{
-
+		metadata_ = source.metadata_;
+		metadataKeys_ = source.metadataKeys_;
 	}
 }
 

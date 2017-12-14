@@ -9,6 +9,7 @@
 #include "../Core/Thread.h"
 #include "../Core/Timer.h"
 #include "IOEvent.h"
+#include "../Core/Mutex.h"
 
 namespace Urho3D
 {
@@ -160,11 +161,71 @@ namespace Urho3D
 
 	void Log::WriteRaw(const String &message, bool error)
 	{
+		if(!Thread::IsMainThread())
+		{
+			if(logInstance)
+			{
+				MutexLock lock(logInstance->logMutex_);
+				logInstance->threadMessages_.Push(StoredLogMessage(message, LOG_RAW, error));
+			}
+			return;
+		}
 
+		if(!logInstance || logInstance->inWrite_)
+			return;
+
+		logInstance->lastMessage_ = message;
+#if defined(__ANDROID__)
+		//todo
+#elif defined(IOS) || defined(TVOS)
+		//todo
+#else
+		if(logInstance->quiet_)
+		{
+			if(error)
+				PrintUnicode(message, true);
+		}
+		else
+			PrintUnicode(message, error);
+#endif
+		if(logInstance->logFile_)
+		{
+			logInstance->logFile_->Write(message.CString(), message.Length());
+			logInstance->logFile_->Flush();
+		}
+		logInstance->inWrite_ = true;
+		using namespace LogMessage;
+		VariantMap& eventData = logInstance->GetEventDataMap();
+		eventData[P_MESSAGE] = message;
+		eventData[P_LEVEL] = error ? LOG_ERROR : LOG_INFO;
+		logInstance->SendEvent(E_LOGMESSAGE, eventData);
+		logInstance->inWrite_ = false;
 	}
 
 	void Log::HandleEndFrame(StringHash eventType, VariantMap &eventData)
 	{
+		if(!Thread::IsMainThread())
+		{
+			if(!threadErrorDisplayed)
+			{
+				fprintf(stderr, "Thread::mainThreadID is not setup correctly! Threaded log handling disabled \n");
+				threadErrorDisplayed = true;
+			}
+			return;
+		}
 
+		MutexLock lock(logMutex_);
+
+		while(!threadMessages_.Empty())
+		{
+			const StoredLogMessage& stored = threadMessages_.Front();
+			if(stored.level_ != LOG_RAW)
+			{
+				Write(stored.level_, stored.message_);
+			}
+			else
+				WriteRaw(stored.message_, stored.error_);
+			threadMessages_.PopFront();
+		}
 	}
 }

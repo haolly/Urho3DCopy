@@ -2,8 +2,6 @@
 // Created by liuhao on 2017/12/9.
 //
 
-#include <processthreadsapi.h>
-#include <winbase.h>
 #include "FileSystem.h"
 #include "../Core/Thread.h"
 #include "../Math/MathDefs.h"
@@ -12,6 +10,21 @@
 #include "File.h"
 #include "../Core/CoreEvent.h"
 #include "../Engine/EngineEvents.h"
+#include "Log.h"
+#include "../Core/StringUtils.h"
+#include "IOEvent.h"
+
+#ifdef _WIN32
+#include <winbase.h>
+#include <winuser.h>
+#include <shellapi.h>
+#else
+#endif
+
+extern "C"
+{
+//todo
+}
 
 
 namespace Urho3D
@@ -43,7 +56,7 @@ namespace Urho3D
 		{
 			if(fgets(buffer, sizeof(buffer), file))
 			{
-				//todo log
+				URHO3D_LOGRAW(String(buffer));
 			}
 		}
 		int exitCode = pclose(file);
@@ -181,13 +194,13 @@ namespace Urho3D
 	{
 		if(!CheckAccess(pathName))
 		{
-			//todo  log error ("Access denied to " + pathName)
+			URHO3D_LOGERROR("Access denied to " + pathName);
 			return false;
 		}
 #ifdef _WIN32
 		if(SetCurrentDirectoryW(GetWideNativePath(pathName).CString()) == FALSE)
 		{
-			//todo log error (Failed to change directory to " pathName
+			URHO3D_LOGERROR("Failed to change directory to " + pathName);
 			return false;
 		}
 #else
@@ -197,7 +210,28 @@ namespace Urho3D
 
 	bool FileSystem::CreateDir(const String &pathName)
 	{
-		return false;
+		if(!CheckAccess(pathName))
+		{
+			URHO3D_LOGERROR("Access denied to " + pathName);
+			return false;
+		}
+		String parentPath = GetParentPath(pathName);
+		if(parentPath.Length() > 1 && !DirExists(parentPath))
+		{
+			if(!CreateDir(parentPath))
+				return false;
+		}
+#ifdef _WIN32
+		bool success = (CreateDirectoryW(GetWideNativePath(RemoveTrailingSlash(pathName)).CString(), nullptr) == TRUE) ||
+				(GetLastError() == ERROR_ALREADY_EXISTS);
+#else
+		//todo
+#endif
+		if(success)
+			URHO3D_LOGDEBUG("Create directory " + pathName);
+		else
+			URHO3D_LOGERROR("Failed to create directory " + pathName);
+		return success;
 	}
 
 	void FileSystem::SetExecuteConsoleCommands(bool enable)
@@ -217,37 +251,119 @@ namespace Urho3D
 
 	int FileSystem::SystemCommand(const String &commandLine, bool redirectStdOutToLog)
 	{
-		return 0;
+		if(allowedPaths_.Empty())
+			return DoSystemCommand(commandLine, redirectStdOutToLog, context_);
+		else
+		{
+			URHO3D_LOGERROR("Executing an external command is not allowed");
+			return -1;
+		}
 	}
 
 	int FileSystem::SystemRun(const String &fileName, const Vector<String> &arguments)
 	{
-		return 0;
+		if(allowedPaths_.Empty())
+			return DoSystemRun(fileName, arguments);
+		else
+		{
+			URHO3D_LOGERROR("Executing an external command is not allowed");
+			return -1;
+		}
 	}
 
 	unsigned FileSystem::SystemCommandAsync(const String &commandLine)
 	{
-		return 0;
+#ifdef URHO3D_THREADING
+		if(allowedPaths_.Empty())
+		{
+			unsigned requestID = nextAsyncExecID_;
+			AsyncSystemCommand* cmd = new AsyncSystemCommand(nextAsyncExecID_, commandLine);
+			asyncExecQueue_.Push(cmd);
+			return requestID;
+		}
+		else
+		{
+			URHO3D_LOGERROR("Executing an external command is not allowed");
+			return M_MAX_UNSIGNED;
+		}
+#else
+		URHO3D_LOGERROR("Can not excute an asynchronous command as threading is disabled");
+		return M_MAX_UNSIGNED;
+#endif
 	}
 
 	unsigned FileSystem::SystemRunSync(const String &fileName, const Vector<String> &arguments)
 	{
-		return 0;
+#ifdef URHO3D_THREADING
+		if(allowedPaths_.Empty())
+		{
+			unsigned requestID = nextAsyncExecID_;
+			AsyncSystemRun* cmd = new AsyncSystemRun(nextAsyncExecID_, fileName, arguments);
+			asyncExecQueue_.Push(cmd);
+			return requestID;
+		} else {
+			URHO3D_LOGERROR("Executing an external command is not allowed");
+			return M_MAX_UNSIGNED;
+		}
+#else
+		URHO3D_LOGERROR("Can not run asynchronously as threading is disabled");
+		return M_MAX_UNSIGNED;
+#endif
 	}
 
 	bool FileSystem::SystemOpen(const String &fileName, const String &mode)
 	{
-		return false;
+		if(allowedPaths_.Empty())
+		{
+			if(!FileExists(fileName) && !DirExists(fileName))
+			{
+				URHO3D_LOGERROR("File or directory " + fileName + " not found");
+				return false;
+			}
+
+#ifdef _WIN32
+			bool success = (size_t)ShellExecuteW(nullptr, !mode.Empty() ? WString(mode).CString() : nullptr,
+												GetWideNativePath(fileName).CString(), nullptr, nullptr, SW_SHOW) > 32;
+#else
+			//todo
+#endif
+
+		} else {
+			URHO3D_LOGERROR("Opening a file externally is not allowed");
+			return false;
+		}
 	}
 
 	bool FileSystem::Copy(const String &srcFileName, const String &destFileName)
 	{
-		return false;
+		if(!CheckAccess(GetPath(srcFileName)))
+		{
+			URHO3D_LOGERROR("Access denied to " + srcFileName);
+			return false;
+		}
+		if(!CheckAccess(GetPath(destFileName)))
+		{
+			URHO3D_LOGERROR("Access denied to " + destFileName);
+			return false;
+		}
+
+		SharedPtr<File> srcFile(new File(context_, srcFileName, FILE_READ));
+		if(!srcFile->IsOpen())
+			return false;
+		SharedPtr<File> destFile(new File(context_, destFileName, FILE_WRITE));
+		if(!destFile->IsOpen())
+			return false;
+		unsigned fileSize = srcFile->GetSize();
+		SharedArrayPtr<unsigned char> buffer(new unsigned char[fileSize]);
+
+		unsigned bytesRead = srcFile->Read(buffer.Get(), fileSize);
+		unsigned bytesWritten = destFile->Write(buffer.Get(), fileSize);
+		return bytesRead == fileSize && bytesWritten == fileSize;
 	}
 
 	bool FileSystem::Rename(const String &srcFileName, const String &destFileName)
 	{
-		return false;
+		//todo
 	}
 
 	bool FileSystem::Delete(const String &fileName)
@@ -282,6 +398,7 @@ namespace Urho3D
 
 		for(auto it = allowedPaths_.Begin(); it != allowedPaths_.End(); ++it)
 		{
+			//Math at begin
 			if(fixedPath.Find(*it) == 0)
 				return true;
 		}
@@ -333,16 +450,162 @@ namespace Urho3D
 	void FileSystem::ScanDirInternal(Vector<String> &result, String path, const String &startPath, const String &filter,
 	                                 unsigned flags, bool recursive) const
 	{
-
+		//todo
 	}
 
 	void FileSystem::HandleBeginFrame(StringHash eventType, VariantMap &eventData)
 	{
+		for(auto it = asyncExecQueue_.Begin(); it != asyncExecQueue_.End(); )
+		{
+			AsyncExecRequest* request = *it;
+			if(request->IsCompleted())
+			{
+				using namespace AsyncExecFinished;
+				VariantMap& newEventData = GetEventDataMap();
+				newEventData[P_REQUESTID] = request->GetRequestID();
+				newEventData[P_EXITCODE] = request->GetExitCode();
+				SendEvent(E_ASYNCEXECFINISHED, newEventData);
 
+				delete request;
+				it = asyncExecQueue_.Erase(it);
+			}
+			else
+				++it;
+		}
 	}
 
 	void FileSystem::HandleConsoleCommand(StringHash eventType, VariantMap &eventData)
 	{
+		using namespace ConsoleCommand;
+		if(eventData[P_ID].GetString() == GetTypeName())
+			SystemCommand(eventData[P_COMMAND].GetString(), true);
+	}
 
+	void
+	SplitPath(const String &fullPath, String &pathName, String &fileName, String &extension, bool lowercaseExtension)
+	{
+		String fullPathCopy = GetInternalPath(fullPath);
+
+		unsigned extPos = fullPathCopy.FindLast('.');
+		unsigned pathPos = fullPathCopy.FindLast('/');
+
+		if(extPos != String::NPOS && (pathPos == String::NPOS || extPos > pathPos))
+		{
+			extension = fullPathCopy.SubString(extPos);
+			if(lowercaseExtension)
+				extension = extension.ToLower();
+
+			fullPathCopy = fullPathCopy.SubString(0, extPos);
+		} else {
+			extension.Clear();
+		}
+
+		pathPos = fullPathCopy.FindLast('/');
+		if(pathPos != String::NPOS)
+		{
+			fileName = fullPathCopy.SubString(pathPos + 1);
+			pathName = fullPathCopy.SubString(0, pathPos + 1);
+		} else {
+			fileName = fullPathCopy;
+			pathName.Clear();
+		}
+	}
+
+	String GetPath(const String &fullPath)
+	{
+		String path, file, extension;
+		SplitPath(fullPath, path, file, extension);
+		return path;
+	}
+
+	String GetFileName(const String &fullPath)
+	{
+		String path, file, extension;
+		SplitPath(fullPath, path, file, extension);
+		return file;
+	}
+
+	String GetExtension(const String &fullPath, bool lowercaseExtension)
+	{
+		String path, file, extension;
+		SplitPath(fullPath, path, file, extension,lowercaseExtension);
+		return extension;
+	}
+
+	String GetFileNameAndExtension(const String &fullPath, bool lowercaseExtension)
+	{
+		String path, file, extension;
+		SplitPath(fullPath, path, file, extension,lowercaseExtension);
+		return file + extension;
+	}
+
+	String ReplaceExtension(const String &fullPath, const String &newExtension)
+	{
+		String path, file, extension;
+		SplitPath(fullPath, path, file, extension);
+		return path + file + newExtension;
+	}
+
+	String AddTrailingSlash(const String &pathName)
+	{
+		String ret = pathName.Trimmed();
+		ret.Replace('\\', '/');
+		if(!ret.Empty() && ret.Back() != '/')
+			ret += '/';
+		return ret;
+	}
+
+	String RemoveTrailingSlash(const String &pathName)
+	{
+		String ret = pathName.Trimmed();
+		ret.Replace('\\', '/');
+		if(!ret.Empty() && ret.Back() == '/')
+			ret.Resize(ret.Length() - 1);
+		return ret;
+	}
+
+	String GetParentPath(const String &pathName)
+	{
+		unsigned pos = RemoveTrailingSlash(pathName).FindLast('/');
+		if(pos != String::NPOS)
+			return pathName.SubString(0, pos + 1);
+		return String();
+	}
+
+	String GetInternalPath(const String &pathName)
+	{
+		return pathName.Replaced('\\', '/');
+	}
+
+	String GetNativePath(const String &pathName)
+	{
+#ifdef _WIN32
+		return pathName.Replaced('/', '\\');
+#else
+		return pathName;
+#endif
+	}
+
+	WString GetWideNativePath(const String &pathName)
+	{
+#ifdef _WIN32
+		return WString(pathName.Replaced('/', '\\'));
+#else
+		return WString(pathName);
+#endif
+	}
+
+	bool IsAbsolutePath(const String &pathName)
+	{
+		if(pathName.Empty())
+			return false;
+		String path = GetInternalPath(pathName);
+		if(path[0] == '/')
+			return true;
+#ifdef _WIN32
+		if(path.Length() > 1 && IsAlpha(path[0]) && path[1] == ':')
+			return true;
+#endif
+		return false;
 	}
 }

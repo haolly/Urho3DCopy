@@ -54,7 +54,6 @@ namespace Urho3D
 	using StringVector = Vector<String>;
 	using VariantMap = HashMap<StringHash, Variant>;
 
-	//todo why this is a struct , not a class ?
 	struct ResourceRef
 	{
 		ResourceRef() {}
@@ -152,8 +151,12 @@ namespace Urho3D
 		double double_;
 		Vector2 vector2;
 		String string_;
+		PODVector<unsigned char> buffer_;
+		void* voidPtr;
 		ResourceRef resourceRef_;
 		ResourceRefList resourceRefList_;
+		VariantVector variantVector_;
+		VariantMap variantMap_;
 		//todo ..
 		long long int64_;
 
@@ -208,6 +211,7 @@ namespace Urho3D
 		{
 			*this = value;
 		}
+		//todo
 
 		Variant(const String& value)
 		{
@@ -218,6 +222,13 @@ namespace Urho3D
 		{
 			*this = value;
 		}
+
+		Variant(const PODVector<unsigned char>& value)
+		{
+			*this = value;
+		}
+
+		//todo
 
 		Variant(void* value)
 		{
@@ -233,6 +244,22 @@ namespace Urho3D
 		{
 			*this = value;
 		}
+
+		Variant(const VariantVector& value)
+		{
+			*this = value;
+		}
+
+		Variant(const VariantMap& value)
+		{
+			*this = value;
+		}
+
+		Variant(const StringVector& value)
+		{
+			*this = value;
+		}
+		//todo
 
 		Variant(const String& type, const String& value)
 		{
@@ -463,6 +490,19 @@ namespace Urho3D
 				return static_cast<double>(value_.int64_);
 			return 0.0;
 		}
+		//todo
+
+		const String& GetString() const
+		{
+			return (type_ == VAR_STRING ? value_.string_ : String::EMPTY);
+		}
+
+		const PODVector<unsigned char>& GetBuffer() const
+		{
+			return type_ == VAR_BUFFER ? value_.buffer_ : emptyBuffer;
+		}
+
+		//todo
 
 
 		static String GetTypeName(VariantType type);

@@ -154,6 +154,7 @@ namespace Urho3D
 		else
 		{
 			//Only resize capacity when newLength is bigger than old capacity
+			//Note, need to check with (newLength + 1), because the REAL size is newLength + 1, need one more '\0'
 			if(newLength && capacity_ < newLength + 1)
 			{
 				while (capacity_ < newLength + 1)
@@ -164,7 +165,7 @@ namespace Urho3D
 				buffer_ = newBuff;
 			}
 		}
-		// null terminated
+		//Note null terminated
 		buffer_[newLength] = 0;
 		length_ = newLength;
 	}
@@ -386,6 +387,88 @@ namespace Urho3D
 			Append(formatString + lastPos, (unsigned) (pos - lastPos));
 			//todo
 		}
+	}
+
+	unsigned String::FindLast(const String &str, unsigned int startPos, bool caseSensitive) const
+	{
+		//todo
+	}
+
+	String String::Trimmed() const
+	{
+		unsigned trimStart = 0;
+		unsigned trimEnd = length_;
+
+		while (trimStart < trimEnd)
+		{
+			char c = buffer_[trimStart];
+			if(c != ' ' && c!= 0)
+				break;
+			++trimStart;
+		}
+		while (trimEnd > trimStart)
+		{
+			char c = buffer_[trimEnd -1];
+			if(c != ' ' && c != 0)
+				break;
+			--trimEnd;
+		}
+		return SubString(trimStart, trimEnd - trimStart);
+	}
+
+
+	String String::SubString(unsigned pos) const
+	{
+		if(pos >= length_)
+			return String();
+
+		String ret;
+		ret.Resize(length_ - pos);
+		CopyChars(ret.buffer_, buffer_ + pos, ret.length_);
+		return ret;
+	}
+
+	String String::SubString(unsigned pos, unsigned length) const
+	{
+		if(pos < length_)
+		{
+			String ret;
+			//Note, it's ok when equal with length_
+			if(pos + length > length_)
+				length = length_ - pos;
+
+			ret.Resize(length);
+			CopyChars(ret.buffer_, buffer_ + pos, ret.length_);
+			return ret;
+		}
+		else
+			return String();
+	}
+
+	String &String::Append(const String &str)
+	{
+		return *this += str;
+	}
+
+	String &String::Append(const char *str)
+	{
+		return *this += str;
+	}
+
+	String &String::Append(char c)
+	{
+		return *this += c;
+	}
+
+	String &String::Append(const char *str, unsigned length)
+	{
+		if(str)
+		{
+			unsigned oldLength = length_;
+			Resize(oldLength + length);
+			CopyChars(&buffer_[oldLength], str, length);
+		}
+		return *this;
 	}
 
 

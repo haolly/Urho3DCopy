@@ -23,7 +23,319 @@ namespace Urho3D
 		Vector()
 		{
 		}
-		//todo
+
+		explicit Vector(unsigned size)
+		{
+			Resize(size);
+		}
+
+		Vector(unsigned size, const T& value)
+		{
+			Resize(size);
+			for(unsigned i = 0; i< size; ++i)
+				At(i) = value;
+		}
+
+		Vector(const T* data, unsigned size)
+		{
+			InsertElements(0, data, data + size);
+		}
+
+		Vector(const Vector<T>& vector)
+		{
+			*this = vector;
+		}
+
+		Vector(const std::initializer_list<T>& list) : Vector()
+		{
+			for (auto it = list.begin(); it != list.end(); ++it)
+			{
+				Push(*it);
+			}
+		}
+
+		~Vector()
+		{
+			DestructElements(Buffer(), size_);
+			delete [] buffer_;
+		}
+
+		Vector<T>&operator =(const Vector<T>& rhs)
+		{
+			if(&rhs != this)
+			{
+				Clear();
+				InsertElements(0, rhs.Begin(), rhs.End());
+			}
+		}
+
+		Vector<T>&operator +=(const T& rhs)
+		{
+			Push(rhs);
+			return *this;
+		}
+
+		Vector<T>&operator +=(const Vector<T>& rhs)
+		{
+			Push(rhs);
+			return *this;
+		}
+
+		Vector<T> operator+(const T& rhs) const
+		{
+			Vector<T> ret(*this);
+			ret.Push(rhs);
+			return ret;
+		}
+
+		Vector<T> operator +(const Vector<T>& rhs) const
+		{
+			Vector<T> ret(*this);
+			ret.Push(rhs);
+			return ret;
+		}
+
+		bool operator ==(const Vector<T>& rhs) const
+		{
+			if(rhs.Size() != size_)
+				return false;
+			T* buffer = Buffer();
+			T* rhsBuffer = rhs.Buffer();
+			for(unsigned i=0; i<size_; i++)
+			{
+				if(buffer[i] != rhsBuffer[i])
+					return false;
+			}
+			return true;
+		}
+
+		bool operator !=(const Vector<T>& rhs) const
+		{
+			if(rhs.Size() != size_)
+				return true;
+			T* buffer = Buffer();
+			T* rhsBuffer = rhs.Buffer();
+			for(unsigned i=0; i<size_; i++)
+			{
+				if(buffer[i] != rhsBuffer[i])
+					return true;
+			}
+			return false;
+		}
+
+		T&operator [](unsigned index)
+		{
+			assert(index < size_);
+			return Buffer()[index];
+		}
+
+		const T&operator [](unsigned index) const
+		{
+			assert(index < size_);
+			return Buffer()[index];
+		}
+
+		T& At(unsigned index)
+		{
+			assert(index < size_);
+			return Buffer()[index];
+		}
+
+		const T& At(unsigned index) const
+		{
+			assert(index < size_);
+			return Buffer()[index];
+		}
+
+		void Push(const T& value)
+		{
+			InsertElements(size_, &value, &value + 1);
+		}
+
+		void Push(const Vector<T>& vector)
+		{
+			InsertElements(size_, vector.Begin(), vector.End());
+		}
+
+		void Pop()
+		{
+			if(size_)
+				Resize(size_ - 1);
+		}
+
+		void Insert(unsigned pos, const T& value)
+		{
+			InsertElements(pos, &value, &value + 1);
+		}
+
+		void Insert(unsigned pos, const Vector<T>& vector)
+		{
+			InsertElements(pos, vector.Begin(), vector.End());
+		}
+
+		Iterator Insert(const Iterator& dest, const T& value)
+		{
+			unsigned  pos = (unsigned)(dest - Begin());
+			return InsertElements(pos, &value, &value + 1);
+		}
+
+		Iterator Insert(const Iterator& dest, const Vector<T>& vector)
+		{
+			unsigned pos = (unsigned)(dest - Begin());
+			return InsertElements(pos, vector.Begin(), vector.End());
+		}
+
+		Iterator Insert(const Iterator& dest, const ConstIterator& start, const ConstIterator& end)
+		{
+			unsigned pos = (unsigned)(dest - Begin());
+			return InsertElements(pos, start, end);
+		}
+
+		Iterator Insert(const Iterator& dest, const T* start, const T* end)
+		{
+			unsigned pos = (unsigned)(dest - Begin());
+			return InsertElements(pos, start, end);
+		}
+
+		void Erase(unsigned pos, unsigned length = 1)
+		{
+			if(pos + length > size_ || !length)
+				return;
+
+			MoveRange(pos, pos + length, size_ - pos - length);
+			Resize(size_ - length);
+		}
+
+		void EraseSwap(unsigned pos, unsigned length= 1)
+		{
+			unsigned shiftStartIndex = pos + length;
+			if(shiftStartIndex > size_ || !length)
+				return;
+
+			unsigned newSize = size_ - length;
+			unsigned trailingCount = size_ - shiftStartIndex;
+			//如果有足够的空间将后面的元素移动到前面
+			if(trailingCount < length)
+			{
+				MoveRange(pos, shiftStartIndex, trailingCount);
+			}
+			else
+			{
+				// 将后面的元素和空出来的空间Swap
+				CopyElements(Buffer() + pos, Buffer() + newSize, length);
+			}
+			Resize(newSize);
+		}
+
+		Iterator Erase(const Iterator& it)
+		{
+			unsigned pos = (unsigned)(it - Begin());
+			if(pos >= size_)
+				return End();
+			Erase(pos);
+			return Begin() + pos;
+		}
+
+		Iterator Erase(const Iterator& start, const Iterator& end)
+		{
+			unsigned pos = (unsigned)(start - Begin());
+			unsigned length = (unsigned)(end - start);
+			if(pos + length > size_)
+				return End();
+			Erase(pos, length);
+			return Begin() + pos;
+		}
+
+		bool Remove(const T& value)
+		{
+			Iterator i = Find(value);
+			if(i != End())
+			{
+				Erase(i);
+				return true;
+			}
+			return false;
+		}
+
+		bool RemoveSwap(const T& value)
+		{
+			Iterator i = Find(value);
+			if(i != End())
+			{
+				EraseSwap(i - Begin());
+				return true;
+			}
+			return false;
+		}
+
+		void Clear()
+		{
+			Resize(0);
+		}
+
+		void Resize(unsigned newSize)
+		{
+			Vector<T> tempBuffer;
+			Resize(newSize, 0, tempBuffer);
+		}
+
+		void Resize(unsigned newSize, const T& value)
+		{
+			unsigned oldSize = Size();
+			Vector<T> tempBuffer;
+			Resize(newSize, 0, tempBuffer);
+			for(unsigned i = oldSize; i< newSize; ++i)
+				At(i) = value;
+		}
+
+		void Reserve(unsigned newCapacity)
+		{
+			if(newCapacity < size_)
+				newCapacity = size_;
+
+			if(newCapacity != capacity_)
+			{
+				T* newBuffer = nullptr;
+				capacity_ = newCapacity;
+				if(capacity_)
+				{
+					newBuffer = reinterpret_cast<T*>(AllocateBuffer((unsigned)(capacity_ * sizeof(T))));
+					ConstructElements(newBuffer, Buffer(), size_);
+				}
+
+				DestructElements(Buffer(), size_);
+				delete [] buffer_;
+				buffer_ = reinterpret_cast<unsigned char*>(newBuffer);
+			}
+		}
+
+		void Compact() { Reserve(size_); }
+
+		Iterator Find(const T& value)
+		{
+			Iterator it = Begin();
+			while (it != End() && *it != value)
+				++it;
+			return it;
+		}
+
+		ConstIterator Find(const T& value) const
+		{
+			ConstIterator it = Begin();
+			while(it != End() && *it != value)
+				++it;
+			return it;
+		}
+
+		unsigned IndexOf(const T& value) const
+		{
+			return Find(value) - Begin();
+		}
+
+		bool Contains(const T& value) const
+		{
+			return Find(value) != End();
+		}
 
 		Iterator Begin() { return Iterator(Buffer()); }
 		ConstIterator Begin() const { return ConstIterator(Buffer()); }
@@ -53,6 +365,8 @@ namespace Urho3D
 			assert(size_);
 			return Buffer()[size_ -1];
 		}
+
+
 
 		unsigned Size() const { return size_; }
 		unsigned Capacity() const { return capacity_; }
@@ -169,8 +483,9 @@ namespace Urho3D
 
 
 	/**
-	 * Todo, the origin comments has notice: Does not call constructors or destructors and use block move.
+	 * todo, the origin comments has notice: Does not call constructors or destructors and use block move.
 	 * Is intentionally (for performance reasons) unsafe for self-insertion
+	 * todo, store POD types ??
 	 * @tparam T
 	 */
 	template <class T>

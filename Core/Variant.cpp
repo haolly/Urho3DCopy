@@ -119,4 +119,19 @@ namespace Urho3D
 				break;
 		}
 	}
+
+	Variant &Variant::operator=(const Variant &rhs)
+	{
+		return <#initializer#>;
+	}
+
+	bool Variant::operator==(const Variant &rhs) const
+	{
+		return false;
+	}
+
+	void Variant::SetBuffer(const void *data, unsigned size)
+	{
+
+	}
 }

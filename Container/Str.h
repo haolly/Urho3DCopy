@@ -414,6 +414,7 @@ namespace Urho3D
 #endif
         }
         void Replace(unsigned pos, unsigned length, const char* srcStart, unsigned srcLen);
+		//Note, not include the terminated null character
         unsigned length_;
         unsigned capacity_;
         char* buffer_;

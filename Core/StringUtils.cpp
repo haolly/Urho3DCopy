@@ -4,6 +4,7 @@
 
 #include <cstdio>
 #include <cstdarg>
+#include <cctype>
 #include "StringUtils.h"
 #include "../Container/Str.h"
 
@@ -131,5 +132,25 @@ namespace Urho3D
 		ret.AppendWithFormatArgs(formatString, args);
 		va_end(args);
 		return ret;
+	}
+
+	bool IsAlpha(unsigned ch)
+	{
+		return ch < 256 ? isalpha(ch) != 0 : false;
+	}
+
+	bool IsDigit(unsigned ch)
+	{
+		return ch < 256 ? isdigit(ch) != 0 : false;
+	}
+
+	unsigned ToUpper(unsigned ch)
+	{
+		(unsigned)toupper(ch);
+	}
+
+	unsigned ToLower(unsigned ch)
+	{
+		(unsigned)tolower(ch);
 	}
 }

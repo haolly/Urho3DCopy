@@ -67,10 +67,10 @@ namespace Urho3D
 		{
 		}
 
-		void AddMetadata(const String& name, const VariantMap& value);
+		void AddMetadata(const String& name, const Variant& value);
 		void RemoveMetadata(const String& name);
 		void RemoveAllMetadata();
-		const VariantMap& GetMetadata(const String& name) const;
+		const Variant& GetMetadata(const String& name) const;
 		bool HasMetadata() const;
 
 	protected:
@@ -84,6 +84,37 @@ namespace Urho3D
 		StringVector metadataKeys_;
 	};
 
+	inline const String& GetResourceName(Resource* resource)
+	{
+		return resource ? resource->GetName() : String::EMPTY;
+	}
+
+	inline StringHash GetResourceType(Resource* resource, StringHash defaultType)
+	{
+		return resource ? resource->GetType() : defaultType;
+	}
+
+	inline ResourceRef GetResourceRef(Resource* resource, StringHash defaultType)
+	{
+		return ResourceRef(GetResourceType(resource, defaultType), GetResourceName(resource));
+	}
+
+	template <class T>
+	Vector<String> GetResourceNames(const Vector<SharedPtr<T> >& resources)
+	{
+		Vector<String> ret(resources.Size());
+		for(unsigned i = 0; i< resources.Size(); ++i)
+		{
+			ret[i] = GetResourceName(resources[i]);
+		}
+		return ret;
+	}
+
+	template <class T>
+	ResourceRefList GetResourceRefList(const Vector<SharedPtr<T> >& resources)
+	{
+		return ResourceRefList(T::GetTypeStatic(), GetResourceNames(resources));
+	}
 }
 
 

@@ -313,7 +313,60 @@ namespace Urho3D
 			return Iterator(InsertNode(pair.first_, pair.second_));
 		}
 
+		Iterator Insert(const Pair<T, U>& pair, bool& exists)
+		{
+			unsigned oldSize = Size();
+			Iterator ret(InsertNode(pair.first_, pair.second_));
+			exists = (Size() == oldSize);
+			return ret;
+		}
 
+		void Insert(const HashMap<T, U>& map)
+		{
+			ConstIterator it = map.Begin();
+			ConstIterator end = map.End();
+			while(it != end)
+			{
+				InsertNode(it->first_, it->second_);
+				++it;
+			}
+		}
+
+		Iterator Insert(const ConstIterator& it)
+		{
+			return Iterator(InsertNode(it->first_, it->second_));
+		}
+
+		void Insert(const ConstIterator& start, const ConstIterator& end)
+		{
+			ConstIterator it = start;
+			while (it != end)
+				InsertNode(*it++);
+		}
+
+		bool Erase(const T& key)
+		{
+			if(!ptrs_)
+				return false;
+
+			unsigned hashKey = Hash(key);
+			Node* previous;
+			Node* node = FindNode(key, hashKey, previous);
+			if(node)
+			{
+				if(previous)
+				{
+					previous->down_ = node->down_;
+				}
+				else
+				{
+					Ptrs()[hashKey] = node->down_;
+				}
+				EraseNode(node);
+			}
+			else
+				return false;
+		}
 
 		//todo
 
@@ -442,6 +495,11 @@ namespace Urho3D
 			}
 		}
 
+		Node* InsertNode(KeyValue keyValue)
+		{
+			return InsertNode(keyValue.first_, keyValue.second_);
+		}
+
 		// Insert a key-value and return either the new or existing node
 		Node* InsertNode(const T& key, const U& value, bool findExisting = true)
 		{
@@ -498,6 +556,8 @@ namespace Urho3D
 			return newNode;
 		}
 
+		//Note, erase node from list, the down_ pointer should be removed first
+		//todo search usage
 		Node* EraseNode(Node* node)
 		{
 			// Note, the tail node CAN NOT be removed

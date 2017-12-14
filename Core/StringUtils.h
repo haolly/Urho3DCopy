@@ -40,6 +40,12 @@ namespace Urho3D
 	// todo
 
 	String ToString(const char* formatString, ...);
+	bool IsAlpha(unsigned ch);
+	bool IsDigit(unsigned ch);
+
+	unsigned ToUpper(unsigned ch);
+	unsigned ToLower(unsigned ch);
+	//todo
 
 }
 

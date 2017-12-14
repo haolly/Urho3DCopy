@@ -139,4 +139,9 @@ namespace Urho3D
 		}
 		return ret;
 	}
+
+	unsigned Deserializer::GetChecksum()
+	{
+		return 0;
+	}
 }

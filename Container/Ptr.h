@@ -125,7 +125,7 @@ namespace Urho3D
             ReleaseRef();
         }
 
-        //todo
+        //todo, usage
         T* Detach()
         {
             T* ptr = ptr_;
