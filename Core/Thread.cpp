@@ -76,27 +76,38 @@ ThreadID Thread::mainThreadID;
 		mainThreadID = GetCurrentThreadID();
 	}
 
-bool Urho3D::Thread::IsMainThread()
-{
-#ifdef URHO3D_THREADING
-	return GetCurrentThreadID() == mainThreadID;
-#else
-	return true;
-#endif
-}
+	bool Thread::IsMainThread()
+	{
+	#ifdef URHO3D_THREADING
+		return GetCurrentThreadID() == mainThreadID;
+	#else
+		return true;
+	#endif
+	}
 
-ThreadID Thread::GetCurrentThreadID()
-{
+	ThreadID Thread::GetCurrentThreadID()
+	{
+	#ifdef URHO3D_THREADING
+	#ifdef _WIN32
+		return GetCurrentThreadId();
+	#else
+		return pthread_self();
+	#endif
+	#else
+		return ThreaID();
+	#endif  //URHO3D_THREADING
+	}
+
+	void Thread::SetPriority(int priority)
+	{
 #ifdef URHO3D_THREADING
 #ifdef _WIN32
-	return GetCurrentThreadId();
-#else
-	return pthread_self();
+		if(handle_)
+			SetThreadPriority((HANDLE)handle_, priority);
+#elif defined(__linux__)
+		//todo
 #endif
-#else
-	return ThreaID();
-#endif  //URHO3D_THREADING
-}
+	}
 
 }
 

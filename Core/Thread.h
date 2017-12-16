@@ -32,7 +32,7 @@ namespace Urho3D
 		static ThreadID GetCurrentThreadID();
 		static bool IsMainThread();
 
-	private:
+	protected:
 		void* handle_;
 		volatile bool shouldRun_;
 		static ThreadID mainThreadID;

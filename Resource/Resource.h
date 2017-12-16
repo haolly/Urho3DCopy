@@ -7,11 +7,11 @@
 
 #include "../Core/Object.h"
 #include "../Core/Timer.h"
+#include "../IO/Serializer.h"
 
 namespace Urho3D
 {
 	class Deserializer;
-	class Serializer;
 	class XMLElement;
 
 	enum AsyncLoadState

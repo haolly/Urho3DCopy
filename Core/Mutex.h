@@ -28,7 +28,7 @@ namespace Urho3D
 		~MutexLock();
 
 	private:
-		//Note, prevent copy construction and copy assigment
+		//Note, prevent copy construction and copy assignment
 		MutexLock(const MutexLock& rhs);
 		MutexLock&operator =(const MutexLock& rhs);
 		Mutex& mutex_;

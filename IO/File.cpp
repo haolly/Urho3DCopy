@@ -7,6 +7,8 @@
 #include "../ThirdParty/LZ4/lz4.h"
 #include "FileSystem.h"
 #include "../Math/MathDefs.h"
+#include "Log.h"
+#include "../Core/StringUtils.h"
 
 namespace Urho3D
 {
@@ -328,13 +330,13 @@ namespace Urho3D
 		FileSystem* fileSystem = GetSubsystem<FileSystem>();
 		if (fileSystem && !fileSystem->CheckAccess(GetPath(fileName)))
 		{
-			//todo log error ("Access denied to %s", fileName.CString()
+			URHO3D_LOGERRORF("Access denied to %s", fileName.CString());
 			return false;
 		}
 
 		if(fileName.Empty())
 		{
-			//todo log error("Could not open file with empty name")
+			URHO3D_LOGERROR("Could not open file with empty name");
 			return false;
 		}
 
@@ -358,7 +360,7 @@ namespace Urho3D
 
 		if(!handle_)
 		{
-			//todo log error ("Could not open file %s", fileName.CString();
+			URHO3D_LOGERRORF("Could not open file %s ", fileName.CString());
 			return false;
 		}
 

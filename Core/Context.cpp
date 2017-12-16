@@ -3,6 +3,7 @@
 //
 
 #include "Context.h"
+#include "Thread.h"
 
 namespace Urho3D
 {
@@ -128,5 +129,127 @@ namespace Urho3D
 		VariantMap& ret = *eventDataMaps_[nestingLevel];
 		ret.Clear();
 		return ret;
+	}
+
+	Context::Context() :
+		eventHandler_(nullptr)
+	{
+		Thread::SetMainThread();
+	}
+
+	Context::~Context()
+	{
+		RemoveSubsystem(StringHash("Audio"));
+		//todo
+	}
+
+	SharedPtr<Object> Context::CreateObject(StringHash objectType)
+	{
+		auto it = factories_.Find(objectType);
+		if(it != factories_.End())
+			return it->second_->CreateObject();
+		else
+			return SharedPtr<Object>();
+	}
+
+	void Context::RegisterFactory(ObjectFactory *factory)
+	{
+		if(!factory)
+			return;
+		factories_[factory->GetType()] = factory;
+	}
+
+	void Context::RegisterFactory(ObjectFactory *factory, const char *category)
+	{
+		if(!factory)
+			return;
+		RegisterFactory(factory);
+		if(String::CStringLength(category))
+			objectCategories_[category].Push(factory->GetType());
+	}
+
+	void Context::RegisterSubsystem(Object *subsystem)
+	{
+		if(!subsystem)
+			return;
+
+		subSystems_[subsystem->GetType()] = subsystem;
+	}
+
+	void Context::RemoveSubsystem(StringHash objectType)
+	{
+		auto it = subSystems_.Find(objectType);
+		if(it != subSystems_.End())
+			subSystems_.Erase(it);
+	}
+
+	void Context::RemoveAttribute(StringHash objectType, const char *name)
+	{
+
+	}
+
+	void Context::RemoveAllAtributes(StringHash objectType)
+	{
+
+	}
+
+	void Context::UpdateAttributeDefaultValue(StringHash objectType, const char *name, const Variant &defaultValue)
+	{
+
+	}
+
+	bool Context::RequireSDL(unsigned int sdlFlags)
+	{
+		return false;
+	}
+
+	void Context::ReleaseSDL()
+	{
+
+	}
+
+	void Context::CopyBaseAttributes(StringHash baseType, StringHash derivedType)
+	{
+
+	}
+
+	template<class T>
+	void Context::RegisterFactory()
+	{
+
+	}
+
+	template<class T>
+	void Context::RegisterFactory(const char *category)
+	{
+
+	}
+
+	template<class T>
+	T *Context::RegisterSubsystem()
+	{
+		return nullptr;
+	}
+
+	template<class T>
+	void Context::RemoveSubsystem()
+	{
+
+	}
+
+	template<class T>
+	AttributeHandle Context::RegisterAttribute(const AttributeInfo &attr)
+	{
+		return nullptr;
+	}
+
+	Object *Context::GetSubsystem(StringHash key) const
+	{
+		return nullptr;
+	}
+
+	const String &Context::GetTypeName(StringHash objectType) const
+	{
+		return <#initializer#>;
 	}
 }

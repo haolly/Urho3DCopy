@@ -220,8 +220,6 @@ namespace Urho3D
     template <class T, class U>
     SharedPtr<T> StaticCast(const SharedPtr<U>& ptr)
     {
-        //todo, do not need new ?
-        //so all template do not need new?
         SharedPtr<T> ret;
         ret.StaticCast(ptr);
         return ret;

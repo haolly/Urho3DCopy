@@ -368,6 +368,33 @@ namespace Urho3D
 				return false;
 		}
 
+		Iterator Erase(const Iterator& it)
+		{
+			if(!ptrs_ || !it.ptr_)
+				return End();
+
+			Node* node = static_cast<Node*>(it.ptr_);
+			Node* next = node->Next();
+
+			unsigned hashKey = Hash((*it).first_);
+			Node* previous = nullptr;
+			Node* current = static_cast<Node*>(Ptrs()[hashKey]);
+			while (current && current != node)
+			{
+				previous = current;
+				current = current->Down();
+			}
+
+			assert(current == node);
+			if(previous)
+				previous->next_ = current->down_;
+			else
+				Ptrs()[hashKey] = current->down_;
+
+			EraseNode(node);
+			return Iterator(next);
+		}
+
 		//todo
 
 
@@ -501,6 +528,7 @@ namespace Urho3D
 		}
 
 		// Insert a key-value and return either the new or existing node
+		// Note, could insert the same key/value pairs many times
 		Node* InsertNode(const T& key, const U& value, bool findExisting = true)
 		{
 			if(!ptrs_)
@@ -556,8 +584,7 @@ namespace Urho3D
 			return newNode;
 		}
 
-		//Note, erase node from list, the down_ pointer should be removed first
-		//todo search usage
+		//Note, erase node from parent list, the down_ pointer(child list) should be removed first
 		Node* EraseNode(Node* node)
 		{
 			// Note, the tail node CAN NOT be removed

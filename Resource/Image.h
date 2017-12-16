@@ -6,6 +6,8 @@
 #define URHO3DCOPY_IMAGE_H
 
 #include "Resource.h"
+#include "../Math/Color.h"
+#include "../Container/ArrayPtr.h"
 
 struct SDL_Surface;
 
@@ -64,7 +66,7 @@ namespace Urho3D
 	{
 		URHO3D_OBJECT(Image, Resource);
 	public:
-		Image(Context* context);
+		Image(Context *context);
 		virtual ~Image() override ;
 
 		static void RegisterObject(Context* context);
@@ -78,7 +80,72 @@ namespace Urho3D
 		bool SetSize(int width, int height, unsigned components);
 		bool SetSize(int width, int height, int depth, unsigned components);
 		void SetData(const unsigned char* pixelData);
+		void SetPixel(int x, int y, const Color& color);
+		void SetPixel(int x, int y, int z, const Color& color);
+
+		void SetPixelInt(int x, int y, unsigned uintColor);
+		void SetPixelInt(int x, int y, int z, unsigned uintColor);
+
+		bool LoadColorLUT(Deserializer& source);
+		bool FlipHorizontal();
+		bool FlipVertical();
+		bool Resize(int width, int height);
+		void Clear(const Color& color);
+		void ClearInt(unsigned uintColor);
+
+		bool SaveMBP(const String& fileName) const;
+		bool SavePNG(const String& fileName) const;
+		bool SaveTGA(const String& fileName) const;
+		bool SaveJPG(const String& fileName, int quality) const;
+		bool SaveDDS(const String& fileName) const;
+		bool SaveWEBP(const String& fileName, float compression = 0.0f) const;
+		bool IsCubemap() const
+		{
+			return cubemap_;
+		}
+
+		bool IsArray() const { return array_; }
+		bool IsSRGB() const { return sRGB_; }
+
+		Color GetPixel(int x, int y) const;
+		Color GetPixel(int x, int y, int z) const;
+
+		unsigned GetPixelInt(int x, int y) const;
+		unsigned GetPixelInt(int x, int y, int z) const;
+		Color GetPixelBilinear(float x, float y) const;
+		Color GetPixelTrilinear(float x, float y, float z) const;
+
+		int GetWidth() const { return width_; }
+		int GetHeight() const { return height_; }
+		int GetDepth() const { return depth_; }
+
+		unsigned GetComponents() const { return components_; }
+		unsigned char* GetData() const { return data_; }
+
+		bool IsCompressed() const { return compressedFormat_ != CF_NONE; }
+
+		CompressedFormat GetCompressedFormat() const { return compressedFormat_; }
 		//todo
+
+
+	private:
+		static unsigned char* GetImageData(Deserializer& source, int& width, int& height, unsigned& components);
+		static void FreeImageData(unsigned char* pixelData);
+
+
+		int width_;
+		int height_;
+		int depth_;
+		unsigned components_;
+		unsigned numCompressedLevels_;
+		bool cubemap_;
+		bool array_;
+		bool sRGB_;
+
+		CompressedFormat compressedFormat_;
+		SharedArrayPtr<unsigned char> data_;
+		SharedPtr<Image> nextLevel_;
+		SharedPtr<Image> nextSibling_;
 
 	};
 }

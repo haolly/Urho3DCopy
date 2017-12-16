@@ -9,6 +9,7 @@
 #include "../Core/Object.h"
 #include "../Container/List.h"
 #include "../Core/Mutex.h"
+#include "../Core/StringUtils.h"
 
 namespace Urho3D
 {

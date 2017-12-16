@@ -155,6 +155,26 @@ namespace Urho3D
 		HashMap<String, Vector<StringHash> > objectCategories_;
 		VariantMap globalVars_;
     };
+
+	template <class T>
+	void Context::RegisterFactory()
+	{
+		RegisterFactory(new ObjectFactoryImpl<T>(this));
+	}
+
+	template <class T>
+	void Context::RegisterFactory(const char *category)
+	{
+		RegisterFactory(new ObjectFactoryImpl<T>(this), category);
+	}
+
+	template <class T>
+	T* Context::RegisterSubsystem()
+	{
+		T* subsystem = new T(this);
+		RegisterSubsystem(subsystem);
+		return subsystem;
+	}
 }
 
 
