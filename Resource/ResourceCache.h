@@ -49,6 +49,7 @@ namespace Urho3D
 		{
 		}
 
+		//todo, how to route
 		virtual void Route(String& name, ResourceRequest requestType) = 0;
 	};
 
@@ -71,10 +72,26 @@ namespace Urho3D
 		void ReleaseResource(StringHash type, const String& name, bool force = false);
 		void ReleaseResources(StringHash type, bool force = false);
 		void ReleaseResources(StringHash type, const String& partialName, bool force = false);
-		void ReloadResource(Resource* resource);
+		void ReleaseResources(const String& partialName, bool force = false);
+		void ReleaseAllResources(bool force = false);
+		bool ReloadResource(Resource* resource);
 		void ReloadResourceWithDependencies(const String& fileName);
 		void SetMemoryBudget(StringHash type, unsigned long long budget);
+		void SetAutoReloadResources(bool enable);
+		void SetReturnFailedResources(bool enable)
+		{
+			returnFailedResources_ = enable;
+		}
 
+		void SetSearchPackagesFirst(bool value)
+		{
+			searchPackagesFirst_ = value;
+		}
+
+		void SetFinishBackgroundResourcesMs(int ms)
+		{
+			finishBackgroundResourcesMs_ = ms;
+		}
 
 		void AddResourceRouter(ResourceRouter* router, bool addAsFirst = false);
 		void RemoveResourceRouter(ResourceRouter* router);
@@ -139,6 +156,7 @@ namespace Urho3D
 		Vector<SharedPtr<FileWatcher> > fileWatchers_;
 		Vector<SharedPtr<PackageFile> > packages_;
 
+		//The resource(key) those (value) resource all dependents on it
 		HashMap<StringHash, HashSet<StringHash> > dependentResouces_;
 		SharedPtr<BackgroundLoader> backgroundLoader_;
 		Vector<SharedPtr<ResourceRouter> > resourceRouters_;
@@ -150,6 +168,7 @@ namespace Urho3D
 		int finishBackgroundResourcesMs_;
 	};
 
+	//Note, template function should be defined in .h file
 	template <class T>
 	T* ResourceCache::GetExistingResource(const String &name)
 	{

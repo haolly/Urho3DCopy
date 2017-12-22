@@ -41,6 +41,7 @@ namespace Urho3D
 		}
 
 		virtual unsigned GetChecksum() override;
+
 		bool Open(const String& fileName, FileMode mode = FILE_READ);
 		bool Open(PackageFile* package, const String& fileName);
 		void Close();

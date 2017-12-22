@@ -28,11 +28,6 @@ namespace Urho3D
 		return String::EMPTY;
 	}
 
-	unsigned Deserializer::GetCheckSum()
-	{
-		return 0;
-	}
-
 	unsigned Deserializer::SeekRelative(int delta)
 	{
 		return Seek(position_ + delta);
@@ -143,5 +138,28 @@ namespace Urho3D
 	unsigned Deserializer::GetChecksum()
 	{
 		return 0;
+	}
+
+	String Deserializer::ReadFileID()
+	{
+		String ret;
+		ret.Resize(4);
+		Read(&ret[0], 4);
+		return ret;
+	}
+
+	String Deserializer::ReadString()
+	{
+		String ret;
+
+		while (!IsEof())
+		{
+			char c = ReadByte();
+			if(!c)
+				break;
+			else
+				ret += c;
+		}
+		return ret;
 	}
 }

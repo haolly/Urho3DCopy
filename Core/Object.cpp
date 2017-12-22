@@ -6,6 +6,7 @@
 #include "Context.h"
 #include "Thread.h"
 #include "../Container/HashSet.h"
+#include "../IO/Log.h"
 
 namespace Urho3D
 {
@@ -66,6 +67,9 @@ namespace Urho3D
 		if(blockEvents_)
 			return;
 
+		// Make a copy of the context pointer in case the object is destroyed during event handler invocation
+		//Todo what happens when the event receiver itself is destroyed to context_
+		// https://discourse.urho3d.io/t/could-someone-please-explain-the-function-object-onevent/3784
 		Context* context = context_;
 		EventHandler* specific = nullptr;
 		EventHandler* nonSpecific = nullptr;
@@ -348,12 +352,14 @@ namespace Urho3D
 	{
 		if (!Thread::IsMainThread())
 		{
-			//todo add log
+			URHO3D_LOGERROR("Sending events is only supported from the main thread");
 			return;
 		}
 		if(blockEvents_)
 			return;
 
+		//Note, Make a weak pointer to self to check for destruction during event handling
+		//Note, 在事件处理程序中，有可能把事件的发送者销毁掉
 		WeakPtr<Object> self(this);
 		Context* context = context_;
 		HashSet<Object*> processed;

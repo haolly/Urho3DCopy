@@ -64,6 +64,7 @@ namespace Urho3D
 		void HandleConsoleCommand(StringHash eventType, VariantMap& eventData);
 
 		HashSet<String> allowedPaths_;
+		//todo, usage
 		List<AsyncExecRequest*> asyncExecQueue_;
 		unsigned nextAsyncExecID_;
 		bool executeConsoleCommands_;

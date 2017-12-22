@@ -6,8 +6,10 @@
 #define URHO3DCOPY_HASHSET_H
 
 #include <initializer_list>
+#include <cassert>
 #include "HashBase.h"
 #include "Hash.h"
+#include "VectorBase.h"
 
 namespace Urho3D
 {
@@ -168,7 +170,151 @@ namespace Urho3D
 		~HashSet()
 		{
 			Clear();
-			//todo
+			FreeNode(Tail());
+			AllocatorUninitialize(allocator_);
+			delete [] ptrs_;
+		}
+
+		HashSet&operator =(const HashSet<T>& rhs)
+		{
+			if(&rhs != this)
+			{
+				Clear();
+				Insert(rhs);
+			}
+			return *this;
+		}
+
+		HashSet&operator +=(const T& rhs)
+		{
+			Insert(rhs);
+			return *this;
+		}
+
+		HashSet&operator +=(const HashSet<T>& rhs)
+		{
+			Insert(rhs);
+			return *this;
+		}
+
+		bool operator ==(const HashSet<T>& rhs) const
+		{
+			if(rhs.Size() != Size())
+				return false;
+			auto it = Begin();
+			while (it != End())
+			{
+				if(!rhs.Contains(*it))
+					return false;
+			}
+			return true;
+		}
+
+		bool operator != (const HashSet<T>& rhs) const
+		{
+			if(rhs.Size() == Size())
+				return false;
+			auto it = Begin();
+			while(it != End())
+			{
+				if(!rhs.Contains(*it))
+					return true;
+			}
+			return false;
+		}
+
+		Iterator Insert(const T& key)
+		{
+			if(!ptrs_)
+			{
+				AllocateBuckets(Size(), MIN_BUCKETS);
+				Rehash();
+			}
+
+			unsigned hashKey = Hash(key);
+			Node* existing = FindNode(key, hashKey);
+			if(existing)
+				return Iterator(existing);
+
+			Node* newNode = InsertNode(Tail(), key);
+			newNode->down_ = Ptrs()[hashKey];
+			Ptrs()[hashKey] = newNode;
+
+			if(Size() > NumBuckets() * MAX_LOAD_FACTOR)
+			{
+				AllocateBuckets(Size(), NumBuckets() << 1);
+				Rehash();
+			}
+			return Iterator(newNode);
+		}
+
+		Iterator Insert(const T& key, bool& exists)
+		{
+			unsigned oldSize = Size();
+			Iterator ret = Insert(key);
+			exists = (Size() == oldSize);
+			return ret;
+		}
+
+		void Insert(const HashSet<T>& set)
+		{
+			ConstIterator it = set.Begin();
+			ConstIterator end = set.End();
+			while (it != end)
+				Insert(*it++);
+		}
+
+		Iterator Insert(const ConstIterator& it)
+		{
+			return Iterator(Insert(*it));
+		}
+
+		//Erase in the down_ chain-list, not the pre/next chain-list
+		bool Erase(const T& key)
+		{
+			if(!ptrs_)
+				return false;
+
+			unsigned hashKey = Hash(key);
+			Node* previous;
+			Node* existing = FindNode(key, hashKey, previous);
+			if(!existing)
+				return false;
+			if(previous)
+				previous->down_ = existing->down_;
+			else
+				Ptrs()[hashKey] = existing->down_;
+
+			EraseNode(existing);
+			return true;
+		}
+
+		Iterator Erase(const Iterator& it)
+		{
+			if(!ptrs_ || !it.ptr_)
+				return End();
+
+			Node* node = static_cast<Node*>(it.ptr_);
+			Node* next = node->Next();
+
+			// Erase in down chain-list
+			unsigned hashKey = Hash(node->key_);
+			Node* previous = nullptr;
+			Node* current = static_cast<Node *>(Ptrs()[hashKey]);
+			while (current && current != node)
+			{
+				previous = current;
+				current = current->Down();
+			}
+
+			assert(current == node);
+			if(previous)
+				previous->down_ = node->down_;
+			else
+				Ptrs()[hashKey] = node->down_;
+
+			EraseNode(node);
+			return Iterator(next);
 		}
 
 		void Clear()
@@ -185,6 +331,82 @@ namespace Urho3D
 				head_ = tail_;
 				SetSize(0);
 			}
+		}
+
+		void Sort()
+		{
+			unsigned numKeys = Size();
+			if(!numKeys)
+				return;
+
+			Node** ptrs = new Node*[numKeys];
+			Node* ptr = Head();
+
+			for(unsigned i=0; i< numKeys; ++i)
+			{
+				ptrs[i] = ptr;
+				ptr = ptr->Next();
+			}
+
+			Urho3D::Sort(RandomAccessIterator<Node*>(ptrs), RandomAccessIterator<Node*>(ptrs + numKeys), CompareNodes);
+
+			head_ = ptrs[0];
+			ptrs[0]->prev_ = nullptr;
+			for(unsigned i=1; i< numKeys; ++i)
+			{
+				ptrs[i - 1]->next_ = ptrs[i];
+				ptrs[i]->prev_ = ptrs[i -1];
+			}
+
+			//Note tail node is special
+			ptrs[numKeys - 1]->next_ = tail_;
+			tail_->prev_ = ptrs[numKeys -1];
+			delete [] ptrs;
+		}
+
+		bool ReHash(unsigned numBuckets)
+		{
+			if(numBuckets == NumBuckets())
+				return true;
+			if(!numBuckets || numBuckets < Size() / MAX_LOAD_FACTOR)
+				return false;
+
+			// Muste be a power of 2
+			unsigned check = numBuckets;
+			while (!(check & 1))
+				check >> 1;
+
+			if(check != 1)
+				return false;
+
+			AllocateBuckets(Size(), numBuckets);
+			Rehash();
+			return true;
+		}
+
+
+		Iterator Find(const T& key)
+		{
+			if(!ptrs_)
+				return End();
+			unsigned keyHash = Hash(key);
+			Node* node = FindNode(key, keyHash);
+			if(node)
+				return Iterator(node);
+			else
+				return End();
+		}
+
+		ConstIterator Find(const T& key) const
+		{
+			if(!ptrs_)
+				return End();
+			unsigned keyHash = Hash(key);
+			Node* node = FindNode(key, keyHash);
+			if(node)
+				return ConstIterator(node);
+			else
+				return End();
 		}
 
 		bool Contains(const T& key) const
@@ -220,6 +442,7 @@ namespace Urho3D
 			return 0;
 		}
 
+		//Note, find in the down chain-list
 		Node* FindNode(const T& key, unsigned hashKey, Node*& previous) const
 		{
 			previous = 0;
@@ -235,6 +458,7 @@ namespace Urho3D
 			return 0;
 		}
 
+		//Note, Insert Node at Prev/Next chain-list, NOT down chain list
 		Node* InsertNode(Node* dest, const T& key)
 		{
 			if(!dest)
@@ -255,8 +479,10 @@ namespace Urho3D
 			return newNode;
 		}
 
+		//Note ,Erase node in the prev/next chain-list, not the down chain-list
 		Node* EraseNode(Node* node)
 		{
+			//Note tail node is special
 			if(!node || node == tail_)
 				return Tail();
 
@@ -318,8 +544,12 @@ namespace Urho3D
 		}
 	};
 
-	//todo
-
+	//todo, what is the use of keyword typename??
+	template <class T>
+	typename HashSet<T>::ConstIterator begin(const HashSet<T>& v)
+	{
+		return v.Begin();
+	}
 }
 
 

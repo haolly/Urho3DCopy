@@ -46,6 +46,9 @@ namespace Urho3D
 		//todo
 		//IntRect ReadIntRect();
 
+		String ReadString();
+		String ReadFileID();
+
 		String ReadLine();
 
 	protected:

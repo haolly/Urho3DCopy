@@ -344,6 +344,7 @@ namespace Urho3D
 				InsertNode(*it++);
 		}
 
+		//Erase in down_ chain-list
 		bool Erase(const T& key)
 		{
 			if(!ptrs_)
@@ -376,6 +377,8 @@ namespace Urho3D
 			Node* node = static_cast<Node*>(it.ptr_);
 			Node* next = node->Next();
 
+			//Note, why do not use FindNode here ??
+			//
 			unsigned hashKey = Hash((*it).first_);
 			Node* previous = nullptr;
 			Node* current = static_cast<Node*>(Ptrs()[hashKey]);
@@ -457,7 +460,10 @@ namespace Urho3D
 		Vector<U> Values() const
 		{
 			Vector<U> ret;
-			//todo
+			ret.Reserve(Size());
+			for(ConstIterator it = Begin(); it != End(); it++)
+				ret.Push(it->second_);
+			return ret;
 		}
 
 		void Clear()
@@ -474,6 +480,7 @@ namespace Urho3D
 				SetSize(0);
 			}
 		}
+		//todo
 
 
 		Iterator Begin() { return Iterator(Head()); }
@@ -601,9 +608,6 @@ namespace Urho3D
 			if(node == Head())
 				head_ = next;
 
-			//todo, why do not need adjust down_ pointer ??
-			// if node is the first node at the same hash value (say hashValue) list,
-			// the Ptrs()[hashValue] will pointer to invalid address
 			FreeNode(node);
 			SetSize(Size() -1);
 			return next;

@@ -68,6 +68,7 @@ namespace Urho3D
 	{
 	public:
 		static const unsigned MIN_BUCKETS = 8;
+		//Note, Max item amount in each Bucket
 		static const unsigned MAX_LOAD_FACTOR = 4;
 
 		HashBase():
@@ -88,7 +89,8 @@ namespace Urho3D
 
 		unsigned Size() const
 		{
-			//todo, why cast to unsigned?
+			//note, why cast to unsigned?
+			//see AllocateBuckets()
 			return ptrs_ ? (reinterpret_cast<unsigned *>(ptrs_))[0] : 0;
 		}
 
@@ -117,7 +119,9 @@ namespace Urho3D
 		//index 0 is size, index 1 is buckets size
 		HashNodeBase** Ptrs() const { return ptrs_ ? ptrs_ + 2 : nullptr; }
 
+		//Note, Head will be the same as tail when initialized
 		HashNodeBase* head_;
+		//Note ,Tail node is special , can not be Erased
 		HashNodeBase* tail_;
 		HashNodeBase** ptrs_;
 		AllocatorBlock* allocator_;

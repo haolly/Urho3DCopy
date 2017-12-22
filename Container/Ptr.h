@@ -233,6 +233,8 @@ namespace Urho3D
         return ret;
     };
 
+	//Todo, usage
+	//T could Only be RefCounted derived class, which count ref and weakrefs
     template <class T> class WeakPtr
     {
     public:
@@ -426,6 +428,156 @@ namespace Urho3D
         T* ptr_;
         RefCount* refCount_;
     };
+
+
+	//Note, ref https://en.wikibooks.org/wiki/More_C%2B%2B_Idioms/Checked_delete
+	template <class T>
+	inline void CheckedDelete(T* x)
+	{
+		using type_must_be_complete = char[sizeof(T) ? 1 : -1];
+		(void) sizeof(type_must_be_complete);
+		delete x;
+	}
+
+	template <class T>
+	class UniquePtr
+	{
+	public:
+		UniquePtr() : ptr_(0)
+		{
+		}
+
+		explicit UniquePtr(T* ptr) : ptr_(ptr)
+		{
+		}
+
+		UniquePtr&operator=(T* ptr)
+		{
+			Reset(ptr);
+			return *this;
+		}
+
+		UniquePtr(std::nullptr_t)
+		{
+		}
+
+		//Note, move semetic
+		UniquePtr(UniquePtr && up) : ptr_(up.Detach())
+		{
+		}
+
+		UniquePtr&operator =(UniquePtr && up)
+		{
+			Reset(up.Detach());
+			return *this;
+		}
+
+		T*operator ->() const
+		{
+			assert(ptr_);
+			return ptr_;
+		}
+
+		T&operator *() const
+		{
+			assert(ptr_);
+			return ptr_;
+		}
+
+		template <class U>
+		bool operator <(const UniquePtr<U>& rhs) const
+		{
+			return ptr_ < rhs.ptr_;
+		}
+
+		template <class U>
+		bool operator ==(const UniquePtr<U>& rhs) const
+		{
+			return ptr_ == rhs.ptr_;
+		}
+
+		template <class U>
+		bool operator !=(const UniquePtr<U>& rhs) const
+		{
+			return ptr_ != rhs.ptr_;
+		}
+
+		operator bool() const
+		{
+			return !!ptr_;
+		}
+
+		void Swap(UniquePtr& up)
+		{
+			Urho3D::Swap(ptr_, up.ptr_);
+		}
+
+		T* Detach()
+		{
+			T* ptr = ptr_;
+			ptr_ = 0;
+			return ptr;
+		}
+
+		bool Null() const
+		{
+			return ptr_ == nullptr;
+		}
+
+		bool NotNull() const
+		{
+			return ptr_ != nullptr;
+		}
+
+		T* Get() const
+		{
+			return ptr_;
+		}
+
+		void Reset(T* ptr = 0)
+		{
+			CheckedDelete(ptr_);
+			ptr_ = ptr;
+		}
+
+		unsigned ToHash() const
+		{
+			return (unsigned)((size_t)ptr_ / sizeof(T));
+		}
+
+		~UniquePtr()
+		{
+			Reset();
+		}
+
+	private:
+		//Note, make non-copyable
+		UniquePtr(const UniquePtr&);
+		UniquePtr&operator=(const UniquePtr&);
+		T* ptr_;
+	};
+
+	template <class T>
+	void Swap(UniquePtr<T>& first, UniquePtr<T>& second)
+	{
+		first.Swap(second);
+	}
+
+	//Todo, https://stackoverflow.com/questions/8526598/how-does-stdforward-work
+	template <class T, class ... Args>
+	UniquePtr<T> MakeUnique(Args && ... args)
+	{
+		return UniquePtr<T>(new T(std::forward<Args>(args)...));
+	};
+
+	//Todo, https://stackoverflow.com/questions/7257144/when-to-use-stdforward-to-forward-arguments
+	template <class T, class ... Args>
+	SharedPtr<T> MakeShared(Args && ... args)
+	{
+		return SharedPtr<T>(new T(std::forward<Args>(args)...));
+	};
+
+
 }//end namespace
 
 #endif //URHO3DCOPY_PTR_H

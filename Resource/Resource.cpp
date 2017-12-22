@@ -83,6 +83,7 @@ namespace Urho3D
 
 	unsigned Resource::GetUseTimer()
 	{
+		// Todo, in use ??
 		if(Refs() > 1)
 		{
 			useTimer_.Reset();
@@ -115,7 +116,7 @@ namespace Urho3D
 	const Variant &ResourceWithMetadata::GetMetadata(const String &name) const
 	{
 		//todo error ??
-		const Variant* value = metadata_[name];
+		const Variant* value = metadata_[StringHash(name)];
 		return value ? *value : Variant::EMPTY;
 	}
 
@@ -125,11 +126,6 @@ namespace Urho3D
 	}
 
 	void ResourceWithMetadata::LoadMetadataFromXML(const XMLElement &source)
-	{
-
-	}
-
-	void ResourceWithMetadata::LoadMetadataFromJSON(const JSONArray &array)
 	{
 
 	}

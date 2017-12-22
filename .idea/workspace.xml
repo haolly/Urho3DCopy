@@ -12,38 +12,39 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c252dcf7-f23f-4ef3-a0a1-fb7416ecb4bb" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/dictionaries/LIUHAO.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/IO/FileWatcher.cpp" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/IO/FileWatcher.h" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/IO/PackageFile.cpp" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/IO/PackageFile.h" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/Resource/ResourceEvents.h" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/STB/CMakeLists.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/STB/README.md" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/STB/release_notes.md" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/STB/stb_image.h" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/STB/stb_image_write.h" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/STB/stb_rect_pack.h" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/STB/stb_vorbis.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/dictionaries/liuhao1.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/Container/Sort.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/Resource/BackgroundLoader.cpp" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/Resource/BackgroundLoader.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/Resource/XMLElement.cpp" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/Resource/XMLElement.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/Resource/XMLFile.cpp" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/Resource/XMLFile.h" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/PugiXml/CMakeLists.txt" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/PugiXml/readme.txt" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/PugiXml/src/pugiconfig.hpp" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/PugiXml/src/pugixml.cpp" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/ThirdParty/PugiXml/src/pugixml.hpp" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/CMakeLists.txt" afterPath="$PROJECT_DIR$/CMakeLists.txt" />
+      <change beforePath="$PROJECT_DIR$/Container/HashBase.h" afterPath="$PROJECT_DIR$/Container/HashBase.h" />
       <change beforePath="$PROJECT_DIR$/Container/HashMap.h" afterPath="$PROJECT_DIR$/Container/HashMap.h" />
+      <change beforePath="$PROJECT_DIR$/Container/HashSet.h" afterPath="$PROJECT_DIR$/Container/HashSet.h" />
       <change beforePath="$PROJECT_DIR$/Container/Ptr.h" afterPath="$PROJECT_DIR$/Container/Ptr.h" />
-      <change beforePath="$PROJECT_DIR$/Core/Context.cpp" afterPath="$PROJECT_DIR$/Core/Context.cpp" />
-      <change beforePath="$PROJECT_DIR$/Core/Context.h" afterPath="$PROJECT_DIR$/Core/Context.h" />
-      <change beforePath="$PROJECT_DIR$/Core/Mutex.h" afterPath="$PROJECT_DIR$/Core/Mutex.h" />
-      <change beforePath="$PROJECT_DIR$/Core/Thread.cpp" afterPath="$PROJECT_DIR$/Core/Thread.cpp" />
-      <change beforePath="$PROJECT_DIR$/Core/Thread.h" afterPath="$PROJECT_DIR$/Core/Thread.h" />
-      <change beforePath="$PROJECT_DIR$/IO/File.cpp" afterPath="$PROJECT_DIR$/IO/File.cpp" />
-      <change beforePath="$PROJECT_DIR$/IO/Log.h" afterPath="$PROJECT_DIR$/IO/Log.h" />
-      <change beforePath="$PROJECT_DIR$/Math/Color.cpp" afterPath="$PROJECT_DIR$/Math/Color.cpp" />
-      <change beforePath="$PROJECT_DIR$/Math/Color.h" afterPath="$PROJECT_DIR$/Math/Color.h" />
-      <change beforePath="$PROJECT_DIR$/Math/MathDefs.h" afterPath="$PROJECT_DIR$/Math/MathDefs.h" />
+      <change beforePath="$PROJECT_DIR$/Core/Object.cpp" afterPath="$PROJECT_DIR$/Core/Object.cpp" />
+      <change beforePath="$PROJECT_DIR$/IO/Deserializer.cpp" afterPath="$PROJECT_DIR$/IO/Deserializer.cpp" />
+      <change beforePath="$PROJECT_DIR$/IO/Deserializer.h" afterPath="$PROJECT_DIR$/IO/Deserializer.h" />
+      <change beforePath="$PROJECT_DIR$/IO/File.h" afterPath="$PROJECT_DIR$/IO/File.h" />
+      <change beforePath="$PROJECT_DIR$/IO/FileSystem.cpp" afterPath="$PROJECT_DIR$/IO/FileSystem.cpp" />
+      <change beforePath="$PROJECT_DIR$/IO/FileSystem.h" afterPath="$PROJECT_DIR$/IO/FileSystem.h" />
+      <change beforePath="$PROJECT_DIR$/IO/PackageFile.cpp" afterPath="$PROJECT_DIR$/IO/PackageFile.cpp" />
+      <change beforePath="$PROJECT_DIR$/IO/PackageFile.h" afterPath="$PROJECT_DIR$/IO/PackageFile.h" />
+      <change beforePath="$PROJECT_DIR$/Math/StringHash.h" afterPath="$PROJECT_DIR$/Math/StringHash.h" />
       <change beforePath="$PROJECT_DIR$/Resource/Image.cpp" afterPath="$PROJECT_DIR$/Resource/Image.cpp" />
-      <change beforePath="$PROJECT_DIR$/Resource/Image.h" afterPath="$PROJECT_DIR$/Resource/Image.h" />
-      <change beforePath="$PROJECT_DIR$/Resource/Resource.h" afterPath="$PROJECT_DIR$/Resource/Resource.h" />
+      <change beforePath="$PROJECT_DIR$/Resource/Resource.cpp" afterPath="$PROJECT_DIR$/Resource/Resource.cpp" />
       <change beforePath="$PROJECT_DIR$/Resource/ResourceCache.cpp" afterPath="$PROJECT_DIR$/Resource/ResourceCache.cpp" />
       <change beforePath="$PROJECT_DIR$/Resource/ResourceCache.h" afterPath="$PROJECT_DIR$/Resource/ResourceCache.h" />
+      <change beforePath="$PROJECT_DIR$/Resource/ResourceEvents.h" afterPath="$PROJECT_DIR$/Resource/ResourceEvents.h" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -56,26 +57,11 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="FileSystem.cpp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/IO/FileSystem.cpp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="282">
-              <caret line="597" column="9" lean-forward="false" selection-start-line="597" selection-start-column="9" selection-end-line="597" selection-end-column="9" />
-              <folding>
-                <element signature="e#3437#3873#1" expanded="false" />
-                <element signature="e#4314#4681#0" expanded="false" />
-                <element signature="e#4684#5356#0" expanded="false" />
-                <element signature="e#13409#13608#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ResourceCache.h" pinned="false" current-in-tab="false">
+      <file leaf-file-name="ResourceCache.h" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Resource/ResourceCache.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="282">
-              <caret line="19" column="10" lean-forward="false" selection-start-line="19" selection-start-column="10" selection-end-line="19" selection-end-column="10" />
+            <state relative-caret-position="477">
+              <caret line="52" column="30" lean-forward="false" selection-start-line="52" selection-start-column="30" selection-end-line="52" selection-end-column="30" />
               <folding>
                 <element signature="e#113#146#0" expanded="true" />
               </folding>
@@ -83,14 +69,59 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ResourceCache.cpp" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Resource/ResourceCache.cpp">
+      <file leaf-file-name="HashMap.h" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Container/HashMap.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="392">
-              <caret line="351" column="26" lean-forward="false" selection-start-line="351" selection-start-column="26" selection-end-line="351" selection-end-column="26" />
+            <state relative-caret-position="279">
+              <caret line="485" column="45" lean-forward="false" selection-start-line="485" selection-start-column="45" selection-end-line="485" selection-end-column="45" />
               <folding>
-                <element signature="e#42#68#0" expanded="true" />
+                <element signature="e#348#986#1" expanded="false" />
+                <element signature="e#991#1326#1" expanded="false" />
+                <element signature="e#1331#1997#1" expanded="false" />
+                <element signature="e#2002#2924#1" expanded="false" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="BackgroundLoader.h" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Resource/BackgroundLoader.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="685">
+              <caret line="48" column="66" lean-forward="false" selection-start-line="48" selection-start-column="66" selection-end-line="48" selection-end-column="66" />
+              <folding>
+                <element signature="e#121#157#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Variant.h" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Core/Variant.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="282">
+              <caret line="54" column="10" lean-forward="false" selection-start-line="54" selection-start-column="10" selection-end-line="54" selection-end-column="10" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="XMLFile.cpp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Resource/XMLFile.cpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="352">
+              <caret line="121" column="27" lean-forward="false" selection-start-line="121" selection-start-column="27" selection-end-line="121" selection-end-column="27" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ArrayPtr.h" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Container/ArrayPtr.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-2090">
+              <caret line="14" column="10" lean-forward="false" selection-start-line="14" selection-start-column="10" selection-end-line="14" selection-end-column="10" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -111,24 +142,12 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Resource/ResourceCache.cpp" root0="SKIP_INSPECTION" />
+  </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/Container/HashSet.h" />
-        <option value="$PROJECT_DIR$/Container/ArrayPtr.h" />
-        <option value="$PROJECT_DIR$/IO/Deserializer.h" />
-        <option value="$PROJECT_DIR$/IO/File.h" />
-        <option value="$PROJECT_DIR$/IO/FileSystem.h" />
-        <option value="$PROJECT_DIR$/Container/Hash.h" />
-        <option value="$PROJECT_DIR$/Container/Pair.h" />
-        <option value="$PROJECT_DIR$/Container/ListBase.h" />
-        <option value="$PROJECT_DIR$/Container/Swap.h" />
-        <option value="$PROJECT_DIR$/Container/HashBase.h" />
-        <option value="$PROJECT_DIR$/Container/Swap.cpp" />
-        <option value="$PROJECT_DIR$/Engine/EngineEvents.h" />
-        <option value="$PROJECT_DIR$/Container/Allocator.cpp" />
-        <option value="$PROJECT_DIR$/Container/List.h" />
-        <option value="$PROJECT_DIR$/IO/Serializer.h" />
         <option value="$PROJECT_DIR$/IO/Serializer.cpp" />
         <option value="$PROJECT_DIR$/Core/Mutex.cpp" />
         <option value="$PROJECT_DIR$/IO/Log.cpp" />
@@ -138,20 +157,14 @@
         <option value="$PROJECT_DIR$/Container/Str.cpp" />
         <option value="$PROJECT_DIR$/Core/Variant.cpp" />
         <option value="$PROJECT_DIR$/IO/IOEvent.h" />
-        <option value="$PROJECT_DIR$/IO/Deserializer.cpp" />
-        <option value="$PROJECT_DIR$/IO/FileSystem.cpp" />
         <option value="$PROJECT_DIR$/Core/Variant.h" />
         <option value="$PROJECT_DIR$/Container/Vector.h" />
-        <option value="$PROJECT_DIR$/Resource/Resource.cpp" />
         <option value="$PROJECT_DIR$/Math/Color.h" />
         <option value="$PROJECT_DIR$/Math/Color.cpp" />
         <option value="$PROJECT_DIR$/Math/MathDefs.h" />
         <option value="$PROJECT_DIR$/Core/Context.cpp" />
-        <option value="$PROJECT_DIR$/Container/HashMap.h" />
         <option value="$PROJECT_DIR$/Resource/Image.h" />
         <option value="$PROJECT_DIR$/Core/Context.h" />
-        <option value="$PROJECT_DIR$/Resource/Image.cpp" />
-        <option value="$PROJECT_DIR$/Resource/Resource.h" />
         <option value="$PROJECT_DIR$/Core/Mutex.h" />
         <option value="$PROJECT_DIR$/IO/FileWatcher.h" />
         <option value="$PROJECT_DIR$/Core/Thread.h" />
@@ -160,20 +173,41 @@
         <option value="$PROJECT_DIR$/IO/File.cpp" />
         <option value="$PROJECT_DIR$/IO/FileWatcher.cpp" />
         <option value="$PROJECT_DIR$/IO/Log.h" />
+        <option value="$PROJECT_DIR$/IO/FileSystem.h" />
+        <option value="$PROJECT_DIR$/Resource/Resource.h" />
+        <option value="$PROJECT_DIR$/IO/FileSystem.cpp" />
+        <option value="$PROJECT_DIR$/Resource/Image.cpp" />
+        <option value="$PROJECT_DIR$/Resource/XMLFile.h" />
+        <option value="$PROJECT_DIR$/Resource/Resource.cpp" />
+        <option value="$PROJECT_DIR$/Container/Sort.h" />
+        <option value="$PROJECT_DIR$/Container/HashBase.h" />
+        <option value="$PROJECT_DIR$/Container/HashSet.h" />
+        <option value="$PROJECT_DIR$/Resource/XMLFile.cpp" />
         <option value="$PROJECT_DIR$/IO/PackageFile.h" />
-        <option value="$PROJECT_DIR$/Container/Ptr.h" />
+        <option value="$PROJECT_DIR$/Container/HashMap.h" />
+        <option value="$PROJECT_DIR$/IO/File.h" />
+        <option value="$PROJECT_DIR$/Math/StringHash.h" />
+        <option value="$PROJECT_DIR$/IO/Deserializer.h" />
+        <option value="$PROJECT_DIR$/IO/Deserializer.cpp" />
+        <option value="$PROJECT_DIR$/IO/PackageFile.cpp" />
         <option value="$PROJECT_DIR$/Resource/ResourceEvents.h" />
+        <option value="$PROJECT_DIR$/Container/Ptr.h" />
+        <option value="$PROJECT_DIR$/Core/Object.cpp" />
         <option value="$PROJECT_DIR$/Resource/ResourceCache.h" />
+        <option value="$PROJECT_DIR$/Resource/BackgroundLoader.h" />
+        <option value="$PROJECT_DIR$/Resource/BackgroundLoader.cpp" />
         <option value="$PROJECT_DIR$/Resource/ResourceCache.cpp" />
+        <option value="$PROJECT_DIR$/Resource/XMLElement.cpp" />
+        <option value="$PROJECT_DIR$/Resource/XMLElement.h" />
       </list>
     </option>
   </component>
-  <component name="OCFindUsagesOptions" text="true" ivars="false" properties="true" derivedClasses="false" />
+  <component name="OCFindUsagesOptions" text="false" ivars="false" properties="true" derivedClasses="false" />
   <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="-8" />
     <option name="y" value="-8" />
     <option name="width" value="1696" />
-    <option name="height" value="1035" />
+    <option name="height" value="1026" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -183,54 +217,12 @@
             <id />
           </State>
           <State>
-            <id>C/C++</id>
-          </State>
-          <State>
-            <id>Data flow analysisC/C++</id>
-          </State>
-          <State>
-            <id>FunctionsC/C++</id>
-          </State>
-          <State>
             <id>General</id>
-          </State>
-          <State>
-            <id>GeneralC/C++</id>
-          </State>
-          <State>
-            <id>Ignore</id>
-          </State>
-          <State>
-            <id>Internationalization issues</id>
-          </State>
-          <State>
-            <id>JSON</id>
-          </State>
-          <State>
-            <id>Lua</id>
-          </State>
-          <State>
-            <id>Method MetricsLua</id>
-          </State>
-          <State>
-            <id>Python</id>
-          </State>
-          <State>
-            <id>RELAX NG</id>
-          </State>
-          <State>
-            <id>Spelling</id>
-          </State>
-          <State>
-            <id>Unused codeC/C++</id>
-          </State>
-          <State>
-            <id>XML</id>
           </State>
         </expanded-state>
         <selected-state>
           <State>
-            <id>UnusedValue</id>
+            <id>TodoComment</id>
           </State>
         </selected-state>
       </profile-state>
@@ -264,6 +256,11 @@
             <path>
               <item name="Urho3DCopy" type="dad4c3:CidrFilesViewHelper$MyProjectTreeStructure$1" />
               <item name="Urho3DCopy" type="462c0819:PsiDirectoryNode" />
+              <item name="IO" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Urho3DCopy" type="dad4c3:CidrFilesViewHelper$MyProjectTreeStructure$1" />
+              <item name="Urho3DCopy" type="462c0819:PsiDirectoryNode" />
               <item name="Resource" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -278,10 +275,10 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="settings.editor.selected.configurable" value="preferences.sourceCode.C/C++" />
+    <property name="settings.editor.selected.configurable" value="preferences.toDoOptions" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../Urho3D/BuildWithDoc" />
-    <property name="SearchEverywhereHistoryKey" value="mathdef&#9;FILE&#9;file://D:/GitSources/Urho3DCopy/Math/MathDefs.h&#10;vector.h&#9;FILE&#9;file://D:/GitSources/Urho3DCopy/Container/Vector.h&#10;reserve&#9;null&#9;null&#10;eraseswap&#9;null&#9;null&#10;ioeve&#9;FILE&#9;file://D:/GitSources/Urho3DCopy/IO/IOEvent.h&#10;ioevent.h&#9;FILE&#9;file://C:/msys64/mingw64/x86_64-w64-mingw32/include/ioevent.h&#10;log.h&#9;FILE&#9;file://D:/GitSources/Urho3DCopy/IO/Log.h&#10;filec&#9;FILE&#9;file://D:/GitSources/Urho3DCopy/IO/File.cpp&#10;sharedpt&#9;null&#9;null&#10;hashmap&#9;FILE&#9;file://D:/GitSources/Urho3DCopy/Container/HashMap.h&#10;vecto&#9;FILE&#9;file://D:/GitSources/Urho3DCopy/Container/VectorBase.h&#10;string&#9;FILE&#9;file://D:/GitSources/Urho3DCopy/Core/StringUtils.h&#10;variant.h&#9;FILE&#9;file://D:/GitSources/Urho3DCopy/Core/Variant.h&#10;object.h&#9;FILE&#9;file://D:/GitSources/Urho3DCopy/Core/Object.h&#10;str.h&#9;FILE&#9;file://D:/GitSources/Urho3DCopy/Container/Str.h" />
+    <property name="SearchEverywhereHistoryKey" value="setfinishback&#9;null&#9;null&#10;backgroundloadresource&#9;null&#9;null&#10;resourceeven&#9;FILE&#9;file://D:/GitSources/Urho3DCopy/Resource/ResourceEvents.h&#10;iseof&#9;null&#9;null&#10;hashmap&#9;FILE&#9;file://D:/GitSources/Urho3DCopy/Container/HashMap.h&#10;image&#9;FILE&#9;file://D:/GitSources/Urho3DCopy/Resource/Image.cpp&#10;ptr.h&#9;FILE&#9;file://D:/GitSources/Urho3DCopy/Container/Ptr.h&#10;mathdef&#9;FILE&#9;file://D:/GitSources/Urho3DCopy/Math/MathDefs.h&#10;vector.h&#9;FILE&#9;file://D:/GitSources/Urho3DCopy/Container/Vector.h&#10;reserve&#9;null&#9;null&#10;eraseswap&#9;null&#9;null&#10;ioeve&#9;FILE&#9;file://D:/GitSources/Urho3DCopy/IO/IOEvent.h&#10;ioevent.h&#9;FILE&#9;file://C:/msys64/mingw64/x86_64-w64-mingw32/include/ioevent.h&#10;log.h&#9;FILE&#9;file://D:/GitSources/Urho3DCopy/IO/Log.h&#10;filec&#9;FILE&#9;file://D:/GitSources/Urho3DCopy/IO/File.cpp&#10;sharedpt&#9;null&#9;null&#10;vecto&#9;FILE&#9;file://D:/GitSources/Urho3DCopy/Container/VectorBase.h&#10;string&#9;FILE&#9;file://D:/GitSources/Urho3DCopy/Core/StringUtils.h&#10;variant.h&#9;FILE&#9;file://D:/GitSources/Urho3DCopy/Core/Variant.h&#10;object.h&#9;FILE&#9;file://D:/GitSources/Urho3DCopy/Core/Object.h&#10;str.h&#9;FILE&#9;file://D:/GitSources/Urho3DCopy/Container/Str.h" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -469,7 +466,11 @@
       <workItem from="1512804130671" duration="9670000" />
       <workItem from="1512973384577" duration="18626000" />
       <workItem from="1513063442647" duration="25707000" />
-      <workItem from="1513157144662" duration="62521000" />
+      <workItem from="1513157144662" duration="63299000" />
+      <workItem from="1513585616328" duration="1400000" />
+      <workItem from="1513588708066" duration="3103000" />
+      <workItem from="1513595458570" duration="68152000" />
+      <workItem from="1513907515859" duration="8545000" />
     </task>
     <task id="LOCAL-00001" summary="continue add fundamental infrastructure">
       <created>1512033205574</created>
@@ -527,11 +528,18 @@
       <option name="project" value="LOCAL" />
       <updated>1513262016625</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Add resource/IO module">
+      <created>1513434035135</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1513434035135</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="272340000" />
+    <option name="totallyTimeSpent" value="354318000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -544,15 +552,15 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1696" height="1035" extended-state="6" />
+    <frame x="-8" y="-8" width="1696" height="1026" extended-state="6" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18826406" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19315404" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32837528" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="CMake" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32899022" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="LuaJ" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3294621" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.29405034" sideWeight="0.50733495" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32951945" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.29405034" sideWeight="0.49266502" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32947975" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.29364163" sideWeight="0.49266502" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.18154034" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32962137" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -605,457 +613,434 @@
     <option name="LAST_COMMIT_MESSAGE" value="Add resource/IO module" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager />
+    <breakpoint-manager>
+      <option name="time" value="1" />
+    </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://C:/msys64/mingw64/x86_64-w64-mingw32/include/ctype.h">
+    <entry file="file://$PROJECT_DIR$/IO/FileSystem.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="282">
-          <caret line="109" column="22" lean-forward="false" selection-start-line="109" selection-start-column="22" selection-end-line="109" selection-end-column="22" />
+        <state relative-caret-position="1078">
+          <caret line="54" column="22" lean-forward="false" selection-start-line="54" selection-start-column="22" selection-end-line="54" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Container/Str.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="433">
+          <caret line="426" column="15" lean-forward="false" selection-start-line="426" selection-start-column="15" selection-end-line="426" selection-end-column="15" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Core/StringUtils.cpp">
+    <entry file="file://$PROJECT_DIR$/IO/MemoryBuffer.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="770">
-          <caret line="153" column="29" lean-forward="false" selection-start-line="153" selection-start-column="29" selection-end-line="153" selection-end-column="29" />
+        <state relative-caret-position="594">
+          <caret line="27" column="18" lean-forward="false" selection-start-line="27" selection-start-column="18" selection-end-line="27" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/IO/MemoryBuffer.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="616">
+          <caret line="28" column="18" lean-forward="false" selection-start-line="28" selection-start-column="18" selection-end-line="28" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Container/Str.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="5625">
+          <caret line="419" column="14" lean-forward="false" selection-start-line="419" selection-start-column="14" selection-end-line="419" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ThirdParty/PugiXml/src/pugixml.hpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="279">
+          <caret line="1213" column="24" lean-forward="false" selection-start-line="1213" selection-start-column="24" selection-end-line="1213" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Resource/XMLFile.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="789">
+          <caret line="50" column="86" lean-forward="false" selection-start-line="50" selection-start-column="86" selection-end-line="50" selection-end-column="86" />
           <folding>
-            <element signature="e#42#59#0" expanded="false" />
+            <element signature="e#103#124#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Core/Variant.cpp">
+    <entry file="file://$PROJECT_DIR$/Container/Sort.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="282">
-          <caret line="124" column="15" lean-forward="false" selection-start-line="124" selection-start-column="15" selection-end-line="124" selection-end-column="15" />
-          <folding />
+        <state relative-caret-position="132">
+          <caret line="6" column="0" lean-forward="false" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Engine/EngineEvents.h">
+    <entry file="file://$PROJECT_DIR$/Container/Allocator.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="242">
-          <caret line="13" column="40" lean-forward="false" selection-start-line="13" selection-start-column="40" selection-end-line="13" selection-end-column="40" />
-          <folding />
+        <state relative-caret-position="279">
+          <caret line="52" column="20" lean-forward="false" selection-start-line="52" selection-start-column="20" selection-end-line="52" selection-end-column="20" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/IO/IOEvent.h">
+    <entry file="file://$PROJECT_DIR$/Container/HashBase.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="20" column="42" lean-forward="false" selection-start-line="20" selection-start-column="42" selection-end-line="20" selection-end-column="42" />
-          <folding />
+        <state relative-caret-position="352">
+          <caret line="25" column="41" lean-forward="true" selection-start-line="25" selection-start-column="41" selection-end-line="25" selection-end-column="41" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Core/Object.cpp">
+    <entry file="file://$PROJECT_DIR$/Container/HashSet.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="282">
-          <caret line="413" column="24" lean-forward="false" selection-start-line="413" selection-start-column="24" selection-end-line="413" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/IO/Deserializer.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="142" column="21" lean-forward="true" selection-start-line="142" selection-start-column="21" selection-end-line="142" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Container/RefCounted.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="20" column="12" lean-forward="false" selection-start-line="20" selection-start-column="12" selection-end-line="20" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Container/Allocator.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="414">
-          <caret line="55" column="26" lean-forward="false" selection-start-line="55" selection-start-column="26" selection-end-line="55" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Container/VectorBase.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="255" column="17" lean-forward="false" selection-start-line="255" selection-start-column="17" selection-end-line="255" selection-end-column="17" />
-          <folding />
+        <state relative-caret-position="448">
+          <caret line="546" column="48" lean-forward="false" selection-start-line="546" selection-start-column="48" selection-end-line="546" selection-end-column="48" />
+          <folding>
+            <element signature="e#101#128#0" expanded="false" />
+            <element signature="e#299#603#1" expanded="false" />
+            <element signature="e#608#1297#1" expanded="false" />
+            <element signature="e#1302#2172#1" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Container/HashBase.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="760">
-          <caret line="117" column="23" lean-forward="false" selection-start-line="117" selection-start-column="23" selection-end-line="117" selection-end-column="23" />
-          <folding>
-            <element signature="e#0#2#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Core/Variant.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="282">
-          <caret line="54" column="33" lean-forward="false" selection-start-line="54" selection-start-column="33" selection-end-line="54" selection-end-column="33" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Math/StringHash.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-114">
-          <caret line="15" column="10" lean-forward="false" selection-start-line="15" selection-start-column="10" selection-end-line="15" selection-end-column="10" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/msys64/mingw64/x86_64-w64-mingw32/include/math.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="282">
-          <caret line="1048" column="23" lean-forward="false" selection-start-line="1048" selection-start-column="23" selection-end-line="1048" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Math/MathDefs.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="43" column="4" lean-forward="false" selection-start-line="43" selection-start-column="4" selection-end-line="43" selection-end-column="4" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Math/Color.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="188">
-          <caret line="102" column="34" lean-forward="false" selection-start-line="102" selection-start-column="34" selection-end-line="102" selection-end-column="34" />
-          <folding>
-            <element signature="e#43#61#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Math/Color.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="506">
-          <caret line="128" column="14" lean-forward="false" selection-start-line="128" selection-start-column="14" selection-end-line="128" selection-end-column="14" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Container/ArrayPtr.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-3172">
-          <caret line="13" column="20" lean-forward="true" selection-start-line="13" selection-start-column="20" selection-end-line="13" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Resource/Image.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="9" column="28" lean-forward="false" selection-start-line="9" selection-start-column="28" selection-end-line="9" selection-end-column="28" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/IO/Deserializer.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-22">
-          <caret line="11" column="10" lean-forward="false" selection-start-line="11" selection-start-column="10" selection-end-line="11" selection-end-column="10" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ThirdParty/STB/stb_image_write.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="7413">
-          <caret line="906" column="27" lean-forward="false" selection-start-line="906" selection-start-column="27" selection-end-line="906" selection-end-column="27" />
+        <state relative-caret-position="1672">
+          <caret line="77" column="27" lean-forward="true" selection-start-line="77" selection-start-column="27" selection-end-line="77" selection-end-column="27" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/IO/Serializer.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="121">
-          <caret line="21" column="10" lean-forward="false" selection-start-line="21" selection-start-column="10" selection-end-line="21" selection-end-column="10" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Core/Context.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="369">
-          <caret line="159" column="18" lean-forward="false" selection-start-line="159" selection-start-column="18" selection-end-line="159" selection-end-column="18" />
-          <folding>
-            <element signature="e#577#4205#1" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Resource/Image.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="326">
-          <caret line="35" column="26" lean-forward="false" selection-start-line="35" selection-start-column="26" selection-end-line="35" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Core/Mutex.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="480">
-          <caret line="29" column="16" lean-forward="false" selection-start-line="29" selection-start-column="16" selection-end-line="29" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Core/Mutex.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="440">
-          <caret line="26" column="12" lean-forward="true" selection-start-line="26" selection-start-column="12" selection-end-line="26" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Container/Str.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="10" column="70" lean-forward="false" selection-start-line="10" selection-start-column="70" selection-end-line="10" selection-end-column="70" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/IO/FileSystem.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="616">
-          <caret line="82" column="11" lean-forward="false" selection-start-line="82" selection-start-column="11" selection-end-line="82" selection-end-column="11" />
-          <folding>
-            <element signature="e#247#2363#1" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
-      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="198">
-          <caret line="9" column="18" lean-forward="false" selection-start-line="9" selection-start-column="18" selection-end-line="9" selection-end-column="18" />
+          <caret line="21" column="10" lean-forward="false" selection-start-line="21" selection-start-column="10" selection-end-line="21" selection-end-column="10" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/IO/File.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="304">
-          <caret line="17" column="14" lean-forward="true" selection-start-line="17" selection-start-column="14" selection-end-line="17" selection-end-column="14" />
+        <state relative-caret-position="367">
+          <caret line="43" column="0" lean-forward="false" selection-start-line="43" selection-start-column="0" selection-end-line="43" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/IO/File.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="282">
-          <caret line="321" column="55" lean-forward="false" selection-start-line="321" selection-start-column="55" selection-end-line="321" selection-end-column="55" />
-          <folding>
-            <element signature="e#42#59#0" expanded="false" />
-            <element signature="e#3332#4093#0" expanded="false" />
-            <element signature="e#5102#5579#0" expanded="false" />
-            <element signature="e#7437#7571#0" expanded="false" />
-            <element signature="e#7574#7709#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Container/Str.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="282">
-          <caret line="375" column="26" lean-forward="true" selection-start-line="375" selection-start-column="26" selection-end-line="375" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Core/Timer.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="436">
-          <caret line="142" column="19" lean-forward="false" selection-start-line="142" selection-start-column="19" selection-end-line="142" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/IO/FileWatcher.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="282">
-          <caret line="36" column="22" lean-forward="false" selection-start-line="36" selection-start-column="22" selection-end-line="36" selection-end-column="22" />
-          <folding>
-            <element signature="e#43#67#0" expanded="false" />
-            <element signature="e#185#191#0" expanded="false" />
-            <element signature="e#1424#1430#0" expanded="false" />
-            <element signature="e#1446#1513#0" expanded="false" />
-            <element signature="e#2011#2131#0" expanded="false" />
-            <element signature="e#2218#2224#0" expanded="false" />
-            <element signature="e#3640#3646#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/IO/Log.h">
+    <entry file="file://$PROJECT_DIR$/IO/AbstractFile.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="242">
-          <caret line="11" column="30" lean-forward="false" selection-start-line="11" selection-start-column="30" selection-end-line="11" selection-end-column="30" />
+          <caret line="12" column="37" lean-forward="true" selection-start-line="12" selection-start-column="37" selection-end-line="12" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Math/StringHash.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="418">
+          <caret line="33" column="16" lean-forward="false" selection-start-line="33" selection-start-column="16" selection-end-line="33" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Math/StringHash.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="528">
+          <caret line="38" column="15" lean-forward="false" selection-start-line="38" selection-start-column="15" selection-end-line="38" selection-end-column="15" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Resource/Resource.h">
+    <entry file="file://$PROJECT_DIR$/IO/Deserializer.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="282">
-          <caret line="46" column="22" lean-forward="false" selection-start-line="46" selection-start-column="22" selection-end-line="46" selection-end-column="22" />
+        <state relative-caret-position="543">
+          <caret line="48" column="21" lean-forward="false" selection-start-line="48" selection-start-column="21" selection-end-line="48" selection-end-column="21" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Resource/Resource.cpp">
+    <entry file="file://$PROJECT_DIR$/IO/Deserializer.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="282">
-          <caret line="73" column="19" lean-forward="false" selection-start-line="73" selection-start-column="19" selection-end-line="73" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/IO/FileWatcher.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="260">
-          <caret line="32" column="22" lean-forward="false" selection-start-line="32" selection-start-column="22" selection-end-line="32" selection-end-column="22" />
-          <folding>
-            <element signature="e#110#137#0" expanded="false" />
-            <element signature="e#932#938#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/IO/PackageFile.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/IO/PackageFile.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="484">
-          <caret line="24" column="13" lean-forward="false" selection-start-line="24" selection-start-column="13" selection-end-line="24" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/IO/FileSystem.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="282">
-          <caret line="597" column="9" lean-forward="false" selection-start-line="597" selection-start-column="9" selection-end-line="597" selection-end-column="9" />
-          <folding>
-            <element signature="e#3437#3873#1" expanded="false" />
-            <element signature="e#4314#4681#0" expanded="false" />
-            <element signature="e#4684#5356#0" expanded="false" />
-            <element signature="e#13409#13608#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Container/HashMap.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-510">
-          <caret line="78" column="15" lean-forward="false" selection-start-line="78" selection-start-column="15" selection-end-line="78" selection-end-column="15" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Container/Ptr.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="282">
-          <caret line="170" column="11" lean-forward="false" selection-start-line="170" selection-start-column="11" selection-end-line="170" selection-end-column="11" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Core/Object.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="282">
-          <caret line="157" column="12" lean-forward="false" selection-start-line="157" selection-start-column="12" selection-end-line="157" selection-end-column="12" />
-          <folding>
-            <element signature="e#5700#6187#1" expanded="false" />
-            <element signature="e#6211#6493#1" expanded="false" />
-            <element signature="e#6498#7256#1" expanded="false" />
-            <element signature="e#7280#7954#1" expanded="false" />
-            <element signature="e#7958#8497#1" expanded="false" />
-            <element signature="e#8501#8708#1" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Resource/ResourceEvents.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="726">
-          <caret line="35" column="4" lean-forward="false" selection-start-line="35" selection-start-column="4" selection-end-line="35" selection-end-column="4" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Resource/ResourceCache.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="282">
-          <caret line="19" column="10" lean-forward="false" selection-start-line="19" selection-start-column="10" selection-end-line="19" selection-end-column="10" />
-          <folding>
-            <element signature="e#113#146#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Core/Thread.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-54">
-          <caret line="81" column="45" lean-forward="false" selection-start-line="81" selection-start-column="45" selection-end-line="81" selection-end-column="45" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Core/Thread.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="30" column="26" lean-forward="false" selection-start-line="30" selection-start-column="26" selection-end-line="30" selection-end-column="26" />
+        <state relative-caret-position="499">
+          <caret line="162" column="18" lean-forward="false" selection-start-line="162" selection-start-column="18" selection-end-line="162" selection-end-column="18" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Container/Vector.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="282">
-          <caret line="621" column="13" lean-forward="false" selection-start-line="621" selection-start-column="13" selection-end-line="621" selection-end-column="13" />
+        <state relative-caret-position="279">
+          <caret line="313" column="17" lean-forward="false" selection-start-line="313" selection-start-column="17" selection-end-line="313" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Resource/ResourceEvents.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="682">
+          <caret line="51" column="39" lean-forward="false" selection-start-line="51" selection-start-column="39" selection-end-line="51" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Container/RefCounted.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="279">
+          <caret line="45" column="18" lean-forward="false" selection-start-line="45" selection-start-column="18" selection-end-line="45" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Container/RefCounted.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="352">
+          <caret line="23" column="14" lean-forward="false" selection-start-line="23" selection-start-column="14" selection-end-line="23" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Core/Object.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="362" column="19" lean-forward="false" selection-start-line="362" selection-start-column="19" selection-end-line="362" selection-end-column="19" />
+          <folding>
+            <element signature="e#43#62#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Core/Context.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="279">
+          <caret line="110" column="28" lean-forward="false" selection-start-line="110" selection-start-column="28" selection-end-line="110" selection-end-column="28" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Core/Context.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="296">
-          <caret line="147" column="26" lean-forward="false" selection-start-line="147" selection-start-column="26" selection-end-line="147" selection-end-column="26" />
+        <state relative-caret-position="198">
+          <caret line="10" column="29" lean-forward="false" selection-start-line="10" selection-start-column="29" selection-end-line="10" selection-end-column="29" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/IO/PackageFile.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="113">
+          <caret line="90" column="22" lean-forward="false" selection-start-line="90" selection-start-column="22" selection-end-line="90" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Container/Ptr.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="191">
+          <caret line="237" column="31" lean-forward="false" selection-start-line="237" selection-start-column="31" selection-end-line="237" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/IO/File.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="279">
+          <caret line="49" column="10" lean-forward="false" selection-start-line="49" selection-start-column="10" selection-end-line="49" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/IO/FileWatcher.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="550">
+          <caret line="29" column="13" lean-forward="false" selection-start-line="29" selection-start-column="13" selection-end-line="29" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/msys64/mingw64/x86_64-w64-mingw32/include/winnt.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="184">
+          <caret line="4708" column="6" lean-forward="false" selection-start-line="4708" selection-start-column="6" selection-end-line="4708" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/IO/FileWatcher.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="140">
+          <caret line="173" column="23" lean-forward="false" selection-start-line="173" selection-start-column="23" selection-end-line="173" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Resource/Resource.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="82" column="12" lean-forward="false" selection-start-line="82" selection-start-column="12" selection-end-line="82" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Container/Pair.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="264">
+          <caret line="12" column="10" lean-forward="false" selection-start-line="12" selection-start-column="10" selection-end-line="12" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Core/Object.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2816">
+          <caret line="128" column="17" lean-forward="false" selection-start-line="128" selection-start-column="17" selection-end-line="128" selection-end-column="17" />
+          <folding>
+            <element signature="e#100#121#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Core/Timer.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="389">
+          <caret line="128" column="8" lean-forward="true" selection-start-line="128" selection-start-column="8" selection-end-line="128" selection-end-column="8" />
+          <folding>
+            <element signature="e#2171#2279#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Core/Thread.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="235">
+          <caret line="49" column="14" lean-forward="true" selection-start-line="49" selection-start-column="14" selection-end-line="49" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Core/Thread.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="594">
+          <caret line="28" column="13" lean-forward="false" selection-start-line="28" selection-start-column="13" selection-end-line="28" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Resource/BackgroundLoader.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="685">
+          <caret line="48" column="66" lean-forward="false" selection-start-line="48" selection-start-column="66" selection-end-line="48" selection-end-column="66" />
+          <folding>
+            <element signature="e#121#157#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Resource/BackgroundLoader.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="571">
+          <caret line="241" column="30" lean-forward="false" selection-start-line="241" selection-start-column="30" selection-end-line="241" selection-end-column="30" />
+          <folding>
+            <element signature="e#44#73#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Resource/ResourceCache.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="392">
-          <caret line="351" column="26" lean-forward="false" selection-start-line="351" selection-start-column="26" selection-end-line="351" selection-end-column="26" />
+        <state relative-caret-position="154">
+          <caret line="7" column="24" lean-forward="false" selection-start-line="7" selection-start-column="24" selection-end-line="7" selection-end-column="24" />
           <folding>
-            <element signature="e#42#68#0" expanded="true" />
+            <element signature="e#13134#13187#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Resource/XMLElement.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="550">
+          <caret line="26" column="49" lean-forward="false" selection-start-line="26" selection-start-column="49" selection-end-line="26" selection-end-column="49" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Resource/XMLElement.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="440">
+          <caret line="74" column="25" lean-forward="false" selection-start-line="74" selection-start-column="25" selection-end-line="74" selection-end-column="25" />
+          <folding>
+            <element signature="e#43#66#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/IO/PackageFile.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="609">
+          <caret line="31" column="32" lean-forward="false" selection-start-line="31" selection-start-column="32" selection-end-line="31" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Resource/Resource.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="279">
+          <caret line="32" column="0" lean-forward="false" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ThirdParty/PugiXml/src/pugixml.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="279">
+          <caret line="6811" column="44" lean-forward="false" selection-start-line="6811" selection-start-column="44" selection-end-line="6811" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Resource/XMLFile.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="352">
+          <caret line="121" column="27" lean-forward="false" selection-start-line="121" selection-start-column="27" selection-end-line="121" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Container/ArrayPtr.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2090">
+          <caret line="14" column="10" lean-forward="false" selection-start-line="14" selection-start-column="10" selection-end-line="14" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Core/Variant.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="282">
+          <caret line="54" column="10" lean-forward="false" selection-start-line="54" selection-start-column="10" selection-end-line="54" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Container/HashMap.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="279">
+          <caret line="485" column="45" lean-forward="false" selection-start-line="485" selection-start-column="45" selection-end-line="485" selection-end-column="45" />
+          <folding>
+            <element signature="e#348#986#1" expanded="false" />
+            <element signature="e#991#1326#1" expanded="false" />
+            <element signature="e#1331#1997#1" expanded="false" />
+            <element signature="e#2002#2924#1" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Resource/ResourceCache.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="477">
+          <caret line="52" column="30" lean-forward="false" selection-start-line="52" selection-start-column="30" selection-end-line="52" selection-end-column="30" />
+          <folding>
+            <element signature="e#113#146#0" expanded="true" />
           </folding>
         </state>
       </provider>

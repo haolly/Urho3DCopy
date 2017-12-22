@@ -35,11 +35,21 @@ namespace Urho3D
 		URHO3D_PARAM(P_RESOURCENAME, ResourceName);
 	}
 
-	//todo
+	URHO3D_EVENT(E_RESOURCENOTFOUND, ResourceNotFound)
+	{
+		URHO3D_PARAM(P_RESOURCENAME, ResourceName);
+	}
 
 	URHO3D_EVENT(E_UNKNOWRESOURCETYPE, UnknowResourceType)
 	{
 		URHO3D_PARAM(P_RESOURCETYPE, ResourceType);
+	}
+
+	URHO3D_EVENT(E_RESOURCEBACKGROUNDLOADED, ResourceBackgroundLoaded)
+	{
+		URHO3D_PARAM(P_RESOURCENAME, ResourceName);
+		URHO3D_PARAM(P_SUCCESS, Success);
+		URHO3D_PARAM(P_RESOURCE, Resource);
 	}
 }
 

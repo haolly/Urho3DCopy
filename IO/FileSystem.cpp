@@ -11,13 +11,12 @@
 #include "../Core/CoreEvent.h"
 #include "../Engine/EngineEvents.h"
 #include "Log.h"
-#include "../Core/StringUtils.h"
 #include "IOEvent.h"
 
 #ifdef _WIN32
 #include <winbase.h>
 #include <winuser.h>
-#include <shellapi.h>
+#include <sys/stat.h>
 #else
 #endif
 
@@ -271,6 +270,7 @@ namespace Urho3D
 		}
 	}
 
+	//todo , search usage
 	unsigned FileSystem::SystemCommandAsync(const String &commandLine)
 	{
 #ifdef URHO3D_THREADING
@@ -361,29 +361,18 @@ namespace Urho3D
 		return bytesRead == fileSize && bytesWritten == fileSize;
 	}
 
-	bool FileSystem::Rename(const String &srcFileName, const String &destFileName)
-	{
-		//todo
-	}
 
-	bool FileSystem::Delete(const String &fileName)
-	{
-		return false;
-	}
-
-	void FileSystem::RegisterPath(const String &pathName)
-	{
-
-	}
-
-	bool FileSystem::SetLastModifiedTime(const String &fileName, unsigned newTime)
-	{
-		return false;
-	}
-
+	//todo, currentDir is what ??
 	String FileSystem::GetCurrentDir() const
 	{
-		return String();
+#ifdef _WIN32
+		wchar_t path[MAX_PATH];
+		path[0] = 0;
+		GetCurrentDirectoryW(MAX_PATH, path);
+		return AddTrailingSlash(String(path));
+#else
+		//todo
+#endif
 	}
 
 	bool FileSystem::CheckAccess(const String &pathName) const
@@ -408,17 +397,57 @@ namespace Urho3D
 
 	unsigned FileSystem::GetLastModifiedTime(const String &fileName) const
 	{
-		return 0;
+		if(fileName.Empty() || !CheckAccess(fileName))
+			return 0;
+#ifdef _WIN32
+		struct _stat st;
+		if(!_stat(fileName.CString(), &st))
+			return (unsigned)st.st_mtime;
+		else
+			return 0;
+#else
+		//todo
+#endif
 	}
 
 	bool FileSystem::FileExists(const String &fileName) const
 	{
-		return false;
+		if(!CheckAccess(fileName))
+			return false;
+#ifdef __ANDROID__
+		//todo
+#endif
+		String fixedName = GetNativePath(RemoveTrailingSlash(fileName));
+#ifdef _WIN32
+		DWORD attributes = GetFileAttributesW(WString(fixedName).CString());
+		if(attributes == INVALID_FILE_ATTRIBUTES || attributes & FILE_ATTRIBUTE_DIRECTORY)
+			return false;
+#else
+		//todo
+#endif
+		return true;
 	}
 
 	bool FileSystem::DirExists(const String &pathName) const
 	{
-		return false;
+		if(!CheckAccess(pathName))
+			return false;
+#ifdef _WIN32
+		if(pathName == "/")
+			return true;
+#endif
+		String fixedName = GetNativePath(RemoveTrailingSlash(pathName));
+#ifdef __ANDROID__
+		//todo
+#endif
+#ifdef _WIN32
+		DWORD attributes = GetFileAttributesW(WString(fixedName).CString());
+		if(attributes == INVALID_FILE_ATTRIBUTES || !(attributes & FILE_ATTRIBUTE_DIRECTORY))
+			return false;
+#else
+		//todo
+#endif
+		return true;
 	}
 
 	void FileSystem::ScanDir(Vector<String> &result, const String &pathName, const String &filter, unsigned flags,
@@ -427,31 +456,6 @@ namespace Urho3D
 
 	}
 
-	String FileSystem::GetProgramDir() const
-	{
-		return String();
-	}
-
-	String FileSystem::GetUserDocumentDir() const
-	{
-		return String();
-	}
-
-	String FileSystem::GetAppPreferenceDir(const String &org, const String &app) const
-	{
-		return String();
-	}
-
-	String FileSystem::GetTemporaryDir() const
-	{
-		return String();
-	}
-
-	void FileSystem::ScanDirInternal(Vector<String> &result, String path, const String &startPath, const String &filter,
-	                                 unsigned flags, bool recursive) const
-	{
-		//todo
-	}
 
 	void FileSystem::HandleBeginFrame(StringHash eventType, VariantMap &eventData)
 	{
@@ -479,6 +483,21 @@ namespace Urho3D
 		using namespace ConsoleCommand;
 		if(eventData[P_ID].GetString() == GetTypeName())
 			SystemCommand(eventData[P_COMMAND].GetString(), true);
+	}
+
+	String FileSystem::GetProgramDir() const
+	{
+#ifdef __ANDROID__
+#elif _WIN32
+		wchar_t exeName[MAX_PATH];
+		exeName[0] = 0;
+		GetModuleFileNameW(nullptr, exeName, MAX_PATH);
+		return GetPath(String(exeName));
+#elif __APPLE__
+#elif __linux__
+#else
+		//todo
+#endif
 	}
 
 	void
