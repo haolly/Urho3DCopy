@@ -5,10 +5,84 @@
 #ifndef URHO3DCOPY_ATTRIBUTE_H
 #define URHO3DCOPY_ATTRIBUTE_H
 
+#include "../Container/RefCounted.h"
+#include "Variant.h"
+#include "../Container/Ptr.h"
+
 namespace Urho3D
 {
 	static const unsigned AM_EDIT = 0x0;
 	static const unsigned AM_FILE = 0x1;
+	static const unsigned AM_NET = 0x2;
+	static const unsigned AM_DEFAULT = 0x3;
+	// Attribute should use latest data grouping instead of delta update in network replication
+	static const unsigned AM_LATESTDATA = 0x4;
+
+
+	class Serializable;
+
+	class AttributeAccessor : public RefCounted
+	{
+	public:
+		virtual void Get(const Serializable* ptr, Variant& dest) const = 0;
+		virtual void Set(Serializable* ptr, const Variant& src) = 0;
+	};
+
+	struct AttributeInfo
+	{
+		AttributeInfo();
+		AttributeInfo(VariantType type, const char* name, SharedPtr<AttributeAccessor> access,
+						const char** enumNames, const Variant& defaultValue, unsigned mode):
+					type_(type),
+					name_(name),
+					enumNames_(enumNames),
+					accessor_(access),
+					defaultValue_(defaultValue),
+					mode_(mode)
+		{
+		}
+
+		const Variant& GetMetadata(const StringHash& key) const
+		{
+			auto elem = metadata_.Find(key);
+			return elem != metadata_.End() ? elem->second_ : Variant::EMPTY;
+		}
+
+		template <class T>
+		T GetMetadata(const StringHash& key) const
+		{
+			return GetMetadata(key).Get<T>();
+		}
+
+		VariantType type_ = VAR_NONE;
+		String name_;
+		const char** enumNames_ = nullptr;
+		SharedPtr<AttributeAccessor> accessor_;
+		Variant defaultValue_;
+		unsigned mode_ = AM_DEFAULT;
+		VariantMap metadata_;
+		void* ptr_ = nullptr;
+	};
+
+	struct AttributeHandle
+	{
+		friend class Context;
+
+	private:
+		AttributeHandle() = default;
+		AttributeHandle(const AttributeHandle& another) = default;
+		AttributeInfo* attributeInfo_ = nullptr;
+		AttributeInfo* netwrokAttributeInfo_ = nullptr;
+	public:
+		AttributeHandle& SetMetadata(StringHash key, const Variant& value)
+		{
+			if(attributeInfo_)
+				attributeInfo_->metadata_[key] = value;
+			if(netwrokAttributeInfo_)
+				netwrokAttributeInfo_->metadata_[key] = value;
+			return *this;
+		}
+	};
 }
 
 #endif //URHO3DCOPY_ATTRIBUTE_H
