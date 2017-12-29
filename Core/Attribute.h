@@ -17,6 +17,13 @@ namespace Urho3D
 	static const unsigned AM_DEFAULT = 0x3;
 	// Attribute should use latest data grouping instead of delta update in network replication
 	static const unsigned AM_LATESTDATA = 0x4;
+	// Attribute should not be shown in the editor
+	static const unsigned AM_NOEDIT = 0x8;
+	// Attribute is a node ID and may need rewriting
+	static const unsigned AM_NODEID = 0x10;
+	static const unsigned AM_COMPONENTID = 0x20;
+	static const unsigned AM_NODEIDVECTOR = 0x40;
+	static const unsigned AM_FILEREADONLY = 0x81;
 
 
 	class Serializable;
@@ -30,7 +37,10 @@ namespace Urho3D
 
 	struct AttributeInfo
 	{
-		AttributeInfo();
+		AttributeInfo()
+		{
+		}
+
 		AttributeInfo(VariantType type, const char* name, SharedPtr<AttributeAccessor> access,
 						const char** enumNames, const Variant& defaultValue, unsigned mode):
 					type_(type),

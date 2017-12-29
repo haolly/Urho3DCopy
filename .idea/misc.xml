@@ -1,13 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="CMakeWorkspace" PROJECT_DIR="$PROJECT_DIR$" />
-  <component name="CidrRootsConfiguration">
-    <sourceRoots>
-      <file path="$PROJECT_DIR$/ThirdParty" />
-    </sourceRoots>
-    <libraryRoots>
-      <file path="$PROJECT_DIR$/ThirdParty/LZ4" />
-      <file path="$PROJECT_DIR$/ThirdParty/SDL/include" />
-    </libraryRoots>
-  </component>
 </project>

@@ -162,4 +162,36 @@ namespace Urho3D
 		}
 		return ret;
 	}
+
+	Variant Deserializer::ReadVariant()
+	{
+		VariantType type = (VariantType)ReadUByte();
+		return ReadVariant(type);
+	}
+
+	Variant Deserializer::ReadVariant(VariantType type)
+	{
+		switch (type)
+		{
+			case VAR_INT:
+				return Variant(ReadInt());
+			case VAR_INT64:
+				return Variant(ReadInt64());
+			case VAR_BOOL:
+				return Variant(ReadBool());
+			case VAR_FLOAT:
+				return Variant(ReadFloat());
+			//todo
+		}
+	}
+
+	VariantVector Deserializer::ReadVariantVector()
+	{
+		return Urho3D::VariantVector();
+	}
+
+	VariantMap Deserializer::ReadVariantMap()
+	{
+		return Urho3D::VariantMap();
+	}
 }

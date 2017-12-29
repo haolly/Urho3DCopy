@@ -6,6 +6,7 @@
 #define URHO3DCOPY_DESERIALIZER_H
 
 #include "../Container/Str.h"
+#include "../Core/Variant.h"
 
 namespace Urho3D
 {
@@ -48,6 +49,11 @@ namespace Urho3D
 
 		String ReadString();
 		String ReadFileID();
+
+		Variant ReadVariant();
+		Variant ReadVariant(VariantType type);
+		VariantVector ReadVariantVector();
+		VariantMap ReadVariantMap();
 
 		String ReadLine();
 

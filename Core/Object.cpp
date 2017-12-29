@@ -62,6 +62,10 @@ namespace Urho3D
 		context_->RemoveEventSender(this);
 	}
 
+	/**
+	 * Context 类负责收集所有的事件类型和接受者,
+	 * Object 类负责处理事件
+	 */
 	void Object::OnEvent(Object *sender, StringHash eventType, VariantMap &eventData)
 	{
 		if(blockEvents_)
@@ -242,7 +246,23 @@ namespace Urho3D
 
 	void Object::RemoveEventSender(Object *sender)
 	{
+		EventHandler* handler = eventHandlers_.First();
+		EventHandler* previous = nullptr;
 
+		while (handler)
+		{
+			if(handler->GetSender() == sender)
+			{
+				EventHandler* next = eventHandlers_.Next(handler);
+				eventHandlers_.Erase(handler, previous);
+				handler = next;
+			}
+			else
+			{
+				previous = handler;
+				handler = eventHandlers_.Next(handler);
+			}
+		}
 	}
 
 
@@ -449,6 +469,7 @@ namespace Urho3D
 
 	EventHandler *Object::GetEventHandler() const
 	{
+		//todo, why do not use eventHandles in object itself ??
 		return context_->GetEventHandler();
 	}
 

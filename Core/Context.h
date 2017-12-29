@@ -8,6 +8,8 @@
 #include "../Container/RefCounted.h"
 #include "Object.h"
 #include "../Math/StringHash.h"
+#include "Attribute.h"
+#include "../IO/Log.h"
 
 namespace Urho3D
 {
@@ -56,7 +58,7 @@ namespace Urho3D
 	    void RegisterSubsystem(Object* subsystem);
 	    void RemoveSubsystem(StringHash objectType);
 
-//	    AttributeHandle RegisterAttribute(StringHash objectType, const AttributeInfo& attr);
+	    AttributeHandle RegisterAttribute(StringHash objectType, const AttributeInfo& attr);
 	    void RemoveAttribute(StringHash objectType, const char* name);
 	    void RemoveAllAtributes(StringHash objectType);
 	    void UpdateAttributeDefaultValue(StringHash objectType, const char* name, const Variant& defaultValue);
@@ -76,7 +78,11 @@ namespace Urho3D
 		template <class T> T* RegisterSubsystem();
 		template <class T> void RemoveSubsystem();
 		template <class T> AttributeHandle RegisterAttribute(const AttributeInfo& attr);
-		//todo
+		template <class T> void RemoveAttribute(const char* name);
+		template <class T> void RemoveAllAttributes();
+		template <class T, class U> void CopyBaseAttributes();
+		template <class T> void UpdateAttributeDefaultValue(const char* name, const Variant& defalutValue);
+
 
 		Object* GetSubsystem(StringHash key) const;
 
@@ -104,24 +110,49 @@ namespace Urho3D
 		EventHandler* GetEventHandler() const { return eventHandler_; }
 		const String& GetTypeName(StringHash objectType) const;
 
+		AttributeInfo* GetAttribute(StringHash objectType, const char* name);
 
+		template <class T> T* GetSubsystem() const;
+		template <class T> AttributeInfo* GetAttribute(const char* name);
 
+		const Vector<AttributeInfo>* GetAttributes(StringHash type) const
+		{
+			auto it = attributes_.Find(type);
+			return it != attributes_.End() ? &(it->second_) : nullptr;
+		}
 
+		const Vector<AttributeInfo>* GetNetworkAttributes(StringHash type) const
+		{
+			auto it = networkAttributes_.Find(type);
+			return it != networkAttributes_.End() ? &it->second_ : nullptr;
+		}
+
+		const HashMap<StringHash, Vector<AttributeInfo> >& GetAllAttributes() const
+		{
+			return attributes_;
+		};
 
 		EventReceiverGroup* GetEventReceivers(Object* sender, StringHash eventType)
 		{
-			//todo
 			auto it = specificEventReceivers_.Find(sender);
 			if(it != specificEventReceivers_.End())
 			{
-
+				auto eventGroupIter = it->second_.Find(eventType);
+				if(eventGroupIter != it->second_.End())
+					return eventGroupIter->second_;
+				else
+					return nullptr;
 			}
 			return nullptr;
 		}
 
 		EventReceiverGroup* GetEventReceivers(StringHash eventType)
 		{
-			//todo
+			auto it = eventReceivers_.Find(eventType);
+			if(it != eventReceivers_.End())
+			{
+				return it->second_;
+			}
 			return nullptr;
 		}
 
@@ -140,8 +171,8 @@ namespace Urho3D
 
 	    HashMap<StringHash, SharedPtr<ObjectFactory> > factories_;
 	    HashMap<StringHash, SharedPtr<Object> > subSystems_;
-//	    HashMap<StringHash, Vector<AttributeInfo> > attributes_;
-//	    HashMap<StringHash, Vector<AttributeInfo> > networkAttributes_;
+	    HashMap<StringHash, Vector<AttributeInfo> > attributes_;
+	    HashMap<StringHash, Vector<AttributeInfo> > networkAttributes_;
 
 	    HashMap<StringHash, SharedPtr<EventReceiverGroup> > eventReceivers_;
 		HashMap<Object*, HashMap<StringHash, SharedPtr<EventReceiverGroup> > > specificEventReceivers_;

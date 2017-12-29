@@ -4,6 +4,8 @@
 
 #include "Serializable.h"
 #include "../IO/Log.h"
+#include "../IO/Deserializer.h"
+#include "../Core/Context.h"
 
 namespace Urho3D
 {
@@ -103,12 +105,12 @@ namespace Urho3D
 
 	const Vector<AttributeInfo> *Serializable::GetAttributes() const
 	{
-		//todo
+		return context_->GetAttributes(GetType());
 	}
 
 	const Vector<AttributeInfo> *Serializable::GetNetworkAttributes() const
 	{
-		return nullptr;
+		return networkState_ ? networkState_->attributes : context_->GetNetworkAttributes(GetType());
 	}
 
 	bool Serializable::Load(Deserializer &source, bool setInstanceDefault)
@@ -221,7 +223,7 @@ namespace Urho3D
 		for(unsigned i=0; i<attributes->Size(); ++i)
 		{
 			const AttributeInfo& attr = attributes->At(i);
-			if(attr.mode_ & (AM_NOEDIT | AM_NODEIT | AM_COMPONENTID | AM_NODEIDVECTOR))
+			if(attr.mode_ & (AM_NOEDIT | AM_NODEID | AM_COMPONENTID | AM_NODEIDVECTOR))
 				continue;
 
 			Variant defaultValue = GetInstanceDefault(attr.name_);
@@ -233,17 +235,25 @@ namespace Urho3D
 
 	void Serializable::RemoveInstanceDefault()
 	{
-
+		instanceDefaultValues_.Reset();
 	}
 
 	void Serializable::SetTemporary(bool enable)
 	{
+		if(enable != temporary_)
+		{
+			temporary_ = enable;
 
+			using namespace TemporaryChanged;
+			VariantMap& eventData = GetEventDataMap();
+			eventData[P_SERIALIZABLE] = this;
+			SendEvent(E_TEMPORARYCHANGED, eventData);
+		}
 	}
 
 	void Serializable::SetInterceptNewwrokUpdate(const String &attributeName, bool enable)
 	{
-
+		//todo
 	}
 
 	void Serializable::AllocateNetworkState()

@@ -253,7 +253,7 @@ namespace Urho3D
 		return false;
 	}
 
-	XMLElement XMLElement::GetChild(const String &name)
+	XMLElement XMLElement::GetChild(const String &name) const
 	{
 		return XMLElement();
 	}
@@ -263,7 +263,7 @@ namespace Urho3D
 		return XMLElement();
 	}
 
-	XMLElement XMLElement::GetNext(const String &name)
+	XMLElement XMLElement::GetNext(const String &name) const
 	{
 		return XMLElement();
 	}

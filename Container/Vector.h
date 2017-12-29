@@ -485,7 +485,7 @@ namespace Urho3D
 	/**
 	 * todo, the origin comments has notice: Does not call constructors or destructors and use block move.
 	 * Is intentionally (for performance reasons) unsafe for self-insertion
-	 * todo, store POD types ??
+	 * todo, store POD types ?? or is is class is POD ??
 	 * @tparam T
 	 */
 	template <class T>

@@ -22,9 +22,11 @@ namespace Urho3D
 		VAR_VECTOR2,
 		VAR_VECTOR3,
 		VAR_VECTOR4,
+		VAR_QUATERNION,
 		VAR_COLOR,
 		VAR_STRING,
 		VAR_BUFFER,
+		VAR_VOIDPTR,
 		VAR_RESOURCEREF,
 		VAR_RESOURCEREFLIST,
 		VAR_VARIANTVECTOR,
@@ -48,6 +50,7 @@ namespace Urho3D
 
 
 	class Variant;
+	class VectorBuffer;
 
 
 	using VariantVector = Vector<Variant>;
@@ -140,14 +143,17 @@ namespace Urho3D
 	};
 
 	//todo, why the total variantValue size is this ?
+	//Size of variant value. 16 bytes on 32-bit platform, 32 bytes on 64-bit platform.
 	static const unsigned VARIANT_VALUE_SIZE = sizeof(void*) * 4;
 
+	//Union for the possible variant values, Objects exceeding the VARIANT_VALUE_SIZE are allocated on the heap
 	union VariantValue
 	{
 		unsigned char storage_[VARIANT_VALUE_SIZE];
 		int int_;
 		bool bool_;
 		float float_;
+		Vector2 vector2_;
 		double double_;
 		Vector2 vector2;
 		String string_;
@@ -490,6 +496,11 @@ namespace Urho3D
 				return static_cast<double>(value_.int64_);
 			return 0.0;
 		}
+
+		const Vector2& GetVector2() const
+		{
+			return type_ == VAR_VECTOR2 ? value_.vector2 : Vector2::ZERO;
+		}
 		//todo
 
 		const String& GetString() const
@@ -504,6 +515,37 @@ namespace Urho3D
 
 		//todo
 
+		VariantType GetType() const { return type_; }
+		String GetTypeName() const;
+		String ToString() const;
+		bool IsZero() const;
+		bool IsEmpty() const
+		{
+			return type_ == VAR_NONE;
+		}
+
+		bool IsCustom() const
+		{
+			return type_ == VAR_CUSTOM_STACK || type_ == VAR_CUSTOM_HEAP;
+		}
+
+		template <class T> T Get() const;
+
+		PODVector<unsigned char>* GetBufferPtr()
+		{
+			return type_ == VAR_BUFFER ? &value_.buffer_ : nullptr;
+		}
+
+		VariantVector* GetVariantVectorPtr()
+		{
+			return type_ == VAR_VARIANTVECTOR ? &value_.variantVector_ : nullptr;
+		}
+
+		VariantMap* GetVariantMapPtr()
+		{
+			return type_ == VAR_VARIANTMAP ? &value_.variantMap_ : nullptr;
+		}
+		//todo
 
 		static String GetTypeName(VariantType type);
 		static VariantType GetTypeFromName(const String& typeName);

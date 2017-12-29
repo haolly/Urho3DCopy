@@ -22,8 +22,67 @@ namespace Urho3D
 		"None",
 		"Int",
 		"Bool",
-		//todo ...
+		"Float",
+		"Vector2",
+		"Vector3",
+		"Vector4",
+		"Quaternion",
+		"Color",
+		"String",
+		"Buffer",
+		"VoidPtr",
+		"ResourceRef",
+		"ResourceRefList",
+		"VariantVector",
+		"VariantMap",
+		"IntRect",
+		"IntVector2",
+		"Ptr",
+		"Matrix3",
+		"Matrix3x4",
+		"Matrix4",
+		"Double",
+		"StringVector",
+		"Rect",
+		"IntVector3",
+		"Int64",
+		"CustomHeap",
+		"CustomStack",
+		nullptr
 	};
+
+	static_assert(sizeof(typeNames) / sizeof(const char*) == MAX_VAR_TYPES + 1,
+	              "Variant type name array is out-of-data");
+
+	Variant &Variant::operator=(const Variant &rhs)
+	{
+		if(rhs.IsCustom())
+		{
+			SetCustomVariantValue(*rhs.GetCustomVariantValuePtr());
+			return *this;
+		}
+		SetType(rhs.GetType());
+		switch(type_)
+		{
+			case VAR_STRING:
+				value_.string_ = rhs.value_.string_;
+				break;
+			case VAR_BUFFER:
+				value_.buffer_ = rhs.value_.buffer_;
+				break;
+			case VAR_RESOURCEREF:
+				value_.resourceRef_ = rhs.value_.resourceRef_;
+				break;
+			case VAR_RESOURCEREFLIST:
+				value_.resourceRefList_ = rhs.value_.resourceRefList_;
+				break;
+			case VAR_VARIANTVECTOR:
+				value_.variantVector_ = rhs.value_.variantVector_;
+				break;
+			case VAR_STRINGVECTOR:
+				//todo
+		}
+	}
 
 	VariantType Variant::GetTypeFromName(const char *typeName)
 	{
@@ -120,10 +179,6 @@ namespace Urho3D
 		}
 	}
 
-	Variant &Variant::operator=(const Variant &rhs)
-	{
-		return <#initializer#>;
-	}
 
 	bool Variant::operator==(const Variant &rhs) const
 	{

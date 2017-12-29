@@ -7,6 +7,7 @@
 
 #include "../Container/Str.h"
 #include "../Container/Ptr.h"
+#include "../Math/Color.h"
 
 namespace pugi
 {
@@ -86,9 +87,9 @@ namespace Urho3D
 		bool HasChild(const String& name) const;
 		bool HasChild(const char* name) const;
 
-		XMLElement GetChild(const String& name = String::EMPTY);
+		XMLElement GetChild(const String& name = String::EMPTY) const;
 		XMLElement GetChild(const char* name) const;
-		XMLElement GetNext(const String& name = String::EMPTY);
+		XMLElement GetNext(const String& name = String::EMPTY) const;
 		XMLElement GetNext(const char* name) const;
 		XMLElement GetParent() const;
 
@@ -100,6 +101,18 @@ namespace Urho3D
 		String GetValue() const;
 		String GetAttribute(const String& name = String::EMPTY) const;
 		String GetAttribute(const char* name) const;
+		const char* GetAttributeCString(const char* name) const;
+		String GetAttributeLower(const String& name) const;
+		String GetAttributeLower(const char* name) const;
+		String GetAttributeUpper(const String& name) const;
+		String GetAttributeUpper(const char* name) const;
+		Vector<String> GetAttributeNames() const;
+		bool GetBool(const String& name) const;
+		PODVector<unsigned char> GetBuffer(const String& name) const;
+		bool GetBuffer(const String& name, void* dest, unsigned size) const;
+		BoundingBox GetBoundingBox() const;
+		Color GetColor(const String& name) const;
+		float GetFloat(const String& name) const;
 		//todo
 
 

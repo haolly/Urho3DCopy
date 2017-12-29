@@ -52,6 +52,8 @@ namespace Urho3D
 		void WriteInitialDeltaUpdate(Serializer& dest, const DirtyBits& attributeBits, unsigned char timeStemp);
 		void WriteLatestDataUpdate(Serializer& dest, unsigned char timeStamp);
 		//todo
+	protected:
+		UniquePtr<NetworkState> networkState_;
 	private:
 		void SetInstanceDefault(const String& name, const Variant& defaultValue);
 		Variant GetInstanceDefault(const String& name) const;
