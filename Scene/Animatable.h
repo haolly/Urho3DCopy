@@ -6,6 +6,7 @@
 #define URHO3DCOPY_ANIMATABLE_H
 
 #include "Serializable.h"
+#include "ValueAnimationInfo.h"
 
 namespace Urho3D
 {

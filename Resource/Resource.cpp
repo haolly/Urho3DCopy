@@ -6,6 +6,7 @@
 #include "../Core/Thread.h"
 #include "../IO/File.h"
 #include "../IO/Log.h"
+#include "XMLElement.h"
 
 namespace Urho3D
 {
@@ -127,7 +128,8 @@ namespace Urho3D
 
 	void ResourceWithMetadata::LoadMetadataFromXML(const XMLElement &source)
 	{
-
+		for(XMLElement elem = source.GetChild("metadata"); elem; elem = elem.GetNext("metadata"))
+			AddMetadata(elem.GetAttribute("name"), elem.GetVariant());
 	}
 
 	void ResourceWithMetadata::SaveMetadataToXML(XMLElement &destination) const

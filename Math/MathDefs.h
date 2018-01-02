@@ -30,6 +30,13 @@ namespace Urho3D
 	static const float M_DEGTORAD_2 = M_PI / 360.0f;
 	static const float M_RADTODEG = 1.0f / M_DEGTORAD;
 
+	enum Intersection
+	{
+		OUTSIDE,
+		INTERSECTS,
+		INSIDE
+	};
+
 
 	template <class T>
 	inline bool Equals(T lhs, T rhs)
@@ -37,13 +44,42 @@ namespace Urho3D
 		return lhs + std::numeric_limits<T>::epsilon() >= rhs && lhs - std::numeric_limits<T>::epsilon() <= rhs;
 	}
 
+
 	//todo
+
+
 
 	template <class T>
 	inline T Abs(T value)
 	{
 		return value >= 0.0 ? value : -value;
 	}
+
+	template <class T>
+	inline T Sign(T value)
+	{
+		return value > 0.0 ? 1.0 : (value < 0.0 ? -1.0 : 0.0);
+	}
+
+	inline unsigned FloatToRawIntBits(float value)
+	{
+		unsigned u = *((unsigned*)&value);
+		return u;
+	}
+
+#ifndef __GNUC__
+	inline bool IsNaN(float value)
+	{
+		return value != value;
+	}
+#else
+	//Note, see https://stackoverflow.com/questions/570669/checking-if-a-double-or-float-is-nan-in-c
+	inline bool IsNaN(float value)
+	{
+		unsigned u = FloatToRawIntBits(value);
+		return (u & 0x7fffffff) > 0x7f800000;
+	}
+#endif
 
 	template <class T>
 	inline T Clamp(T value, T min, T max)
@@ -54,6 +90,48 @@ namespace Urho3D
 			return max;
 		else
 			return value;
+	}
+
+	template <class T>
+	inline T Sin(T angle)
+	{
+		return sin(angle * M_DEGTORAD);
+	}
+
+	template <class T>
+	inline T Cos(T angle)
+	{
+		return cos(angle * M_DEGTORAD);
+	}
+
+	template <class T>
+	inline T Tan(T angle)
+	{
+		return tan(angle * M_DEGTORAD);
+	}
+
+	template <class T>
+	inline T Asin(T x)
+	{
+		return M_RADTODEG * asin(Clamp(x, T(-1.0), T(1.0)));
+	}
+
+	template <class T>
+	inline T Acos(T x)
+	{
+		return M_RADTODEG * acos(Clamp(x, T(-1.0), T(1.0)));
+	}
+
+	template <class T>
+	inline T Atan(T x)
+	{
+		return M_RADTODEG * atan(x);
+	}
+
+	template <class T>
+	inline T Atan2(T y, T x)
+	{
+		return M_RADTODEG * atan2(y, x);
 	}
 
     inline unsigned SDBMHash(unsigned hash, unsigned char c)

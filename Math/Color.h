@@ -5,6 +5,8 @@
 #ifndef URHO3DCOPY_COLOR_H
 #define URHO3DCOPY_COLOR_H
 
+#include "Vector3.h"
+
 namespace Urho3D
 {
 	class String;

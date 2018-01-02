@@ -6,6 +6,10 @@
 #define URHO3DCOPY_SERIALIZER_H
 
 #include "../Container/Str.h"
+#include "../Math/Matrix3x4.h"
+#include "../Math/BoundingBox.h"
+#include "../Math/StringHash.h"
+#include "../Core/Variant.h"
 
 namespace Urho3D
 {
@@ -40,7 +44,28 @@ namespace Urho3D
 		bool WriteDouble(float value);
 		bool WriteIntRect(const IntRect& value);
 		bool WriteIntVector2(const IntVector2& value);
+		bool WriteIntVector3(const IntVector3& value);
+		bool WriteRect(const Rect& value);
+		bool WriteVector2(const Vector2& value);
+		bool WriteVector3(const Vector3& value);
 		//todo ..
+		bool WriteMatrix3(const Matrix3& value);
+		bool WriteMatrix3x4(const Matrix3x4& value);
+		bool WriteColor(const Color& value);
+		bool WriteBoundingBox(const BoundingBox& value);
+		bool WriteString(const String& value);
+		bool WriteFileID(const String& value);
+		bool WriteStringHash(const StringHash& value);
+		bool WriteBuffer(const PODVector<unsigned char>& buffer);
+		bool WriteResourceRef(const ResourceRef& value);
+		bool WriteResourceRefList(const ResourceRefList& value);
+		bool WriteVariant(const Variant& value);
+		bool WriteVariantData(const Variant& value);
+		bool WriteVariantVector(const VariantVector& value);
+		bool WriteStringVector(const StringVector& value);
+		bool WriteVariantMap(const VariantMap& value);
+		bool WriteVLE(unsigned value);
+		bool WriteNetID(unsigned value);
 		bool WriteLine(const String& value);
 	};
 
