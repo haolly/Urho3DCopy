@@ -283,12 +283,12 @@ namespace Urho3D
 		return 0;
 	}
 
-	bool XMLElement::HasAttributes(const String &name) const
+	bool XMLElement::HasAttribute(const String &name) const
 	{
 		return false;
 	}
 
-	bool XMLElement::HasAttributes(const char *name) const
+	bool XMLElement::HasAttribute(const char *name) const
 	{
 		return false;
 	}

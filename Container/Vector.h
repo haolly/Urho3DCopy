@@ -377,6 +377,7 @@ namespace Urho3D
 	private:
 		void Resize(unsigned newSize, const T* src, Vector<T>& tempBuffer)
 		{
+			//Note, need Destruct the extra element !!
 			if(newSize < size_)
 				DestructElements(Buffer() + newSize, size_ - newSize);
 			else

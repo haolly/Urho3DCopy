@@ -58,7 +58,8 @@ namespace Urho3D
 	{
 		if(rhs.IsCustom())
 		{
-			SetCustomVariantValue(*rhs.GetCustomVariantValuePtr());
+			//todo
+			//SetCustomVariantValue(*rhs.GetCustomVariantValuePtr());
 			return *this;
 		}
 		SetType(rhs.GetType());

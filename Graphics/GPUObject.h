@@ -19,6 +19,7 @@ namespace Urho3D
 		unsigned name_;
 	};
 
+	//todo， 有哪些是GPU 资源，有哪些特殊的地方？？
 	class GPUObject
 	{
 	public:

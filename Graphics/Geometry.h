@@ -45,7 +45,7 @@ namespace Urho3D
 		float GetLodDistance() const { return lodDistance_; }
 		unsigned short GetbufferHash() const;
 		void GetRawData(const unsigned char* vertexData, unsigned& vertexSize, const unsigned char*& indexData,
-		                unsigned& indexSize, const PODVector<VertexElement>*& elements);
+		                unsigned& indexSize, const PODVector<VertexElement>*& elements) const;
 
 		void GetRawDataShared(SharedArrayPtr<unsigned char>& vertexData, unsigned& vertexSize,
 		                      SharedArrayPtr<unsigned char>& indexData, unsigned& indexSize, const

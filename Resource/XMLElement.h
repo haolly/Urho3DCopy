@@ -8,6 +8,8 @@
 #include "../Container/Str.h"
 #include "../Container/Ptr.h"
 #include "../Math/Color.h"
+#include "../Math/BoundingBox.h"
+#include "../Core/Variant.h"
 
 namespace pugi
 {
@@ -78,6 +80,19 @@ namespace Urho3D
 		bool SetUInt64(const String& name, unsigned long long value);
 		//todo
 
+		bool SetString(const String& name, const String& value);
+		bool SetVariant(const Variant& value);
+		bool SetVariantValue(const Variant& value);
+		bool SetResourceRef(const ResourceRef& value);
+		bool SetResourceRefList(const ResourceRefList& value);
+		bool SetVariantVector(const VariantVector& value);
+		bool SetStringVector(const StringVector& value);
+		bool SetVariantMap(const VariantMap& value);
+		bool SetVector2(const String& name, const Vector2& value);
+		bool SetVector3(const String& name, const Vector3& value);
+		bool SetVector4(const String& name, const Vector4& value);
+		//todo
+
 		bool IsNull() const;
 		bool NotNull() const;
 
@@ -94,8 +109,8 @@ namespace Urho3D
 		XMLElement GetParent() const;
 
 		unsigned GetNumAttributes() const;
-		bool HasAttributes(const String& name) const;
-		bool HasAttributes(const char* name) const;
+		bool HasAttribute(const String &name) const;
+		bool HasAttribute(const char *name) const;
 
 
 		String GetValue() const;
@@ -113,6 +128,11 @@ namespace Urho3D
 		BoundingBox GetBoundingBox() const;
 		Color GetColor(const String& name) const;
 		float GetFloat(const String& name) const;
+		double GetDouble(const String& name) const;
+		unsigned GetUInt(const String& name) const;
+		int GetInt(const String& name) const;
+		unsigned long long GetUInt64(const String& name) const;
+		long long GetInt64(const String& name) const;
 		//todo
 
 

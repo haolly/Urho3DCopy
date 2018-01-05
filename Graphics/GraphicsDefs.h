@@ -19,12 +19,46 @@ namespace Urho3D
 		TRIANGLE_FAN
 	};
 
+	enum BlendMode
+	{
+		BLEND_REPLACE = 0,
+		BLEND_ADD,
+		BLEND_MULTIPLY,
+		BLEND_ALPHA,
+		BLEND_ADDALPHS,
+		BLEND_PREMULALPHA,
+		BLEND_INVDESTALPHA,
+		BLEND_SUBTRACT,
+		BLEND_SUBSTRACTALPHA,
+		MAX_BLENDMODES
+	};
+
+	// Depth or stencil compare mode
+	enum CompareMode
+	{
+		CMP_ALWAYS = 0,
+		CMP_EQUAL,
+		CMP_NOTEQUAL,
+		CMP_LESS,
+		CMP_LESSEQUAL,
+		CMP_GREATER_,
+		CMP_GREATEREQUAL,
+		CMP_COMPAREMODES
+	};
+
 	enum CullMode
 	{
 		CULL_NONE = 0,
 		CULL_CCW,
 		CULL_CW,
 		MAX_CULLMODES
+	};
+
+	enum FillMode
+	{
+		FILL_SOLID = 0,
+		FILL_WIREFRAME,
+		FILL_POINT
 	};
 
 	enum TextureUnit
@@ -145,6 +179,35 @@ namespace Urho3D
 
 	extern const unsigned ELEMENT_TYPESIZES[];
 	extern const VertexElement LEGACY_VERTEXELEMENTS[];
+
+	enum TextureFilterMode
+	{
+		FILTER_NEAREST = 0,
+		FILTER_BILINEAR,
+		FILTER_TRILINEAR,
+		FILTER_ANISOTROPIC,
+		FILTER_NEAREST_ANISOTROPIC,
+		FILTER_DEFAULT,
+		MAX_FILTERMODES
+	};
+
+	//Todo, what is this?
+	enum TextureAddressMode
+	{
+		ADDRESS_WRAP = 0,
+		ADDRESS_MIRROR,
+		ADDRESS_CLAMP,
+		ADDRESS_BORDER,
+		MAX_ADDRESSMODES
+	};
+
+	enum TextureCoordinate
+	{
+		COORD_U = 0,
+		COORD_V,
+		COORD_W,
+		MAX_COORDS
+	};
 
 	//todo
 

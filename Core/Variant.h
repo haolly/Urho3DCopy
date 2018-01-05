@@ -10,6 +10,12 @@
 #include "../Math/StringHash.h"
 #include "../Math/Vector2.h"
 #include "../Container/Str.h"
+#include "../Math/Vector4.h"
+#include "../Math/Quaternion.h"
+#include "../Math/Color.h"
+#include "../Container/RefCounted.h"
+#include "../Container/Ptr.h"
+#include "../Math/Matrix3x4.h"
 
 namespace Urho3D
 {
@@ -154,8 +160,10 @@ namespace Urho3D
 		bool bool_;
 		float float_;
 		Vector2 vector2_;
-		double double_;
-		Vector2 vector2;
+		Vector3 vector3_;
+		Vector4 vector4_;
+		Quaternion quaternion_;
+		Color color_;
 		String string_;
 		PODVector<unsigned char> buffer_;
 		void* voidPtr;
@@ -163,8 +171,16 @@ namespace Urho3D
 		ResourceRefList resourceRefList_;
 		VariantVector variantVector_;
 		VariantMap variantMap_;
-		//todo ..
+		//todo
+		WeakPtr<RefCounted> weakPtr_;
+		Matrix3* matrix3_;
+		Matrix3x4* matrix3x4_;
+		Matrix4* matrix4_;
+		double double_;
+		StringVector stringVector_;
 		long long int64_;
+		CustomVariantValue* customValueHeap_;
+		//todo
 
 		VariantValue() {}
 		VariantValue(const VariantValue& value) = delete ;
@@ -217,7 +233,31 @@ namespace Urho3D
 		{
 			*this = value;
 		}
-		//todo
+
+		Variant(const Vector2& value)
+		{
+			*this = value;
+		}
+
+		Variant(const Vector3& value)
+		{
+			*this = value;
+		}
+
+		Variant(const Vector4& value)
+		{
+			*this = value;
+		}
+
+		Variant(const Quaternion& value)
+		{
+			*this = value;
+		}
+
+		Variant(const Color& value)
+		{
+			*this = value;
+		}
 
 		Variant(const String& value)
 		{
@@ -234,7 +274,10 @@ namespace Urho3D
 			*this = value;
 		}
 
-		//todo
+		Variant(const VectorBuffer& value)
+		{
+			*this = value;
+		}
 
 		Variant(void* value)
 		{
@@ -266,6 +309,34 @@ namespace Urho3D
 			*this = value;
 		}
 		//todo
+
+		Variant(const IntVector2& value)
+		{
+			*this = value;
+		}
+
+		Variant(const IntVector3& value)
+		{
+			*this = value;
+		}
+
+		Variant(RefCounted* value)
+		{
+			*this = value;
+		}
+
+		Variant(const Matrix3& value)
+		{
+			*this = value;
+		}
+
+		Variant(const Matrix3x4& value)
+		{
+			*this = value;
+		}
+
+		//todo
+
 
 		Variant(const String& type, const String& value)
 		{
@@ -360,6 +431,123 @@ namespace Urho3D
 			value_.double_ = rhs;
 			return *this;
 		}
+
+		Variant&operator =(const Vector2& rhs)
+		{
+			SetType(VAR_VECTOR2);
+			value_.vector2_ = rhs;
+			return *this;
+		}
+
+		Variant&operator =(const Vector3& rhs)
+		{
+			SetType(VAR_VECTOR3);
+			value_.vector3_ = rhs;
+			return *this;
+		}
+
+		Variant&operator =(const Vector4& rhs)
+		{
+			SetType(VAR_VECTOR4);
+			value_.vector4_ = rhs;
+			return *this;
+		}
+
+		Variant& operator =(const Quaternion& rhs)
+		{
+			SetType(VAR_QUATERNION);
+			value_.quaternion_ = rhs;
+			return *this;
+		}
+
+		Variant&operator =(const Color& rhs)
+		{
+			SetType(VAR_COLOR);
+			value_.color_ = rhs;
+			return *this;
+		}
+
+		Variant&operator=(const String& rhs)
+		{
+			SetType(VAR_STRING);
+			value_.string_ = rhs;
+			return *this;
+		}
+
+		Variant&operator =(const char* rhs)
+		{
+			SetType(VAR_STRING);
+			value_.string_ = rhs;
+			return *this;
+		}
+
+		Variant&operator =(const PODVector<unsigned char>& rhs)
+		{
+			SetType(VAR_BUFFER);
+			value_.buffer_ = rhs;
+			return *this;
+		}
+
+		Variant&operator =(const VectorBuffer& rhs);
+
+		Variant&operator =(void* rhs)
+		{
+			SetType(VAR_VOIDPTR);
+			value_.voidPtr = rhs;
+			return *this;
+		}
+
+		Variant&operator =(const ResourceRef& rhs)
+		{
+			SetType(VAR_RESOURCEREF);
+			value_.resourceRef_ = rhs;
+			return *this;
+		}
+
+		Variant&operator =(const ResourceRefList& rhs)
+		{
+			SetType(VAR_RESOURCEREFLIST);
+			value_.resourceRefList_ = rhs;
+			return *this;
+		}
+
+		Variant&operator =(const VariantVector& rhs)
+		{
+			SetType(VAR_VARIANTVECTOR);
+			value_.variantVector_ = rhs;
+			return *this;
+		}
+
+		Variant&operator =(const VariantMap& rhs)
+		{
+			SetType(VAR_VARIANTMAP);
+			value_.variantMap_ = rhs;
+			return *this;
+		}
+
+		//todo
+
+		Variant&operator =(RefCounted* rhs)
+		{
+			SetType(VAR_PTR);
+			value_.weakPtr_ = rhs;
+			return *this;
+		}
+
+		Variant&operator =(const Matrix3& rhs)
+		{
+			SetType(VAR_MATRIX3);
+			*value_.matrix3_ = rhs;
+			return *this;
+		}
+
+		Variant&operator =(const Matrix3x4& rhs)
+		{
+			SetType(VAR_MATRIX3X4);
+			*value_.matrix3x4_ = rhs;
+			return *this;
+		}
+
 
 		//todo ..
 
@@ -499,7 +687,17 @@ namespace Urho3D
 
 		const Vector2& GetVector2() const
 		{
-			return type_ == VAR_VECTOR2 ? value_.vector2 : Vector2::ZERO;
+			return type_ == VAR_VECTOR2 ? value_.vector2_ : Vector2::ZERO;
+		}
+
+		const Vector3& GetVector3() const
+		{
+			return type_ == VAR_VECTOR3 ? value_.vector3_ : Vector3::ZERO;
+		}
+
+		const Vector4& GetVector4() const
+		{
+			return type_ == VAR_VECTOR4 ? value_.vector4_ : Vector4::ZERO;
 		}
 		//todo
 

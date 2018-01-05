@@ -175,7 +175,7 @@ namespace Urho3D
 
 	void
 	Geometry::GetRawData(const unsigned char *vertexData, unsigned &vertexSize, const unsigned char *&indexData,
-	unsigned& indexSize, const PODVector<VertexElement> *&elements)
+	unsigned& indexSize, const PODVector<VertexElement> *&elements) const
 	{
 		if(rawVertexData_)
 		{
@@ -269,11 +269,39 @@ namespace Urho3D
 
 	float Geometry::GetHitDistance(const Ray &ray, Vector3 *outNormal, Vector2 *outUV) const
 	{
-		return 0;
+		const unsigned char* vertexData;
+		const unsigned char* indexData;
+		unsigned vertexSize;
+		unsigned indexSize;
+		const PODVector<VertexElement>* elements;
+
+		GetRawData(vertexData, vertexSize, indexData, indexSize, elements);
+
+		if(!vertexData || !elements || VertexBuffer::GetElementOffset(*elements, TYPE_VECTOR3, SEM_POSITION) != 0)
+			return M_INFINITY;
+		unsigned uvOffset = VertexBuffer::GetElementOffset(*elements, TYPE_VECTOR2, SEM_TEXCOORD);
+
+		if(outUV && uvOffset == M_MAX_UNSIGNED)
+		{
+			URHO3D_LOGERROR("Illegal GetHitDistance call: UV return requested on vertex buffer without UV coords");
+			*outUV = Vector2::ZERO;
+			outUV = nullptr;
+		}
+
+		return indexData ? ray.HitDistance(vertexData, vertexSize, indexData, indexSize, indexStart_, indexCount_, outNormal, outUV, uvOffset) :
+		       ray.HitDistance(vertexData, vertexSize, vertexStart_, vertexCount_, outNormal, outUV, uvOffset);
 	}
 
 	bool Geometry::IsInside(const Ray &ray) const
 	{
-		return false;
+		const unsigned char* vertexData;
+		const unsigned char* indexData;
+		unsigned vertexSize;
+		unsigned indexSize;
+		const PODVector<VertexElement>* elements;
+		GetRawData(vertexData, vertexSize, indexData, indexSize, elements);
+
+		return vertexData ? (indexData ? ray.InsideGeometry(vertexData, vertexSize, indexData, indexSize,
+							indexStart_, indexCount_) : ray.InsideGeometry(vertexData, vertexSize, vertexStart_, vertexCount_));
 	}
 }

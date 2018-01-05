@@ -8,6 +8,7 @@
 #include "../Resource/Resource.h"
 #include "GraphicsDefs.h"
 #include "../Resource/XMLFile.h"
+#include "Technique.h"
 
 namespace Urho3D
 {
@@ -16,6 +17,21 @@ namespace Urho3D
 		String name_;
 		Variant value_;
 	};
+
+	struct TechniqueEntry
+	{
+		TechniqueEntry();
+		TechniqueEntry(Technique* tech, unsigned qualityLevel, float lodDistance);
+		~TechniqueEntry();
+
+		SharedPtr<Technique> technique_;
+		// Original technique, in case the material adds shader compilation defines.
+		SharedPtr<Technique> original_;
+
+		int qualityLevel_;
+		float lodDistance_;
+	};
+
 
 	class Material : public Resource
 	{
@@ -34,6 +50,7 @@ namespace Urho3D
 
 		void SetNumTechniques(unsigned num);
 		void SetTechnique(unsigned index, Technique* tech, unsigned qualityLevel = 0, float lodDistance = 0.0f);
+		void SetVertexShaderDefines(const String& defines);
 		void SetPixelShaderDefines(const String& defines);
 		void SetShaderParameter(const String& name, const Variant& value);
 
@@ -54,13 +71,18 @@ namespace Urho3D
 		void UpdateEventSubscription();
 		void HandleAttributeAnimationUpdate(StringHash eventType, VariantMap& eventData);
 
+		Vector<TechniqueEntry> techniques_;
+
+		HashMap<StringHash, MaterialShaderParameter> shaderParameters_;
+
 		//todo
 		String vertexShaderDefines_;
 		String pixelShaderDefines_;
 		CullMode cullMode_;
 		CullMode shadowCullMode_;
-		//todo
-
+		FillMode fillMode_;
+		//todo what is this ?
+		BiasParameters depthBias_;
 		unsigned char renderOrder_;
 		unsigned auxViewFrameNumber_;
 		unsigned shaderParameterHash_;

@@ -471,6 +471,66 @@ namespace Urho3D
 		return *this;
 	}
 
+	Vector<String> String::Split(char separator, bool keepEmptyStrings) const
+	{
+		return Split(CString(), separator, keepEmptyStrings);
+	}
+
+	Vector<String> String::Split(const char *str, char separator, bool keepEmptyStrings)
+	{
+		Vector<String> ret;
+		const char* strEnd = str + String::CStringLength(str);
+
+		for(const char* splitEnd = str; splitEnd != strEnd; ++splitEnd)
+		{
+			if(*splitEnd == separator)
+			{
+				const ptrdiff_t splitLen = splitEnd - str;
+				if(splitLen > 0 || keepEmptyStrings)
+					ret.Push(String(str, splitLen));
+				str = splitEnd + 1;
+			}
+		}
+
+		const ptrdiff_t splitLen = strEnd - str;
+		if(splitLen > 0 || keepEmptyStrings)
+			ret.Push(String(str, splitLen));
+
+		return ret;
+	}
+
+	String String::ToUpper() const
+	{
+		String ret(*this);
+		for(unsigned i=0; i< ret.Length(); ++i)
+			ret[i] = (char)toupper(buffer_[i]);
+		return ret;
+	}
+
+	String String::ToLower() const
+	{
+		String ret(*this);
+		for(unsigned i=0; i<ret.Length(); ++i)
+		{
+			ret[i] = (char)tolower(buffer_[i]);
+		}
+		return ret;
+	}
+
+	String String::Joined(const Vector<String> &subStrings, const String &glue)
+	{
+		if(subStrings.Empty())
+			return String();
+
+		String joinedString(subStrings[0]);
+		for(unsigned i=1; i<subStrings.Size(); ++i)
+		{
+			joinedString.Append(glue);
+			joinedString.Append(subStrings[i]);
+		}
+		return joinedString;
+	}
+
 
 	WString::WString() :
 		length_(0),

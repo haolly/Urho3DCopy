@@ -13,6 +13,8 @@ include_directories(ThirdParty/STB)
 add_definitions (-DURHO3D_FILEWATCHER)
 add_definitions (-DURHO3D_THREADING)
 
+add_definitions (-DDESKTOP_GRAPHICS)
+
 add_executable(Urho3DCopy
         Container/Allocator.cpp
         Container/Allocator.h
@@ -100,42 +102,45 @@ add_executable(Urho3DCopy
         Scene/Animatable.h
         Scene/Serializable.cpp
         Scene/Serializable.h
-        main.cpp 
-	Scene/ValueAnimationInfo.cpp 
-	Scene/ValueAnimationInfo.h 
-	Scene/AnimationDefs.cpp 
-	Scene/AnimationDefs.h 
-	Scene/ValueAnimation.cpp 
-	Scene/ValueAnimation.h
-	Graphics/Model.cpp 
-	Graphics/Model.h 
-	Math/BoundingBox.cpp 
-	Math/BoundingBox.h 
-	Math/Vector3.cpp 
-	Math/Vector3.h 
-	Math/Sphere.cpp 
-	Math/Sphere.h 
-	Graphics/GPUObject.cpp 
-	Graphics/GPUObject.h 
-	Math/Plane.cpp 
-	Math/Plane.h 
-	Math/Matrix3x4.cpp 
-	Math/Matrix3x4.h 
-	Math/Matrix3.cpp 
-	Math/Matrix3.h 
-	Math/Quaternion.cpp 
-	Math/Quaternion.h 
-	Graphics/VertexBuffer.cpp 
-	Graphics/VertexBuffer.h 
-	Graphics/GraphicsDefs.h 
-	Graphics/Direct3D11/D3D11VertexBuffer.cpp 
-	Graphics/GraphicsDefs.cpp 
-	Graphics/IndexBuffer.cpp 
-	Graphics/IndexBuffer.h 
-	Graphics/Direct3D11/D3D11IndexBuffer.cpp 
-	Graphics/Geometry.cpp 
-	Graphics/Geometry.h 
-	Math/Ray.cpp Math/Ray.h 
-	Graphics/Material.cpp 
-	Graphics/Material.h
-	)
+        Scene/ValueAnimationInfo.cpp
+        Scene/ValueAnimationInfo.h
+        Scene/AnimationDefs.cpp
+        Scene/AnimationDefs.h
+        Scene/ValueAnimation.cpp
+        Scene/ValueAnimation.h
+        Graphics/Model.cpp
+        Graphics/Model.h
+        Math/BoundingBox.cpp
+        Math/BoundingBox.h
+        Math/Vector3.cpp
+        Math/Vector3.h
+        Math/Sphere.cpp
+        Math/Sphere.h
+        Graphics/GPUObject.cpp
+        Graphics/GPUObject.h
+        Math/Plane.cpp
+        Math/Plane.h
+        Math/Matrix3x4.cpp
+        Math/Matrix3x4.h
+        Math/Matrix3.cpp
+        Math/Matrix3.h
+        Math/Quaternion.cpp
+        Math/Quaternion.h
+        Graphics/VertexBuffer.cpp
+        Graphics/VertexBuffer.h
+        Graphics/GraphicsDefs.h
+        Graphics/Direct3D11/D3D11VertexBuffer.cpp
+        Graphics/GraphicsDefs.cpp
+        Graphics/IndexBuffer.cpp
+        Graphics/IndexBuffer.h
+        Graphics/Direct3D11/D3D11IndexBuffer.cpp
+        Graphics/Geometry.cpp
+        Graphics/Geometry.h
+        Math/Ray.cpp Math/Ray.h
+        Graphics/Material.cpp
+        Graphics/Material.h
+        Math/Vector4.cpp Math/Vector4.h
+        Graphics/Technique.cpp Graphics/Technique.h
+        Graphics/Graphics.cpp Graphics/Graphics.h
+        IO/VectorBuffer.cpp IO/VectorBuffer.h
+        Graphics/Texture.cpp Graphics/Texture.h)

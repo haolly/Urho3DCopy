@@ -119,6 +119,7 @@ namespace Urho3D
 		return GetElement(elements, type, semantic, index) != nullptr;
 	}
 
+	//Todo, each element has the property offset_, this can be used to get uvOffset, Geometry::GetHitDistance
 	unsigned VertexBuffer::GetElementOffset(const PODVector<VertexElement> &elements, VertexElementType type,
 	                                        VertexElementSemantic semantic, unsigned char index)
 	{
