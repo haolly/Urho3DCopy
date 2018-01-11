@@ -75,7 +75,7 @@ namespace Urho3D
 
 	protected:
 		void LoadMetadataFromXML(const XMLElement& source);
-		void LoadMetadataFromJSON(const JSONArray& array);
+//		void LoadMetadataFromJSON(const JSONArray& array);
 		void SaveMetadataToXML(XMLElement& destination) const;
 		void CopyMetadata(const ResourceWithMetadata& source);
 

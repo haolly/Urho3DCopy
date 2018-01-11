@@ -93,6 +93,7 @@ namespace Urho3D
 			finishBackgroundResourcesMs_ = ms;
 		}
 
+		//Todo, usage
 		void AddResourceRouter(ResourceRouter* router, bool addAsFirst = false);
 		void RemoveResourceRouter(ResourceRouter* router);
 
@@ -118,7 +119,7 @@ namespace Urho3D
 
 		bool Exists(const String& name) const;
 		unsigned long long GetMemoryBudget(StringHash type) const;
-		unsigned long long GetMemroyUse(StringHash type) const;
+		unsigned long long GetMemoryUse(StringHash type) const;
 		unsigned long long GetTotalMemoryUse() const;
 
 		String GetResourceFileName(const String& name) const;

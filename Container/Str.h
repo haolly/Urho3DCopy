@@ -158,7 +158,7 @@ namespace Urho3D
         String&operator +=(bool  rhs);
 
         template <class T>
-        String operator +=(const T& rhs)
+        String& operator +=(const T& rhs)
         {
             return *this += rhs.ToString();
         }

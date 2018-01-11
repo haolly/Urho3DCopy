@@ -245,7 +245,7 @@ namespace Urho3D
 		String globalPS = rootElem.GetAttribute("ps");
 		String globalVSDefines = rootElem.GetAttribute("vsdefines");
 		String globalPSDefines = rootElem.GetAttribute("psdefines");
-		// End with space so that the pass-specific defines can be sppended
+		// End with space so that the pass-specific defines can be appended
 		if(!globalVSDefines.Empty())
 			globalVSDefines += ' ';
 		if(!globalPSDefines.Empty())
@@ -328,9 +328,10 @@ namespace Urho3D
 			}
 			else
 				URHO3D_LOGERROR("Missing pass name");
-		}
 
-		passElem = passElem.GetNext("pass");
+			passElem = passElem.GetNext("pass");
+		}
+		return true;
 	}
 
 	void Technique::SetIsDesktop(bool enable)

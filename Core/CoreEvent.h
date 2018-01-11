@@ -16,6 +16,11 @@ namespace Urho3D
 		URHO3D_PARAM(P_TIMESTEP, TimeStep);         //float
 	}
 
+	URHO3D_EVENT(E_UPDATE, Update)
+	{
+		URHO3D_PARAM(P_TIMESTEP, TimeStep);         // float
+	}
+
 	URHO3D_EVENT(E_ENDFRAME, EndFrame)
 	{
 	}

@@ -86,6 +86,7 @@ namespace Urho3D
 		void SetPixelInt(int x, int y, unsigned uintColor);
 		void SetPixelInt(int x, int y, int z, unsigned uintColor);
 
+		//Todo, color look up table ??
 		bool LoadColorLUT(Deserializer& source);
 		bool FlipHorizontal();
 		bool FlipVertical();

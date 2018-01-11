@@ -402,6 +402,7 @@ namespace Urho3D
 		}
 
 		//Todo, finished loading here ??
+		//好像是没有load，直接去目录里面去找了，所以，上面的 Route 是干啥用的？
 		if(name.Length())
 		{
 			File* file = nullptr;
@@ -703,6 +704,7 @@ namespace Urho3D
 		dependents.Insert(nameHash);
 	}
 
+	//Reset dependency for the resource
 	void ResourceCache::ResetDependencies(Resource *resource)
 	{
 		if(!resource)
@@ -768,7 +770,7 @@ namespace Urho3D
 		return iter != resourceGroups_.End() ? iter->second_.memoryBudget_ : 0;
 	}
 
-	unsigned long long ResourceCache::GetMemroyUse(StringHash type) const
+	unsigned long long ResourceCache::GetMemoryUse(StringHash type) const
 	{
 		auto iter = resourceGroups_.Find(type);
 		return iter != resourceGroups_.End() ? iter->second_.memoryUse_ : 0;

@@ -5,6 +5,8 @@
 #ifndef URHO3DCOPY_GRAPHICSDEFS_H
 #define URHO3DCOPY_GRAPHICSDEFS_H
 
+#include "../Math/StringHash.h"
+
 namespace Urho3D
 {
 	class Vector3;
@@ -59,6 +61,19 @@ namespace Urho3D
 		FILL_SOLID = 0,
 		FILL_WIREFRAME,
 		FILL_POINT
+	};
+
+	enum ShaderType
+	{
+		VS = 0,
+		PS,
+	};
+
+	enum ShaderParameterGroup
+	{
+		SP_FRAME = 0,
+		//todo
+		MAX_SHADER_PARAMETER_GROUPS
 	};
 
 	enum TextureUnit
@@ -209,7 +224,21 @@ namespace Urho3D
 		MAX_COORDS
 	};
 
+	//todo, usage
+	enum TextureUsage
+	{
+		TEXTURE_STATIC = 0,
+		TEXTURE_DYNAMIC,
+		TEXTURE_RENDERTARGET,
+		TEXTURE_DEPTHSTENCIL
+	};
+
 	//todo
+
+	static const int QUALITY_LOW = 0;
+	static const int QUALITY_MEDIUM = 1;
+	static const int QUALITY_HIGH = 2;
+	static const int QUALITY_MAX_ = 15;
 
 	//Legacy vertex element bitmasks
 	static const unsigned MASK_NONE = 0x0;
@@ -223,6 +252,12 @@ namespace Urho3D
 	//todo
 
 	static const int MAX_VERTEX_STREAMS = 4;
+
+
+	// Inbuilt shader parameters
+	extern const StringHash VSP_AMBIENTSTARTCOLOR;
+	//TODO
+	extern const StringHash PSP_MATSPECCOLOR;
 
 }
 

@@ -828,7 +828,7 @@ namespace Urho3D
 
 	bool Image::LoadColorLUT(Deserializer &source)
 	{
-		return false;
+		//todo
 	}
 
 	bool Image::FlipHorizontal()

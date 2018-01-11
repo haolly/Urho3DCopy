@@ -11,6 +11,8 @@
 #include "../IO/Deserializer.h"
 #include "../IO/VectorBuffer.h"
 #include "../Resource/ResourceCache.h"
+#include "../Container/Sort.h"
+#include "../Core/CoreEvent.h"
 
 namespace Urho3D
 {
@@ -60,20 +62,58 @@ namespace Urho3D
 				nullptr
 			};
 
-	TechniqueEntry::TechniqueEntry()
-	{
+	static TechniqueEntry noEntry;
 
+	bool CompareTechniqueEntries(const TechniqueEntry& lhs, const TechniqueEntry& rhs)
+	{
+		if(lhs.lodDistance_ != rhs.lodDistance_)
+			return lhs.lodDistance_ > rhs.lodDistance_;
+		else
+			return lhs.qualityLevel_ > rhs.qualityLevel_;
 	}
 
-	TechniqueEntry::TechniqueEntry(Technique *tech, unsigned qualityLevel, float lodDistance)
+	TechniqueEntry::TechniqueEntry() :
+		qualityLevel_(0),
+		lodDistance_(0.0f)
 	{
+	}
 
+	TechniqueEntry::TechniqueEntry(Technique *tech, unsigned qualityLevel, float lodDistance) :
+		technique_(tech),
+		original_(tech),
+		qualityLevel_(qualityLevel),
+		lodDistance_(lodDistance)
+	{
 	}
 
 	TechniqueEntry::~TechniqueEntry()
 	{
+	}
+
+	ShaderParameterAnimationInfo::ShaderParameterAnimationInfo(Material *material, const String &name,
+	                                                           ValueAnimation *attributeAnimation, WrapMode wrapMode,
+	                                                           float speed) :
+		ValueAnimationInfo(material, attributeAnimation, wrapMode, speed),
+		name_(name)
+	{
+	}
+
+	ShaderParameterAnimationInfo::ShaderParameterAnimationInfo(const ShaderParameterAnimationInfo &other) :
+		ValueAnimationInfo(other),
+		name_(other.name_)
+	{
+	}
+
+	ShaderParameterAnimationInfo::~ShaderParameterAnimationInfo()
+	{
 
 	}
+
+	void ShaderParameterAnimationInfo::ApplyValue(const Variant &newValue)
+	{
+		static_cast<Material*>(target_.Get())->SetShaderParameter(name_, newValue);
+	}
+
 
 	Material::Material(Context *context) :
 			Resource(context),
@@ -214,7 +254,7 @@ namespace Urho3D
 
 		//todo
 		RefreshShaderParameterHash();
-		RefreshMemroyUse();
+		RefreshMemoryUse();
 		return true;
 	}
 
@@ -279,7 +319,7 @@ namespace Urho3D
 		if(!num)
 			return;
 		techniques_.Resize(num);
-		RefreshMemroyUse();
+		RefreshMemoryUse();
 	}
 
 	void Material::SetTechnique(unsigned index, Technique *tech, unsigned int qualityLevel, float lodDistance)
@@ -334,13 +374,19 @@ namespace Urho3D
 		if(!batchedParameterUpdate_)
 		{
 			RefreshShaderParameterHash();
-			RefreshMemroyUse();
+			RefreshMemoryUse();
 		}
 	}
 
 	void Material::SetTexture(TextureUnit unit, Texture *texture)
 	{
-
+		if(unit < MAX_TEXTURE_UNITS)
+		{
+			if(texture)
+				textures_[unit] = texture;
+			else
+				textures_.Erase(unit);
+		}
 	}
 
 	//todo, usage
@@ -452,7 +498,7 @@ namespace Urho3D
 		occlusion_ = true;
 
 		RefreshShaderParameterHash();
-		RefreshMemroyUse();
+		RefreshMemoryUse();
 	}
 
 	void Material::RefreshShaderParameterHash()
@@ -471,7 +517,7 @@ namespace Urho3D
 			shaderParameterHash_ = SDBMHash(shaderParameterHash_, data[i]);
 	}
 
-	void Material::RefreshMemroyUse()
+	void Material::RefreshMemoryUse()
 	{
 		unsigned memoryUse = sizeof(Material);
 		memoryUse += techniques_.Size() * sizeof(Technique);
@@ -508,7 +554,119 @@ namespace Urho3D
 
 	void Material::HandleAttributeAnimationUpdate(StringHash eventType, VariantMap &eventData)
 	{
+		using namespace Update;
+		float timeStep = eventData[P_TIMESTEP].GetFloat();
 
+		// Keep weak pointer to self to check for destruction cased by event handling
+		WeakPtr<Object> self(this);
+
+		Vector<String> finishedNames;
+		//todo
+	}
+
+	void Material::SetAlphaToCoverage(bool enable)
+	{
+		alphaToConverage_ = enable;
+	}
+
+	void Material::SetLineAntiAlias(bool enable)
+	{
+		lineAntiAlias_ = enable;
+	}
+
+	void Material::SetRenderOrder(unsigned char order)
+	{
+		renderOrder_ = order;
+	}
+
+	void Material::SetOcculusion(bool enable)
+	{
+		occlusion_ = enable;
+	}
+
+	void Material::RemoveShaderParameter(const String &name)
+	{
+		StringHash nameHash(name);
+		shaderParameters_.Erase(nameHash);
+
+		if(nameHash == PSP_MATSPECCOLOR)
+			specular_ = false;
+
+		RefreshShaderParameterHash();
+		RefreshMemoryUse();
+	}
+
+	void Material::ReleaseShaders()
+	{
+		for(unsigned i=0; i<techniques_.Size(); ++i)
+		{
+			Technique* tech = techniques_[i].technique_;
+			if(tech)
+				tech->ReleaseShaders();
+		}
+	}
+
+	SharedPtr<Material> Material::Clone(const String &cloneName) const
+	{
+		SharedPtr<Material> ret(new Material(context_));
+
+		ret->SetName(cloneName);
+		ret->techniques_ = techniques_;
+		ret->vertexShaderDefines_ = vertexShaderDefines_;
+		ret->pixelShaderDefines_ = pixelShaderDefines_;
+		ret->shaderParameters_ = shaderParameters_;
+		ret->shaderParameterHash_ = shaderParameterHash_;
+		ret->textures_ = textures_;
+		ret->depthBias_ = depthBias_;
+		ret->alphaToConverage_ = alphaToConverage_;
+		ret->lineAntiAlias_ = lineAntiAlias_;
+		ret->occlusion_ = occlusion_;
+		ret->specular_ = specular_;
+		ret->cullMode_ = cullMode_;
+		ret->shadowCullMode_ = shadowCullMode_;
+		ret->fillMode_ = fillMode_;
+		ret->renderOrder_ = renderOrder_;
+		ret->RefreshMemoryUse();
+
+		return ret;
+	}
+
+	void Material::SortTechniques()
+	{
+		Sort(techniques_.Begin(), techniques_.End(), CompareTechniqueEntries);
+	}
+
+	void Material::MarkForAuxView(unsigned frameNumber)
+	{
+		auxViewFrameNumber_ = frameNumber;
+	}
+
+	const TechniqueEntry &Material::GetTechniqueEntry(unsigned index) const
+	{
+		return index < techniques_.Size() ? techniques_[index] : noEntry;
+	}
+
+	Technique *Material::GetTechnique(unsigned index) const
+	{
+		return index < techniques_.Size() ? techniques_[index].technique_ : nullptr;
+	}
+
+	Pass *Material::GetPass(unsigned index, const String &passName) const
+	{
+		Technique* tech = index < techniques_.Size() ? techniques_[index].technique_ : nullptr;
+		return tech ? tech->GetPass(passName) : nullptr;
+	}
+
+	Texture *Material::GetTexture(TextureUnit unit) const
+	{
+		auto iter = textures_.Find(unit);
+		return iter != textures_.End() ? iter->second_.Get() : nullptr;
+	}
+
+	const Variant &Material::GetShaderParameter(const String &name) const
+	{
+		auto iter = shaderParameters_.Find(name);
+		return iter != shaderParameters_.End() ?  iter->second_.value_ : Variant::EMPTY;
 	}
 
 

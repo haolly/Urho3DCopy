@@ -8,11 +8,13 @@
 #include "GPUObject.h"
 #include "../Resource/Resource.h"
 #include "GraphicsDefs.h"
+#include "../Resource/XMLFile.h"
 
 namespace Urho3D
 {
 	static const int MAX_TEXTURE_QUALITY_LEVELS = 3;
 
+	// Base class for texture resources
 	class Texture : public ResourceWithMetadata, public GPUObject
 	{
 	public:
@@ -41,7 +43,89 @@ namespace Urho3D
 
 		unsigned GetFormat() const { return format_; }
 
-		//todo
+		bool IsCompressed() const;
+
+		unsigned GetLevels() const { return levels_;}
+
+		int GetWidth() const { return width_; }
+
+		int GetDepth() const { return depth_; }
+
+		TextureFilterMode GetFilterMode() const { filterMode_; }
+
+		TextureAddressMode GetAddressMode(TextureAddressMode coord) const
+		{
+			return addressMode_[coord];
+		}
+
+		unsigned GetAnisotropy() const { return anisotropy_; }
+
+		bool GetShadowCompare() const { return shadowCompare_; }
+
+		const Color& GetBorderColor() const { return borderColor_; }
+
+		bool GetSRGB() const { return sRGB_; }
+
+		int GetMultiSample() const { return multiSample_; }
+
+		//Note, Resolve 溶解
+		bool GetAutoResolve() const { return autoResolve_; }
+
+		bool IsResolveDirty() const { return resolveDirty_; }
+
+		bool GetLevelDirty() const { return levelsDirty_; }
+
+		Texture* GetBackupTexture() const { return backupTexture_; }
+
+		int GetMipsToSkip(int quality) const;
+
+		int GetLevelWidth(unsigned level) const;
+		int GetLevelHeight(unsigned level) const;
+		int GetLevelDepth(unsigned level) const;
+
+		TextureUsage GetUsage() const { return usage_; }
+
+		unsigned GetDataSize(int width, int height) const;
+		unsigned GetDataSize(int width, int height, int depth) const;
+		unsigned GetRawDataSize(int width) const;
+
+		unsigned GetComponents() const;
+
+		bool GetParameterDirty() const;
+
+		void SetParameters(XMLFile* xml);
+		void SetParameters(const XMLElement& element);
+		void SetParametersDirty();
+		void UpdateParameters();
+
+
+		void* GetShadowResourceView() const { return shaderResourceView_;}
+
+		void* GetSampler() const { return sampler_; }
+
+		void* GetResolveTexture() const { return resolveTexture_; }
+
+		unsigned GetTarget() const { return target_;}
+		unsigned GetSRGBFormat(unsigned format);
+
+		void SetResolveDirty(bool enable) { resolveDirty_ = enable;}
+
+		void SetLevelDirty();
+		void RegenerateLevels();
+
+		static unsigned CheckMaxLevels(int width, int height, unsigned requestLevels);
+		static unsigned CheckMaxLevels(int width, int height, int depth, unsigned requestedLevels);
+		// Return the shader resource view format corresponding to a texture format.
+		// Handles conversion of typeless depth texture formats. Only used on Direct3D11
+		// ref https://msdn.microsoft.com/en-us/library/windows/desktop/ff476900(v=vs.85).aspx#Raw_Buffer_Views
+		static unsigned GetSRVFormat(unsigned format);
+		// depth-stencil view
+		static unsigned GetDSVFormat(unsigned format);
+
+		// Return the non-internal texture format corresponding to an OpenGL internal format
+		static unsigned GetExternalFormat(unsigned format);
+		// Return the data type corresponding to an OpenGL internal format
+		static unsigned GetDataType(unsigned format);
 
 	protected:
 		void CheckTextureBudget(StringHash type);
@@ -65,6 +149,7 @@ namespace Urho3D
 		TextureUsage usage_;
 
 		// Current mip levels
+		// todo
 		unsigned levels_;
 
 		/// Requested mip levels
@@ -86,6 +171,7 @@ namespace Urho3D
 		bool parametersDirty_;
 		bool autoResolve_;
 		bool resolveDirty_;
+		//Todo, what is this?
 		bool levelsDirty_;
 		SharedPtr<Texture> backupTexture_;
 	};

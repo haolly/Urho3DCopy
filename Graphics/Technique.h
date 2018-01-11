@@ -103,7 +103,8 @@ namespace Urho3D
 		String name_;
 	};
 
-	//
+	//Consists of several passes
+	//todo, what is the purpose of this, why does not use shader class directly?
 	class Technique : public Resource
 	{
 		URHO3D_OBJECT(Technique, Resource);

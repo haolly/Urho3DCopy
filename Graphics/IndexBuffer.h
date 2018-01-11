@@ -14,6 +14,7 @@ namespace Urho3D
 {
 	/**
 	 * Todo, what is difference with VertexBuffer ??
+	 * ref https://msdn.microsoft.com/en-us/library/windows/desktop/ff476898(v=vs.85).aspx
 	 */
 	class IndexBuffer : public Object, public GPUObject
 	{

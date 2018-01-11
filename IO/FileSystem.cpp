@@ -17,6 +17,8 @@
 #include <winbase.h>
 #include <winuser.h>
 #include <sys/stat.h>
+#include <shellapi.h>
+
 #else
 #endif
 
