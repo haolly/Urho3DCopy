@@ -126,8 +126,16 @@ namespace Urho3D
 		bool IsCompressed() const { return compressedFormat_ != CF_NONE; }
 
 		CompressedFormat GetCompressedFormat() const { return compressedFormat_; }
-		//todo
 
+		unsigned GetNumCompressedLevels() const { return numCompressedLevels_; }
+
+		SharedPtr<Image> GetNextLevel() const;
+		SharedPtr<Image> GetNextSibling() const { return nextSibling_; }
+		SharedPtr<Image> ConvertToRGBA() const;
+		CompressedLevel GetCompressedLevel(unsigned index) const;
+		Image* GetSubimage(const IntRect& rect) const;
+		SDL_Surface* GetSDLSurface(const IntRect& rect = IntRect::ZERO);
+		//todo
 
 	private:
 		static unsigned char* GetImageData(Deserializer& source, int& width, int& height, unsigned& components);

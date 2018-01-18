@@ -10,6 +10,7 @@
 #include "Hash.h"
 #include "Pair.h"
 #include "Vector.h"
+#include "../Math/MathDefs.h"
 
 namespace Urho3D
 {
@@ -284,7 +285,7 @@ namespace Urho3D
 			return node ? node->pair_.second_ : InsertNode(key, U(), false)->pair_.second_;
 		}
 
-		// Retrun null if key is not found
+		// Return null if key is not found
 		U* operator [](const T& key) const
 		{
 			if(!ptrs_)
@@ -482,6 +483,22 @@ namespace Urho3D
 		}
 		//todo
 
+		// Rehash to a specific bucket count, which must be a power of two. Return true if successfual
+		bool Rehash(unsigned numBuckets)
+		{
+			if(numBuckets == NumBuckets())
+				return true;
+			if(!numBuckets || numBuckets < Size() / MAX_LOAD_FACTOR)
+				return false;
+			// check for being power of two
+			if(!IsPowerOfTwo(numBuckets))
+				return false;
+
+			AllocateBuckets(Size(), numBuckets);
+			Rehash();
+			return true;
+		}
+
 
 		Iterator Begin() { return Iterator(Head()); }
 		ConstIterator Begin() const { return ConstIterator(Head()); }
@@ -639,6 +656,7 @@ namespace Urho3D
 			{
 				Node* node = static_cast<Node*>(i.ptr_);
 				unsigned hashKey = Hash(i->first_);
+				//Note, insert at the head of list
 				node->down_ = Ptrs()[hashKey];
 				Ptrs()[hashKey] = node;
 			}

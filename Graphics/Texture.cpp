@@ -242,7 +242,7 @@ namespace Urho3D
 	}
 
 
-	void Texture::SetLevelDirty()
+	void Texture::SetLevelsDirty()
 	{
 		if(usage_ == TEXTURE_RENDERTARGET && levels_ > 1)
 			levelsDirty_ = true;

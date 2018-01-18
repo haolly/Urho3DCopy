@@ -3,6 +3,7 @@
 //
 
 #include <cctype>
+#include <cstdio>
 #include "StringHash.h"
 #include "MathDefs.h"
 
@@ -35,5 +36,12 @@ namespace Urho3D
         value_(Calculate(str.CString()))
     {
 
+    }
+
+    String StringHash::ToString() const
+    {
+	    char tempBuffer[CONVERSION_BUFFER_LENGTH];
+        sprintf(tempBuffer, "%08X", value_);
+        return String(tempBuffer);
     }
 }

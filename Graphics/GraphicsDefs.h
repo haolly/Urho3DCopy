@@ -63,12 +63,30 @@ namespace Urho3D
 		FILL_POINT
 	};
 
+	//todo
+	enum StencilOp
+	{
+		OP_KEEP = 0,
+		OP_ZERO,
+		OP_REF,
+		OP_INCR,
+		OP_DECR
+	};
+
+	enum RenderSurfaceUpdateMode
+	{
+		SURFACE_MANUALUPDATE = 0,
+		SURFACE_UPDATEVISIBLE,
+		SURFACE_UPDATEALWAYS
+	};
+
 	enum ShaderType
 	{
 		VS = 0,
 		PS,
 	};
 
+	// todo, what is this ?
 	enum ShaderParameterGroup
 	{
 		SP_FRAME = 0,
@@ -76,6 +94,7 @@ namespace Urho3D
 		MAX_SHADER_PARAMETER_GROUPS
 	};
 
+	// todo, 每种贴图的不同用途？？
 	enum TextureUnit
 	{
 		TU_DIFFUSE = 0,
@@ -88,7 +107,7 @@ namespace Urho3D
 		TU_VOLUMEMAP = 5,
 		TU_CUSTOM1 = 6,
 		TU_CUSTOM2 = 7,
-		TU_LIGHTMAP = 8,
+		TU_LIGHTRAMP = 8,
 		TU_LIGHTSHAPE = 9,
 		TU_SHADOWMAP = 10,
 		TU_FACESELECT = 11,
@@ -251,7 +270,11 @@ namespace Urho3D
 	static const unsigned MASK_BLENDWEIGHTS = 0x40;
 	//todo
 
+	// todo, why 4 ??
+	static const int MAX_RENDERTARGETS = 4;
+	// todo, why defines the value to 4?
 	static const int MAX_VERTEX_STREAMS = 4;
+	static const int MAX_CONSTANT_REGISTERS = 256;
 
 
 	// Inbuilt shader parameters

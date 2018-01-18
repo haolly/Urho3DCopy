@@ -45,7 +45,10 @@ namespace Urho3D
 			unsigned regCount_;
 		};
 
+		// todo, ShaderParameterGroup ??
+		// The offset of constant buffer ??
 		unsigned buffer_;
+		// Constant buffer pointer. Defined only in shader programs
 		ConstantBuffer* bufferPtr_;
 	};
 
@@ -83,7 +86,21 @@ namespace Urho3D
 		{
 			return parameters_;
 		};
-		//todo
+
+		unsigned long long GetElementHash() const
+		{
+			return elementHash_;
+		}
+
+		const PODVector<unsigned char>& GetByteCode() const { return byteCode_; }
+
+		const String& GetDefines() const { return defines_; }
+
+		const String& GetCompilerOutput() const { return compilerOutput_; }
+		// note, equals return constantBufferSizes
+		const unsigned* GetConstantBufferSize() const { return &constantBufferSizes_[0]; }
+		const String& GetDefinesClipPlane() const { return definesClipPlane_; }
+		static const char* elementSemanticNames[];
 
 	private:
 		bool LoadByteCode(const String& binaryShaderName);
@@ -95,14 +112,18 @@ namespace Urho3D
 		WeakPtr<Shader> owner_;
 		ShaderType type_;
 		// Note, Vertex element hash for vertex shader, Zero for pixel shaders. Note that hashing is different than vertex buffers
+		//todo, Have a purpose ?
 		unsigned long long elementHash_;
+		// todo, where is this value set?
 		HashMap<StringHash, ShaderParameter> parameters_;
 		bool useTextureUnit_[MAX_TEXTURE_UNITS];
+		// todo, Have a purpose?
 		unsigned constantBufferSizes_[MAX_SHADER_PARAMETER_GROUPS];
 		PODVector<unsigned char> byteCode_;
 		String name_;
 		String defines_;
-		//todo
+		String definesClipPlane_;
+		String compilerOutput_;
 	};
 }
 

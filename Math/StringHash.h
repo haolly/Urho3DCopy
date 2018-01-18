@@ -86,6 +86,8 @@ namespace Urho3D
 
         unsigned Value() const {return value_;}
 
+        String ToString() const;
+
         unsigned ToHash() const {return value_;}
 
         static unsigned Calculate(const char* str, unsigned hash=0);

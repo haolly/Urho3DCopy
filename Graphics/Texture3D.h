@@ -13,6 +13,19 @@ namespace Urho3D
 	class Texture3D : public Texture
 	{
 		URHO3D_OBJECT(Texture3D, Texture);
+//	public:
+//		using ClassName = Texture3D;
+//		using BaseClassName = Texture;
+//		virtual Urho3D::StringHash GetType() const override { return GetTypeInfoStatic()->GetType(); }
+//		virtual const Urho3D::String& GetTypeName() const override { return GetTypeInfoStatic()->GetTypeName(); }
+//		virtual const Urho3D::TypeInfo* GetTypeInfo() const override { return GetTypeInfoStatic(); }
+//		static Urho3D::StringHash GetTypeStatic() { return GetTypeInfoStatic()->GetType(); }
+//		static const Urho3D::String& GetTypeNameStatic() { return GetTypeInfoStatic()->GetTypeName(); }
+//		static const Urho3D::TypeInfo* GetTypeInfoStatic()
+//		{
+//			static const Urho3D::TypeInfo typeInfoStatic("Texture3D", BaseClassName::GetTypeInfoStatic());
+//			return &typeInfoStatic;
+//		};
 
 	public:
 		Texture3D(Context* context);

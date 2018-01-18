@@ -17,6 +17,8 @@ namespace Urho3D
 	// Base class for texture resources
 	class Texture : public ResourceWithMetadata, public GPUObject
 	{
+		//URHO3D_OBJECT(Texture, ResourceWithMetadata);
+
 	public:
 		Texture(Context* context);
 		virtual ~Texture() override ;
@@ -48,6 +50,8 @@ namespace Urho3D
 		unsigned GetLevels() const { return levels_;}
 
 		int GetWidth() const { return width_; }
+
+		int GetHeight() const { return height_; }
 
 		int GetDepth() const { return depth_; }
 
@@ -98,8 +102,7 @@ namespace Urho3D
 		void SetParametersDirty();
 		void UpdateParameters();
 
-
-		void* GetShadowResourceView() const { return shaderResourceView_;}
+		void* GetShaderResourceView() const { return shaderResourceView_;}
 
 		void* GetSampler() const { return sampler_; }
 
@@ -110,7 +113,7 @@ namespace Urho3D
 
 		void SetResolveDirty(bool enable) { resolveDirty_ = enable;}
 
-		void SetLevelDirty();
+		void SetLevelsDirty();
 		void RegenerateLevels();
 
 		static unsigned CheckMaxLevels(int width, int height, unsigned requestLevels);
@@ -135,6 +138,7 @@ namespace Urho3D
 		union
 		{
 			/// Direct3D11 shader resource view
+			//todo what purpose ?
 			void* shaderResourceView_;
 			/// OpenGL target
 			unsigned target_;

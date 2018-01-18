@@ -6,6 +6,7 @@
 #include "../IO/Log.h"
 #include "../Resource/ResourceCache.h"
 #include "../Core/Context.h"
+#include "Graphics.h"
 
 namespace Urho3D
 {

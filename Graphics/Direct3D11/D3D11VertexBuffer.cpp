@@ -5,6 +5,7 @@
 #include <d3d11.h>
 #include "../VertexBuffer.h"
 #include "../../IO/Log.h"
+#include "../Graphics.h"
 
 namespace Urho3D
 {

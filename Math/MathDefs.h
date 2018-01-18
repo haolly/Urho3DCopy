@@ -43,11 +43,19 @@ namespace Urho3D
 	{
 		return lhs + std::numeric_limits<T>::epsilon() >= rhs && lhs - std::numeric_limits<T>::epsilon() <= rhs;
 	}
-
-
 	//todo
 
+	template <class T, class U>
+	inline T Min(T lhs, U rhs)
+	{
+		return lhs < rhs ? lhs : rhs;
+	};
 
+	template <class T, class U>
+	inline T Max(T lhs, U rhs)
+	{
+		return lhs > rhs ? lhs : rhs;
+	};
 
 	template <class T>
 	inline T Abs(T value)
@@ -133,6 +141,25 @@ namespace Urho3D
 	{
 		return M_RADTODEG * atan2(y, x);
 	}
+	//todo
+
+	inline bool IsPowerOfTwo(unsigned value)
+	{
+		return !(value & (value -1));
+	}
+
+	// http://graphics.stanford.edu/~seander/bithacks.html#RoundUpPowerOf2
+	inline unsigned NextPowerOfTwo(unsigned value)
+	{
+		value--;
+		value |= value >> 1;
+		value |= value >> 2;
+		value |= value >> 4;
+		value |= value >> 8;
+		value |= value >> 16;
+		return ++value;
+	}
+	//todo
 
     inline unsigned SDBMHash(unsigned hash, unsigned char c)
     {
@@ -140,17 +167,26 @@ namespace Urho3D
     }
 
 	//todo
-	template <class T, class U>
-	inline T Min(T lhs, U rhs)
-	{
-		return lhs < rhs ? lhs : rhs;
-	};
 
-	template <class T, class U>
-	inline T Max(T lhs, U rhs)
+	//https://gist.github.com/martinkallman/5049614
+	inline float HalfToFloat(unsigned short value)
 	{
-		return lhs > rhs ? lhs : rhs;
-	};
+		unsigned t1 = value & 0x7fff;
+		unsigned t2 = value & 0x8000;
+		unsigned t3 = value & 0x7c00;
+
+		t1 <<= 13;
+		t2 <<= 16;
+
+		t1 += 0x38000000;
+
+		t1 = (t3 == 0 ? 0 : t1);
+		t1 |= t2;
+
+		float out;
+		*((unsigned *)(&out)) = t1;
+		return out;
+	}
 }
 
 #endif //URHO3DCOPY_MATHDEFS_H

@@ -120,7 +120,13 @@ namespace Urho3D
 		samplerDesc.MaxLOD = M_INFINITY;
 		memcpy(&samplerDesc.BorderColor, borderColor_.Data(), 4 * sizeof(float));
 
-		//todo
+		HRESULT hr = graphics_->GetImpl()->GetDevice()->CreateSamplerState(&samplerDesc, (ID3D11SamplerState**)&sampler_);
+		if(FAILED(hr))
+		{
+			URHO3D_SAFE_RELEASE(sampler_);
+			URHO3D_LOGD3DERROR("Failed to create sampler state", hr);
+		}
+		parametersDirty_ = false;
 	}
 
 	// SRV short for shader resource view
@@ -163,7 +169,11 @@ namespace Urho3D
 
 	void Texture::RegenerateLevels()
 	{
-		//todo
+		if(!shaderResourceView_)
+			return;
+
+		graphics_->GetImpl()->GetDeviceContext()->GenerateMips((ID3D11ShaderResourceView*)shaderResourceView_);
+		levelsDirty_ = false;
 	}
 
 }

@@ -26,20 +26,9 @@ namespace Urho3D
 	}
 
 
-	void ShaderVariation::Release()
-	{
-		GPUObject::Release();
-	}
-
-
 	void ShaderVariation::SetName(const String &name)
 	{
 		name_ = name;
-	}
-
-	void ShaderVariation::SetDefines(const String &defines)
-	{
-
 	}
 
 	Shader *ShaderVariation::GetOwner() const
@@ -47,28 +36,4 @@ namespace Urho3D
 		return owner_;
 	}
 
-	bool ShaderVariation::LoadByteCode(const String &binaryShaderName)
-	{
-		return false;
-	}
-
-	bool ShaderVariation::Compile()
-	{
-		return false;
-	}
-
-	void ShaderVariation::ParseParameters(unsigned char *bufData, unsigned bufferSize)
-	{
-
-	}
-
-	void ShaderVariation::SaveByteCode(const String &binaryShaderName)
-	{
-
-	}
-
-	void ShaderVariation::CalculateConstantBufferSizes()
-	{
-
-	}
 }
