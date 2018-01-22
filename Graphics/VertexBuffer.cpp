@@ -69,16 +69,6 @@ namespace Urho3D
 		return SetSize(vertexCount, GetElements(elementMask), dynamic);
 	}
 
-	bool VertexBuffer::SetData(const void *data)
-	{
-		return false;
-	}
-
-	bool VertexBuffer::SetDataRange(const void *data, unsigned start, unsigned count, bool discard)
-	{
-		return false;
-	}
-
 
 
 	const VertexElement *VertexBuffer::GetElement(VertexElementSemantic semantic, unsigned char index) const

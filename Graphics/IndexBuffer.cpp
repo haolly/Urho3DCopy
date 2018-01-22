@@ -49,24 +49,17 @@ namespace Urho3D
 	bool IndexBuffer::SetSize(unsigned indexCount, bool largeIndices, bool dynamic)
 	{
 		Unlock();
-		//todo
-	}
 
-	bool IndexBuffer::SetData(const void *data)
-	{
-		return false;
-	}
+		indexCount_ = indexCount;
+		indexSize_ = (unsigned)(largeIndices ? sizeof(unsigned) : sizeof(unsigned short));
+		dynamic_ = dynamic;
 
-	bool IndexBuffer::SetDataRange(const void *data, unsigned start, unsigned count, bool discard)
-	{
-		return false;
+		if(shadowed_ && indexCount_ && indexSize_)
+			shadowData_ = new unsigned char[indexCount_ * indexSize_];
+		else
+			shadowData_.Reset();
+		return Create();
 	}
-
-	void *IndexBuffer::Lock(unsigned start, unsigned count, bool discard)
-	{
-		return nullptr;
-	}
-
 
 	bool IndexBuffer::GetUsedVertexRange(unsigned start, unsigned count, unsigned &minVertex, unsigned &vertexCount)
 	{
@@ -110,23 +103,4 @@ namespace Urho3D
 		return true;
 	}
 
-	bool IndexBuffer::Create()
-	{
-		return false;
-	}
-
-	bool IndexBuffer::UpdateToGPU()
-	{
-		return false;
-	}
-
-	void *IndexBuffer::MapBuffer(unsigned start, unsigned count, bool discard)
-	{
-		return nullptr;
-	}
-
-	void IndexBuffer::UnmapBuffer()
-	{
-
-	}
 }

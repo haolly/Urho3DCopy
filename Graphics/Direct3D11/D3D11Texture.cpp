@@ -57,7 +57,7 @@ namespace Urho3D
 		return format_ == DXGI_FORMAT_BC1_UNORM || format_ == DXGI_FORMAT_BC2_UNORM || format_ == DXGI_FORMAT_BC3_UNORM;
 	}
 
-	unsigned Texture::GetRawDataSize(int width) const
+	unsigned Texture::GetRowDataSize(int width) const
 	{
 		switch (format_)
 		{

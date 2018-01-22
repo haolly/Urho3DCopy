@@ -154,4 +154,8 @@ add_executable(Urho3DCopy
         Graphics/Direct3D11/D3D11ConstantBuffer.cpp Graphics/Direct3D11/D3D11ShaderVariation.cpp
         Graphics/Direct3D11/D3D11ShaderProgram.h
         Graphics/Direct3D11/D3D11Graphics.cpp
-        Graphics/RenderSurface.cpp Graphics/RenderSurface.h Graphics/Direct3D11/D3D11RenderSurface.cpp Graphics/Texture2D.cpp Graphics/Texture2D.h Graphics/Direct3D11/D3D11Texture2D.cpp)
+        Graphics/RenderSurface.cpp Graphics/RenderSurface.h Graphics/Direct3D11/D3D11RenderSurface.cpp
+        Graphics/Texture2D.cpp Graphics/Texture2D.h
+        Graphics/Direct3D11/D3D11Texture2D.cpp
+        Graphics/GraphicsEvents.h
+        Math/Rect.cpp Math/Rect.h)

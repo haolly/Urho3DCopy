@@ -558,7 +558,7 @@ namespace Urho3D
 
 	const ModelMorph *Model::GetMorph(unsigned index) const
 	{
-		return index < morphs_.Size() ? &morphs_[index];
+		return index < morphs_.Size() ? &morphs_[index] : nullptr;
 	}
 
 	const ModelMorph *Model::GetMorph(const String &name) const

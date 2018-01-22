@@ -135,26 +135,6 @@ namespace Urho3D
 
 	}
 
-	void Graphics::SetVertexBuffer(VertexBuffer *buffer)
-	{
-
-	}
-
-	bool Graphics::SetVertexBuffers(const PODVector<VertexBuffer *> &buffers, unsigned int instanceOffset)
-	{
-		return false;
-	}
-
-	bool Graphics::SetVertexBuffers(const Vector<SharedPtr<VertexBuffer>> &buffers, unsigned int instanceOffset)
-	{
-		return false;
-	}
-
-	void Graphics::SetIndexBuffer(IndexBuffer *buffer)
-	{
-
-	}
-
 	void Graphics::SetShaders(ShaderVariation *vs, ShaderVariation *ps)
 	{
 
@@ -265,36 +245,6 @@ namespace Urho3D
 		return IntVector2();
 	}
 
-	ShaderVariation *Graphics::GetShader(ShaderType type, const String &name, const String &defines) const
-	{
-		return nullptr;
-	}
-
-	ShaderVariation *Graphics::GetShader(ShaderType type, const char *name, const char *defines) const
-	{
-		return nullptr;
-	}
-
-	VertexBuffer *Graphics::GetVertexBuffer(unsigned index) const
-	{
-		return nullptr;
-	}
-
-	ShaderProgram *Graphics::GetShaderProgram() const
-	{
-		return nullptr;
-	}
-
-	TextureUnit Graphics::GetTextureUnit(const String &name)
-	{
-		return TU_ENVIRONMENT;
-	}
-
-	const String &Graphics::GetTextureUnitName(TextureUnit unit)
-	{
-		return <#initializer#>;
-	}
-
 	IntVector2 Graphics::GetRenderTargetDimensions() const
 	{
 		return IntVector2();
@@ -332,22 +282,71 @@ namespace Urho3D
 
 	void Graphics::AddGPUObject(GPUObject *object)
 	{
-
+		MutexLock lock(gpuObjectMutex_);
+		gpuObjects_.Push(object);
 	}
 
 	void Graphics::RemoveGPUObject(GPUObject *object)
 	{
-
+		MutexLock lock(gpuObjectMutex_);
+		gpuObjects_.Remove(object);
 	}
 
 	void *Graphics::ReserveScratchBuffer(unsigned size)
 	{
-		return nullptr;
+		if(!size)
+			return nullptr;
+		if(size > maxScratchBufferRequest_)
+			maxScratchBufferRequest_ = size;
+
+		// First check for a free buffer that is large enough
+		for(auto it = scratchBuffers_.Begin(); it != scratchBuffers_.End(); ++it)
+		{
+			if(!it->reserved_ && it->size_ >= size)
+			{
+				it->reserved_ = true;
+				return it->data_.Get();
+			}
+		}
+
+		// Then check if a free buffer can be resized
+		for(auto it = scratchBuffers_.Begin(); it != scratchBuffers_.End(); ++it)
+		{
+			if(!it->reserved_)
+			{
+				//Note, will release origin data first
+				it->data_ = new unsigned char[size];
+				it->size_ = size;
+				it->reserved_ = true;
+
+				URHO3D_LOGDEBUG("Resized scratch buffer to size " + String(size));
+				return it->data_.Get();
+			}
+		}
+
+		// Finally allocate a new buffer
+		ScratchBuffer newBuffer;
+		newBuffer.data_ = new unsigned char[size];
+		newBuffer.size_ = size;
+		newBuffer.reserved_ = true;
+		scratchBuffers_.Push(newBuffer);
+		return newBuffer.data_.Get();
 	}
 
 	void Graphics::FreeScratchBuffer(void *buffer)
 	{
+		if(!buffer)
+			return;
+		for(auto it = scratchBuffers_.Begin(); it != scratchBuffers_.End(); ++it)
+		{
+			if(it->reserved_ && it->data_.Get() == buffer)
+			{
+				it->reserved_ = false;
+				return;
+			}
+		}
 
+		URHO3D_LOGWARNING("Reserved scratch buffer " + ToStringHex((unsigned)(size_t)buffer) + " not found");
 	}
 
 	void Graphics::CleanupShaderPrograms(ShaderVariation *variation)

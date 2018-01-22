@@ -138,7 +138,7 @@ namespace Urho3D
 	{
 		if(level > levels_)
 			return 0;
-		//todo, why?
+		//Note, each mipmap is a square root in width and height
 		return Max(width_ >> level, 1);
 	}
 
@@ -146,6 +146,7 @@ namespace Urho3D
 	{
 		if(level > levels_)
 			return 0;
+		//Note, each mipmap is a square root in width and height
 		return Max(height_ >> level, 1);
 	}
 
@@ -158,11 +159,10 @@ namespace Urho3D
 
 	unsigned Texture::GetDataSize(int width, int height) const
 	{
-		//todo
 		if(IsCompressed())
-			return GetRawDataSize(width) * ((height + 3) >> 2);
+			return GetRowDataSize(width) * ((height + 3) >> 2);
 		else
-			return GetRawDataSize(width) * height;
+			return GetRowDataSize(width) * height;
 	}
 
 	unsigned Texture::GetDataSize(int width, int height, int depth) const
@@ -175,7 +175,7 @@ namespace Urho3D
 		if(!width_ || IsCompressed())
 			return 0;
 		else
-			return GetRawDataSize(width_) / width_;
+			return GetRowDataSize(width_) / width_;
 	}
 
 

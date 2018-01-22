@@ -17,7 +17,7 @@ namespace Urho3D
 	// Base class for texture resources
 	class Texture : public ResourceWithMetadata, public GPUObject
 	{
-		//URHO3D_OBJECT(Texture, ResourceWithMetadata);
+		URHO3D_OBJECT(Texture, ResourceWithMetadata);
 
 	public:
 		Texture(Context* context);
@@ -91,7 +91,7 @@ namespace Urho3D
 
 		unsigned GetDataSize(int width, int height) const;
 		unsigned GetDataSize(int width, int height, int depth) const;
-		unsigned GetRawDataSize(int width) const;
+		unsigned GetRowDataSize(int width) const;
 
 		unsigned GetComponents() const;
 
@@ -146,6 +146,7 @@ namespace Urho3D
 
 		/// Direct3D11 sampler state object
 		void* sampler_;
+		// todo, what is multisample ??
 		/// Direct3D11 resolve texture object when multisample with autoresolve is used.
 		void* resolveTexture_;
 
@@ -164,12 +165,14 @@ namespace Urho3D
 		int depth_;
 		bool shadowCompare_;
 
+		//todo, what does this do?
 		TextureFilterMode filterMode_;
 		TextureAddressMode addressMode_[MAX_COORDS];
 		unsigned anisotropy_;
 		unsigned mipsToSkip_[MAX_TEXTURE_QUALITY_LEVELS];
 		Color borderColor_;
 		/// multisampling level
+		//todo
 		int multiSample_;
 		bool sRGB_;
 		bool parametersDirty_;

@@ -206,6 +206,7 @@ namespace Urho3D
 		VertexElementType type_;
 		VertexElementSemantic semantic_;
 		unsigned char index_;
+		//todo, what is this?
 		bool perInstance_;
 		//Todo, the offset at VertexBuffer ??
 		unsigned offset_;

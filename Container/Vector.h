@@ -486,7 +486,9 @@ namespace Urho3D
 	/**
 	 * todo, the origin comments has notice: Does not call constructors or destructors and use block move.
 	 * Is intentionally (for performance reasons) unsafe for self-insertion
-	 * todo, store POD types ?? or is is class is POD ??
+	 * Note, this is a StandardLayoutType, ref http://en.cppreference.com/w/cpp/concept/StandardLayoutType
+	 * and http://en.cppreference.com/w/cpp/language/data_members#Standard_layout
+	 * Note ref https://ideone.com/pgQ5eY
 	 * @tparam T
 	 */
 	template <class T>

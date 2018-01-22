@@ -70,6 +70,9 @@ namespace Urho3D
 		void EndFrame();
 		void Clear(unsigned flags, const Color& color = Color(0.0f, 0.0f, 0.0f, 0.0f), float depth = 1.0f, unsigned stencil = 0);
 
+		bool ResolveToTexture(Texture2D* texture);
+		bool ResolveToTexture(TextureCube* texture);
+
 		void Draw(PrimitiveType type, unsigned vertexStart, unsigned vertexCount);
 		void Draw(PrimitiveType type, unsigned indexStart, unsigned indexCount, unsigned minVertex, unsigned vertexCount);
 		void Draw(PrimitiveType type, unsigned indexStart, unsigned indexCount, unsigned baseVertexIndex, unsigned minVertex,
@@ -153,6 +156,13 @@ namespace Urho3D
 
 		int GetMonitor() const { return monitor_; }
 
+		//todo
+
+		bool IsDeviceLost() const;
+		unsigned GetNumPrimitives() const { return numPrimitives_; }
+		unsigned GetNumBatches() const { return numBatches_; }
+		unsigned GetDummyColorFormat() const { return dummyColorFormat_; }
+		unsigned GetShadowMapFormat() const { return shadowMapFormat_; }
 		//todo
 
 		bool GetSRGBSupport() const { return sRGBSupport_; }

@@ -135,7 +135,15 @@ namespace Urho3D
 		CompressedLevel GetCompressedLevel(unsigned index) const;
 		Image* GetSubimage(const IntRect& rect) const;
 		SDL_Surface* GetSDLSurface(const IntRect& rect = IntRect::ZERO);
-		//todo
+		// Precalculate the mip levels. Used by asynchronous texture loading
+		// Note, what is mip level ??
+		// Ref https://en.wikipedia.org/wiki/Mipmap, https://en.wikipedia.org/wiki/Trilinear_filtering
+		void PrecalculateLevels();
+		bool HasAlphaChannel() const;
+		bool SetSubimage(const Image* image, const IntRect& rect);
+		void CleanupLevels();
+		void GetLevels(PODVector<Image*>& levels);
+		void GetLevels(PODVector<const Image*>& levels) const;
 
 	private:
 		static unsigned char* GetImageData(Deserializer& source, int& width, int& height, unsigned& components);

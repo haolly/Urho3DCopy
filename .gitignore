@@ -96,3 +96,5 @@ compile_commands.json
 CTestTestfile.cmake
 
 .idea/misc.xml
+.idea/workspace.xml
+.idea/dictionaries/

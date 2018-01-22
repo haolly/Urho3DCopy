@@ -926,5 +926,60 @@ namespace Urho3D
 
 	}
 
+	SharedPtr<Image> Image::GetNextLevel() const
+	{
+		return SharedPtr<Image>();
+	}
+
+	SharedPtr<Image> Image::ConvertToRGBA() const
+	{
+		return SharedPtr<Image>();
+	}
+
+	CompressedLevel Image::GetCompressedLevel(unsigned index) const
+	{
+		return CompressedLevel();
+	}
+
+	Image *Image::GetSubimage(const IntRect &rect) const
+	{
+		return nullptr;
+	}
+
+	SDL_Surface *Image::GetSDLSurface(const IntRect &rect)
+	{
+		return nullptr;
+	}
+
+	void Image::PrecalculateLevels()
+	{
+
+	}
+
+	bool Image::HasAlphaChannel() const
+	{
+		return false;
+	}
+
+	bool Image::SetSubimage(const Image *image, const IntRect &rect)
+	{
+		return false;
+	}
+
+	void Image::CleanupLevels()
+	{
+
+	}
+
+	void Image::GetLevels(PODVector<Image *> &levels)
+	{
+
+	}
+
+	void Image::GetLevels(PODVector<const Image *> &levels) const
+	{
+
+	}
+
 }
 

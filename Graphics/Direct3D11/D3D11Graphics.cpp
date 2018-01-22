@@ -510,5 +510,117 @@ namespace Urho3D
 		}
 	}
 
+	ShaderVariation *Graphics::GetShader(ShaderType type, const String &name, const String &defines) const
+	{
+		return nullptr;
+	}
+
+	ShaderVariation *Graphics::GetShader(ShaderType type, const char *name, const char *defines) const
+	{
+		return nullptr;
+	}
+
+	VertexBuffer *Graphics::GetVertexBuffer(unsigned index) const
+	{
+		return index < MAX_VERTEX_STREAMS ? vertexBuffers_[index] : nullptr;
+	}
+
+	ShaderProgram *Graphics::GetShaderProgram() const
+	{
+		return impl_->shaderProgram_;
+	}
+
+	TextureUnit Graphics::GetTextureUnit(const String &name)
+	{
+		auto it = textureUnits_.Find(name);
+		return it != textureUnits_.End() ? it->second_ : MAX_TEXTURE_UNITS;
+	}
+
+	const String &Graphics::GetTextureUnitName(TextureUnit unit)
+	{
+		for(auto it = textureUnits_.Begin(); it != textureUnits_.End(); ++it)
+		{
+			if(it->second_ == unit)
+				return it->first_;
+		}
+		return String::EMPTY;
+	}
+
+	void Graphics::SetVertexBuffer(VertexBuffer *buffer)
+	{
+		// Note: this is not multi-instance safe
+		static PODVector<VertexBuffer*> vertexBuffers(1);
+		vertexBuffers[0] = buffer;
+		SetVertexBuffers(vertexBuffers);
+	}
+
+	bool Graphics::SetVertexBuffers(const PODVector<VertexBuffer *> &buffers, unsigned int instanceOffset)
+	{
+		if(buffers.Size() > MAX_TEXTURE_UNITS)
+		{
+			URHO3D_LOGERROR("Too many vertex buffers");
+			return false;
+		}
+
+		for(unsigned i=0; i<MAX_VERTEX_STREAMS; ++i)
+		{
+			VertexBuffer* buffer = nullptr;
+			bool changed = false;
+
+			buffer = i < buffers.Size() ? buffers[i] : nullptr;
+			if(buffer)
+			{
+				const PODVector<VertexElement>& elements = buffer->GetElements();
+				// Check if buffer has per-instance data
+				bool hasInstanceData = elements.Size() && elements[0].perInstance_;
+				unsigned offset = hasInstanceData ? instanceOffset * buffer->GetVertexSize() : 0;
+
+				if(buffer != vertexBuffers_[i] || offset != impl_->vertexOffsets_[i])
+				{
+					vertexBuffers_[i] = buffer;
+					impl_->vertexBuffers_[i] = (ID3D11Buffer*)buffer->GetGPUObject();
+					impl_->vertexSize_[i] = buffer->GetVertexSize();
+					impl_->vertexOffsets_[i] = offset;
+					changed = true;
+				}
+			}
+			else if(vertexBuffers_[i])
+			{
+				vertexBuffers_[i] = nullptr;
+				impl_->vertexBuffers_[i] = nullptr;
+				impl_->vertexSize_[i] = 0;
+				impl_->vertexOffsets_[i] = 0;
+				changed = true;
+			}
+
+			if(changed)
+			{
+				impl_->vertexDeclarationDirty_ = true;
+
+				if(impl_->firstDirtyVB_ == M_MAX_UNSIGNED)
+					impl_->firstDirtyVB_ = impl_->lastDirtyVB_ = i;
+
+				else
+				{
+					if(i < impl_->firstDirtyVB_)
+						impl_->firstDirtyVB_ = i;
+					if(i > impl_->lastDirtyVB_)
+						impl_->lastDirtyVB_ = i;
+				}
+			}
+		}
+		return true;
+	}
+
+	bool Graphics::SetVertexBuffers(const Vector<SharedPtr<VertexBuffer>> &buffers, unsigned int instanceOffset)
+	{
+		return false;
+	}
+
+	void Graphics::SetIndexBuffer(IndexBuffer *buffer)
+	{
+
+	}
+
 
 }

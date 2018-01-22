@@ -563,14 +563,15 @@ namespace Urho3D
 		first.Swap(second);
 	}
 
-	//Todo, https://stackoverflow.com/questions/8526598/how-does-stdforward-work
+	//note, https://stackoverflow.com/questions/8526598/how-does-stdforward-work
+	// ref https://stackoverflow.com/questions/9671749/whats-the-difference-between-stdmove-and-stdforward?noredirect=1&lq=1
 	template <class T, class ... Args>
 	UniquePtr<T> MakeUnique(Args && ... args)
 	{
 		return UniquePtr<T>(new T(std::forward<Args>(args)...));
 	};
 
-	//Todo, https://stackoverflow.com/questions/7257144/when-to-use-stdforward-to-forward-arguments
+	//Note, https://stackoverflow.com/questions/7257144/when-to-use-stdforward-to-forward-arguments
 	template <class T, class ... Args>
 	SharedPtr<T> MakeShared(Args && ... args)
 	{

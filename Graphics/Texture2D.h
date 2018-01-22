@@ -46,7 +46,7 @@ namespace Urho3D
 
 		bool GetData(unsigned level, void* dest) const;
 		// Get Image Data from zero mip level. Only RGB and RGBA textures are supported
-		bool GetData(Image& image) const;
+		bool GetImage(Image &image) const;
 		// Get Image Data from zero mip level. Only RGB and RGBA textures are supported
 		SharedPtr<Image> GetImage() const;
 		RenderSurface* GetRenderSurface() const { return renderSurface_;}

@@ -111,6 +111,7 @@ namespace Urho3D
 		void* MapBuffer(unsigned start, unsigned count, bool discard);
 		void UnmapBuffer();
 
+		//todo, the shadow( ie copy ) data ??
 		SharedArrayPtr<unsigned char> shadowData_;
 		//todo, 这两个是怎么确定的？？
 		unsigned vertexCount_;
@@ -125,6 +126,7 @@ namespace Urho3D
 		unsigned lockStart_;
 		unsigned lockCount_;
 		void* lockScratchData_;
+		// ref https://msdn.microsoft.com/en-us/library/windows/desktop/ff476259(v=vs.85).aspx
 		bool dynamic_;
 		bool shadowed_;
 		bool discardLock_;
