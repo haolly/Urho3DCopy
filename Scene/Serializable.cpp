@@ -6,6 +6,8 @@
 #include "../IO/Log.h"
 #include "../IO/Deserializer.h"
 #include "../Core/Context.h"
+#include "../IO/Serializer.h"
+#include "../Resource/XMLElement.h"
 
 namespace Urho3D
 {
@@ -140,17 +142,110 @@ namespace Urho3D
 
 	bool Serializable::Save(Serializer &dest) const
 	{
-		return false;
+		const Vector<AttributeInfo>* attributes = GetAttributes();
+		if(!attributes)
+			return true;
+
+		Variant value;
+		for(unsigned i=0; i< attributes->Size(); ++i)
+		{
+			const AttributeInfo& attr = attributes->At(i);
+			if(!(attr.mode_ & AM_FILE) || (attr.mode_ & AM_FILEREADONLY) == AM_FILEREADONLY)
+				continue;
+			OnGetAttribute(attr, value);
+
+			if(!dest.WriteVariant(value))
+			{
+				URHO3D_LOGERROR("Could not save " + GetTypeName() + ", writing to stream failed");
+				return false;
+			}
+		}
+		return true;
 	}
 
 	bool Serializable::LoadXML(const XMLElement &source, bool setInstanceDefault)
 	{
-		return false;
+		if(source.IsNull())
+		{
+			URHO3D_LOGERROR("Could not load " + GetTypeName() + ", null source element");
+			return false;
+		}
+		const Vector<AttributeInfo>* attributes = GetAttributes();
+		if(!attributes)
+			return true;
+		XMLElement attrElem = source.GetChild("attribute");
+		unsigned startIndex = 0;
+		while(attrElem)
+		{
+			String name = attrElem.GetAttribute("name");
+			unsigned i = startIndex;
+			unsigned attempts = attributes->Size();
+			while (attempts)
+			{
+				const AttributeInfo& attr = attributes->At(i);
+				if((attr.mode_ & AM_FILE) && !attr.name_.Compare(name, true))
+				{
+					Variant varValue;
+
+					// If enums specified, do enum lookup and int assignment. Otherwise assign the variant
+					if(attr.enumNames_)
+					{
+						String value = attrElem.GetAttribute("value");
+						bool enumFound = false;
+						int enumValue = 0;
+						const char** enumPtr = attr.enumNames_;
+						while (*enumPtr)
+						{
+							if(!value.Compare(*enumPtr, false))
+							{
+								enumFound = true;
+								break;
+							}
+							++enumPtr;
+							++enumValue;
+						}
+						if(enumFound)
+							varValue = enumValue;
+						else
+							URHO3D_LOGWARNING("Unknow enum value " + value + " in attribute " + attr.name_);
+
+					}
+					else
+					{
+						varValue = attrElem.GetVariantValue(attr.type_);
+					}
+
+					if(!varValue.IsEmpty())
+					{
+						OnSetAttribute(attr, varValue);
+						if(setInstanceDefault)
+							SetInstanceDefault(attr.name_, varValue);
+					}
+
+					startIndex = (i + 1) % attributes->Size();
+					// load next attribute name
+					break;
+				}
+				else
+				{
+					//Search next attribute name
+					i = (i+1) % attributes->Size();
+					--attempts;
+				}
+			}
+
+			// Do not found the corresponding attribute
+			if(!attempts)
+				URHO3D_LOGWARNING("Unknown attribute " + name + " in XML data");
+
+			attrElem = attrElem.GetNext("attribute");
+		}
+		return true;
 	}
 
 	bool Serializable::SaveXML(XMLElement &dest) const
 	{
-		return false;
+		//todo
 	}
 
 	bool Serializable::SetAttribute(unsigned index, const Variant &value)
@@ -274,14 +369,19 @@ namespace Urho3D
 
 	void Serializable::SetInstanceDefault(const String &name, const Variant &defaultValue)
 	{
-
+		if(!instanceDefaultValues_)
+			instanceDefaultValues_ = new VariantMap();
+		(*instanceDefaultValues_)[name] = defaultValue;
 	}
 
 	Variant Serializable::GetInstanceDefault(const String &name) const
 	{
 		if(instanceDefaultValues_)
 		{
-
+			auto it = instanceDefaultValues_->Find(name);
+			if(it != instanceDefaultValues_->End())
+				return it->second_;
 		}
+		return Variant::EMPTY;
 	}
 }

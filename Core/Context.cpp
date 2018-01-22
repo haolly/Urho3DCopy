@@ -187,7 +187,19 @@ namespace Urho3D
 	Context::~Context()
 	{
 		RemoveSubsystem(StringHash("Audio"));
-		//todo
+		RemoveSubsystem(StringHash("UI"));
+		RemoveSubsystem(StringHash("Input"));
+		RemoveSubsystem(StringHash("Renderer"));
+		RemoveSubsystem(StringHash("Graphics"));
+
+		subSystems_.Clear();
+		factories_.Clear();
+
+		for(auto iter = eventDataMaps_.Begin(); iter != eventDataMaps_.End(); ++iter)
+		{
+			delete *iter;
+		}
+		eventDataMaps_.Clear();
 	}
 
 	SharedPtr<Object> Context::CreateObject(StringHash objectType)
@@ -230,6 +242,7 @@ namespace Urho3D
 			subSystems_.Erase(it);
 	}
 
+	//todo, usage
 	AttributeHandle Context::RegisterAttribute(StringHash objectType, const AttributeInfo &attr)
 	{
 		if(attr.type_ == VAR_NONE || attr.type_ == VAR_VOIDPTR || attr.type_ == VAR_PTR ||
@@ -249,8 +262,9 @@ namespace Urho3D
 		{
 			Vector<AttributeInfo>& objectNetworkAttributes = networkAttributes_[objectType];
 			objectNetworkAttributes.Push(attr);
-			handle.netwrokAttributeInfo_ = &objectNetworkAttributes.Back();
+			handle.networkAttributeInfo_ = &objectNetworkAttributes.Back();
 		}
+		//todo, the copy assignment operator is deleted, so the copy-elision do not happen ??
 		return handle;
 	}
 
@@ -322,46 +336,29 @@ namespace Urho3D
 		}
 
 		const Vector<AttributeInfo>* baseAttributes = GetAttributes(baseType);
+		if(baseAttributes)
+		{
+			for(unsigned i=0; i< baseAttributes->Size(); ++i)
+			{
+				const AttributeInfo& attr = baseAttributes->At(i);
+				attributes_[derivedType].Push(attr);
+				if(attr.mode_ & AM_NET)
+					networkAttributes_[derivedType].Push(attr);
+			}
+		}
 	}
 
-	template<class T>
-	void Context::RegisterFactory()
+
+	Object *Context::GetSubsystem(StringHash type) const
 	{
-
-	}
-
-	template<class T>
-	void Context::RegisterFactory(const char *category)
-	{
-
-	}
-
-	template<class T>
-	T *Context::RegisterSubsystem()
-	{
-		return nullptr;
-	}
-
-	template<class T>
-	void Context::RemoveSubsystem()
-	{
-
-	}
-
-	template<class T>
-	AttributeHandle Context::RegisterAttribute(const AttributeInfo &attr)
-	{
-		return nullptr;
-	}
-
-	Object *Context::GetSubsystem(StringHash key) const
-	{
-		return nullptr;
+		auto iter = subSystems_.Find(type);
+		return iter != subSystems_.End() ? iter->second_ : nullptr;
 	}
 
 	const String &Context::GetTypeName(StringHash objectType) const
 	{
-		//todo
+		auto iter = factories_.Find(objectType);
+		return iter != factories_.End() ? iter->second_->GetTypeName() : String::EMPTY;
 	}
 
 	AttributeInfo *Context::GetAttribute(StringHash objectType, const char *name)

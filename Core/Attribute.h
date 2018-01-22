@@ -66,6 +66,7 @@ namespace Urho3D
 
 		VariantType type_ = VAR_NONE;
 		String name_;
+		//Todo, all possibility enum name ?
 		const char** enumNames_ = nullptr;
 		SharedPtr<AttributeAccessor> accessor_;
 		Variant defaultValue_;
@@ -82,14 +83,14 @@ namespace Urho3D
 		AttributeHandle() = default;
 		AttributeHandle(const AttributeHandle& another) = default;
 		AttributeInfo* attributeInfo_ = nullptr;
-		AttributeInfo* netwrokAttributeInfo_ = nullptr;
+		AttributeInfo* networkAttributeInfo_ = nullptr;
 	public:
 		AttributeHandle& SetMetadata(StringHash key, const Variant& value)
 		{
 			if(attributeInfo_)
 				attributeInfo_->metadata_[key] = value;
-			if(netwrokAttributeInfo_)
-				netwrokAttributeInfo_->metadata_[key] = value;
+			if(networkAttributeInfo_)
+				networkAttributeInfo_->metadata_[key] = value;
 			return *this;
 		}
 	};

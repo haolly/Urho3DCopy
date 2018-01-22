@@ -185,7 +185,7 @@ namespace Urho3D
 		Context* GetContext() const { return context_; }
 		const TypeInfo* GetTypeInfo() const { return typeInfo_;}
 		StringHash GetType() const { return typeInfo_->GetType();}
-		const String& GeTypeName() { return typeInfo_->GetTypeName();}
+		const String& GetTypeName() { return typeInfo_->GetTypeName();}
 
 	protected:
 		Context* context_;

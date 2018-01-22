@@ -200,7 +200,7 @@ namespace Urho3D
 
 	bool XMLElement::SetFloat(const String &name, float value)
 	{
-		return false;
+		//todo
 	}
 
 	bool XMLElement::SetDouble(const String &name, double value)

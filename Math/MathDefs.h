@@ -43,6 +43,12 @@ namespace Urho3D
 	{
 		return lhs + std::numeric_limits<T>::epsilon() >= rhs && lhs - std::numeric_limits<T>::epsilon() <= rhs;
 	}
+	template <class T, class U>
+	inline T Lerp(T lhs, T rhs, U t)
+	{
+		return lhs * (1.0 - t) + rhs * t;
+	};
+
 	//todo
 
 	template <class T, class U>

@@ -764,6 +764,13 @@ namespace Urho3D
 		VariantType  type_ = VAR_NONE;
 		VariantValue value_;
 	};
+
+	template <typename T> VariantType GetVariantType();
+
+	template <> inline VariantType GetVariantType<int>() { return VAR_INT; }
+	template <> inline VariantType GetVariantType<unsigned>() { return VAR_INT; };
+	template <> inline VariantType GetVariantType<long long>() { return VAR_INT64; }
+	//todo
 }
 
 

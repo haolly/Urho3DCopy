@@ -12,7 +12,6 @@ include_directories(ThirdParty/STB)
 
 add_definitions (-DURHO3D_FILEWATCHER)
 add_definitions (-DURHO3D_THREADING)
-
 add_definitions (-DDESKTOP_GRAPHICS)
 
 add_executable(Urho3DCopy
@@ -108,6 +107,8 @@ add_executable(Urho3DCopy
         Scene/AnimationDefs.h
         Scene/ValueAnimation.cpp
         Scene/ValueAnimation.h
+        Scene/ObjectAnimation.cpp
+        Scene/ObjectAnimation.h
         Graphics/Model.cpp
         Graphics/Model.h
         Math/BoundingBox.cpp
@@ -159,3 +160,5 @@ add_executable(Urho3DCopy
         Graphics/Direct3D11/D3D11Texture2D.cpp
         Graphics/GraphicsEvents.h
         Math/Rect.cpp Math/Rect.h)
+        Scene/SceneEvents.cpp Scene/SceneEvents.h
+        Scene/Node.cpp Scene/Node.h)

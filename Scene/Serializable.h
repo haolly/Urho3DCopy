@@ -34,8 +34,6 @@ namespace Urho3D
 		virtual bool LoadXML(const XMLElement& source, bool setInstanceDefault = false);
 		virtual bool SaveXML(XMLElement& dest) const;
 
-		//todo
-
 		virtual void ApplyAttributes() {}
 
 		virtual bool SaveDefaultAttributes() const { return false; }
@@ -92,8 +90,29 @@ namespace Urho3D
 		TSetFunction setFunction_;
 	};
 
+	template <class TClassType, class TGetFunction, class TSetFunction>
+	SharedPtr<AttributeAccessor> MakeVariantAttributeAccessor(TGetFunction getFunction, TSetFunction setFunction)
+	{
+		return SharedPtr<AttributeAccessor>(new VariantAttributeAccessorImpl<TClassType, TGetFunction, TSetFunction>(getFunction, setFunction));
+	};
+
+#define URHO3D_MAKE_MEMBER_ATTRIBUTE_ACCESSOR(typeName, variable) Urho3D::MakeVariantAttributeAccessor<ClassName>( \
+	[](const ClassName& self, Urho3D::Variant& value) {value = self.variable;}, \
+	[](ClassName& self, const Urho3D::Variant& value) {self.variable = value.Get<typeName>();})
+
+#define URHO3D_MAKE_GET_SET_ATTRIBUTE_ACCESSOR(getFunction, setFunction, typeName) Urho3D::MakeVariantAttributeAccessor<ClassName>( \
+	[](const ClassName& self, Urho3D::Variant& value) { value = self.getFunction(); }, \
+	[](ClassName& self, const Urho3D::Variant& value) { self.setFunction(value.Get<typeName>()); })
+
+	//todo, 这里的 ClassName 从哪里传来的？？
+#define URHO3D_ACCESSOR_ATTRIBUTE(name, getFunction, setFunction, typeName, defaultValue, mode) context->RegisterAttribute<ClassName>(Urho3D::AttributeInfo( \
+	Urho3D::GetVariantType<typeName>(), name, URHO3D_MAKE_GET_SET_ATTRIBUTE_ACCESSOR(getFunction, setFunction, typeName), nullptr, defaultValue, mode))
+
+// Deprecated, Use URHO3D_ACCESSOR_ATTRIBUTE instead
+#define URHO3D_MIXED_ACCESSOR_ATTRIBUTE(name, getFunction, setFunction, typeName, defaultValue, mode) URHO3D_ACCESSOR_ATTRIBUTE( \
+		name, getFunction, setFunction, typeName, defaultValue, mode)
+
+#endif //URHO3DCOPY_SERIALIZABLE_H
 }
 
 
-
-#endif //URHO3DCOPY_SERIALIZABLE_H

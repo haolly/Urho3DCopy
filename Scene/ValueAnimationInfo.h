@@ -45,8 +45,9 @@ namespace Urho3D
 	protected:
 		virtual void ApplyValue(const Variant& newValue);
 		float CalculateScaledTime(float currentTime, bool& finished) const;
-		void GetEventFrames(float beginFrame, float endTime, PODVector<const VAnimEventFrame*>& eventFrames);
+		void GetEventFrames(float beginTime, float endTime, PODVector<const VAnimEventFrame*>& eventFrames);
 
+		//Note, weak reference
 		WeakPtr<Object> target_;
 		SharedPtr<ValueAnimation> animation_;
 		WrapMode wrapMode_;

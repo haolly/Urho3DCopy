@@ -112,8 +112,15 @@ namespace Urho3D
 
 		AttributeInfo* GetAttribute(StringHash objectType, const char* name);
 
-		template <class T> T* GetSubsystem() const;
-		template <class T> AttributeInfo* GetAttribute(const char* name);
+		template <class T> T* GetSubsystem() const
+		{
+			return static_cast<T*>(GetSubsystem(T::GetTypeStatic()));
+		}
+
+		template <class T> AttributeInfo* GetAttribute(const char* name)
+		{
+			return GetAttribute(T::GetTypeStatic(), name);
+		}
 
 		const Vector<AttributeInfo>* GetAttributes(StringHash type) const
 		{
@@ -171,6 +178,7 @@ namespace Urho3D
 
 	    HashMap<StringHash, SharedPtr<ObjectFactory> > factories_;
 	    HashMap<StringHash, SharedPtr<Object> > subSystems_;
+		//todo, 这些 attribute 是什么时候添加的
 	    HashMap<StringHash, Vector<AttributeInfo> > attributes_;
 	    HashMap<StringHash, Vector<AttributeInfo> > networkAttributes_;
 
@@ -194,7 +202,7 @@ namespace Urho3D
 	}
 
 	template <class T>
-	void Context::RegisterFactory(const char *category)
+	void Context::RegisterFactory(const char* category)
 	{
 		RegisterFactory(new ObjectFactoryImpl<T>(this), category);
 	}
@@ -206,6 +214,44 @@ namespace Urho3D
 		RegisterSubsystem(subsystem);
 		return subsystem;
 	}
+
+	template<class T>
+	void Context::RemoveSubsystem()
+	{
+		RemoveSubsystem(T::GetTypeStatic());
+	}
+
+	template<class T>
+	AttributeHandle Context::RegisterAttribute(const AttributeInfo &attr)
+	{
+		return RegisterAttribute(T::GetTypeStatic(), attr);
+	}
+
+	template <class T>
+	void Context::RemoveAttribute(const char* name)
+	{
+		RemoveAttribute(T::GetTypeStatic(), name);
+	}
+
+	template <class T>
+	void Context::RemoveAllAttributes()
+	{
+		RemoveAttribute(T::GetTypeStatic());
+	}
+
+	template <class T, class U>
+	void Context::CopyBaseAttributes()
+	{
+		CopyBaseAttributes(T::GetTypeStatic(), U::GetTypeStatic());
+	}
+
+	template <class T>
+	void Context::UpdateAttributeDefaultValue(const char* name, const Variant& defalutValue)
+	{
+		UpdateAttributeDefaultValue(T::GetTypeStatic(), name, defalutValue);
+	}
+
+
 }
 
 

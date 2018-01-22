@@ -269,6 +269,14 @@ namespace Urho3D
 				return Lerp(value1.GetFloat(), value2.GetFloat(), t);
 			case VAR_VECTOR2:
 				return value1.GetVector2().Lerp(value2.GetVector2(), t);
+			case VAR_VECTOR3:
+				return value1.GetVector3().Lerp(value2.GetVector3(), t);
+			case VAR_VECTOR4:
+				return value1.GetVector4().Lerp(value2.GetVector4(), t);
+			case VAR_QUATERNION:
+				return value1.GetQuaternion().Slerp(value2.GetQuaternion(), t);
+			case VAR_COLOR:
+				return value1.GetColor().Lerp(value2.GetColor(), t);
 			//todo
 		}
 	}
