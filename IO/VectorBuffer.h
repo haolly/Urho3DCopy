@@ -9,6 +9,10 @@
 
 namespace Urho3D
 {
+	/***
+	 * Dynamically sized buffer that can be read and written to as a steam
+	 * Compare with VectorBuffer
+	 */
 	class VectorBuffer : public AbstractFile
 	{
 	public:
@@ -24,12 +28,26 @@ namespace Urho3D
 		void SetData(const PODVector<unsigned char>& data);
 
 		void SetData(const void* data, unsigned size);
-		//todo
+		void SetData(Deserializer& data, unsigned size);
+
+		void Clear();
+		void Resize(unsigned size);
 
 		const unsigned char* GetData() const
 		{
-			//todo, 可以这样写？？ so the PODVector must have a standard-layout ??
+			//Note, 可以这样写？？ so the PODVector must have a standard-layout ??
+			// Yes, it is
 			return size_ ? &buffer_[0] : nullptr;
+		}
+
+		unsigned char* GetModifiableData()
+		{
+			return size_ ? &buffer_[0] : nullptr;
+		}
+
+		const PODVector<unsigned char>& GetBuffer() const
+		{
+			return buffer_;
 		}
 
 	private:

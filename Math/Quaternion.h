@@ -53,7 +53,61 @@ namespace Urho3D
 			FromAngleAxis(angle, axis);
 		}
 
+		Quaternion(float angle)
+		{
+			FromAngleAxis(angle, Vector3::FORWARD);
+		}
 
+		Quaternion(float x, float y, float z)
+		{
+			FromEulerAngles(x, y, z);
+		}
+
+		Quaternion(const Vector3& start, const Vector3& end)
+		{
+			FromRotationTo(start, end);
+		}
+
+		Quaternion(const Vector3& xAxis, const Vector3& yAxis, const Vector3& zAxis)
+		{
+			FromAxes(xAxis, yAxis, zAxis);
+		}
+
+		explicit Quaternion(const Matrix3& matrix)
+		{
+			FromRotationMatrix(matrix);
+		}
+
+		//todo
+
+		Quaternion operator* (const Quaternion& rhs) const
+		{
+			//todo
+		}
+
+		Vector3 operator *(const Vector3& rhs) const
+		{
+			//todo, read
+			Vector3 qVec(x_, y_, z_);
+			Vector3 cross1(qVec.CrossProduct(rhs));
+			Vector3 cross2(qVec.CrossProduct(cross1));
+			return rhs + 2.0f * (cross1 * w_ + cross2);
+		}
+
+		void Normalize()
+		{
+			//todo
+		}
+
+		Quaternion Normalized() const
+		{
+			//todo
+		}
+
+		Quaternion Inverse() const
+		{
+			//todo
+		}
 
 		void FromAngleAxis(float angle, const Vector3& axis);
 		void FromEulerAngles(float x, float y, float z);

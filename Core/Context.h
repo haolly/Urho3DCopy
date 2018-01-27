@@ -221,6 +221,7 @@ namespace Urho3D
 		RemoveSubsystem(T::GetTypeStatic());
 	}
 
+	//todo, when to call this?
 	template<class T>
 	AttributeHandle Context::RegisterAttribute(const AttributeInfo &attr)
 	{

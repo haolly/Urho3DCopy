@@ -222,9 +222,37 @@ namespace Urho3D
 		return false;
 	}
 
+	//Note, ref https://en.wikipedia.org/wiki/Variable-length_quantity
 	bool Serializer::WriteVLE(unsigned value)
 	{
-		return false;
+		unsigned char data[4];
+
+		if(value < 0x80)
+			return WriteUByte((unsigned char)value);
+		// 0x4000 is the max 14 bit value
+		else if(value < 0x4000)
+		{
+			// make the 8th bit be 1, actually, save original 7 bits, the 8th bit is a flag indicate whether there are more bit
+			data[0] = (unsigned char)(value | 0x80);
+			data[1] = (unsigned char)(value >> 7);
+			return Write(data, 2) == 2;
+		}
+		// 0x20 00 00 is the max 21 bit value
+		else if(value < 0x200000)
+		{
+			data[0] = (unsigned char)(value | 0x80);
+			data[1] = (unsigned char)((value >> 7) | 0x80);
+			data[2] = (unsigned char)(value >> 14);
+			return Write(data, 3) == 3;
+		}
+		else
+		{
+			data[0] = (unsigned char)(value | 0x80);
+			data[1] = (unsigned char)((value >> 7) | 0x80);
+			data[2] = (unsigned char)((value >> 14) | 0x80);
+			data[3] = (unsigned char)(value >> 21);
+			return Write(data, 4) == 4;
+		}
 	}
 
 	bool Serializer::WriteNetID(unsigned value)

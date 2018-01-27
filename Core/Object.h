@@ -12,6 +12,7 @@
 #include "Variant.h"
 #include "../Container/LinkedList.h"
 #include "../Container/Ptr.h"
+#include "Context.h"
 
 namespace Urho3D
 {

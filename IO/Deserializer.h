@@ -17,6 +17,7 @@ namespace Urho3D
 		Deserializer(unsigned size);
 		virtual ~Deserializer();
 
+		//todo, who implements this ?
 		virtual unsigned Read(void* dest, unsigned size) = 0;
 		virtual unsigned Seek(unsigned position) = 0;
 		virtual const String& GetName() const;
@@ -49,12 +50,19 @@ namespace Urho3D
 
 		String ReadString();
 		String ReadFileID();
-
+		StringHash ReadStringHash();
+		PODVector<unsigned char> ReadBuffer();
+		ResourceRef ReadResourceRef();
+		ResourceRefList ReadResourceRefList();
 		Variant ReadVariant();
 		Variant ReadVariant(VariantType type);
 		VariantVector ReadVariantVector();
 		VariantMap ReadVariantMap();
 
+		// Read a variable-length encoded unsigned integer, which can use 29 bits maximum
+		// Note
+		unsigned ReadVLE();
+		unsigned ReadNetID();
 		String ReadLine();
 
 	protected:

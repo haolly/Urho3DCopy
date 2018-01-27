@@ -527,7 +527,8 @@ namespace Urho3D
 			*this = vector;
 		}
 
-		//Todo, : PODVector() is what ?
+		//note, : PODVector() is what ?
+		// need initialize self first
 		PODVector(const std::initializer_list<T>& list) : PODVector()
 		{
 			for (auto it = list.begin(); it != list.end(); ++it)
@@ -785,15 +786,15 @@ namespace Urho3D
 					{
 						capacity_ += (capacity_ + 1) >> 1;
 					}
-					byte* newBuffer = AllocateBuffer((unsigned)(capacity_ * sizeof(T)));
-					if(buffer_)
-					{
-						CopyElements(reinterpret_cast<T*>(newBuffer), Buffer(), size_);
-						//Note, AllocateBuffer use new[], so use delete[] here
-						delete [] buffer_;
-					}
-					buffer_ = newBuffer;
 				}
+				byte* newBuffer = AllocateBuffer((unsigned)(capacity_ * sizeof(T)));
+				if(buffer_)
+				{
+					CopyElements(reinterpret_cast<T*>(newBuffer), Buffer(), size_);
+					//Note, AllocateBuffer use new[], so use delete[] here
+					delete [] buffer_;
+				}
+				buffer_ = newBuffer;
 			}
 			size_ = newSize;
 		}

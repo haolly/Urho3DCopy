@@ -177,6 +177,27 @@ namespace Urho3D
 
 		//todo
 
+		Matrix3x4 operator* (const Matrix3x4& rhs) const
+		{
+			// 3x3 * 3x4 + origin translation
+			return Matrix3x4(
+				m00_ * rhs.m00_ + m01_ * rhs.m10_ + m02_ * rhs.m20_,
+				m00_ * rhs.m01_ + m01_ * rhs.m11_ + m02_ * rhs.m21_,
+				m00_ * rhs.m02_ + m01_ * rhs.m12_ * m02_ * rhs.m22_,
+				m00_ * rhs.m03_ + m01_ * rhs.m13_ + m02_ * rhs.m23_ + m03_,
+
+				m10_ * rhs.m00_ + m11_ * rhs.m10_ + m12_ * rhs.m20_,
+				m10_ * rhs.m01_ + m11_ * rhs.m11_ + m12_ * rhs.m21_,
+				m10_ * rhs.m02_ + m11_ * rhs.m12_ + m12_ * rhs.m22_,
+				m10_ * rhs.m03_ + m11_ * rhs.m13_ + m12_ * rhs.m23_ + m13_,
+
+				m20_ * rhs.m00_ + m21_ * rhs.m10_ + m22_ * rhs.m20_,
+				m20_ * rhs.m01_ + m21_ * rhs.m11_ + m22_ * rhs.m21_,
+				m20_ * rhs.m02_ + m21_ * rhs.m12_ + m22_ * rhs.m22_,
+				m20_ * rhs.m03_ + m21_ * rhs.m13_ + m22_ * rhs.m23_  + m23_
+			);
+		}
+
 
 
 

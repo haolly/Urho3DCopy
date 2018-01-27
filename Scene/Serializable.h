@@ -7,6 +7,7 @@
 
 #include "../Core/Object.h"
 #include "../Core/Attribute.h"
+#include "ReplicationState.h"
 
 namespace Urho3D
 {
@@ -49,7 +50,18 @@ namespace Urho3D
 		void AllocateNetworkState();
 		void WriteInitialDeltaUpdate(Serializer& dest, const DirtyBits& attributeBits, unsigned char timeStemp);
 		void WriteLatestDataUpdate(Serializer& dest, unsigned char timeStamp);
-		//todo
+		bool ReadDeltaUpdate(Deserializer& source);
+		bool ReadLatestDataUpdate(Deserializer& source);
+
+		Variant GetAttribute(unsigned index) const;
+		Variant GetAttribute(const String& name) const;
+		Variant GetAttributeDefault(unsigned index) const;
+		Variant GetAttributeDefault(const String& name) const;
+		unsigned GetNumAttributes() const;
+		unsigned GetNumNetworkAttributes() const;
+		bool IsTemporary() const { return temporary_; }
+		bool GetInterceptNetworkUpdate(const String& attributeName) const;
+		NetworkState* GetNetworkState() const { return networkState_.Get(); }
 	protected:
 		UniquePtr<NetworkState> networkState_;
 	private:
@@ -57,6 +69,7 @@ namespace Urho3D
 		Variant GetInstanceDefault(const String& name) const;
 
 		UniquePtr<VariantMap> instanceDefaultValues_;
+		// todo, what is the point?
 		bool temporary_;
 	};
 
@@ -100,11 +113,15 @@ namespace Urho3D
 	[](const ClassName& self, Urho3D::Variant& value) {value = self.variable;}, \
 	[](ClassName& self, const Urho3D::Variant& value) {self.variable = value.Get<typeName>();})
 
+#define URHO3D_ATTRIBUTE(name, typeName, variable, defaultValue, mode) context->RegisterAttribute<ClassName>(Urho3D::AttributeInfo(\
+	Urho3D::GetVariantType<typeName>(), name, URHO3D_MAKE_MEMBER_ATTRIBUTE_ACCESSOR(typeName, variable), nullptr, defaultValue, mode))
+
 #define URHO3D_MAKE_GET_SET_ATTRIBUTE_ACCESSOR(getFunction, setFunction, typeName) Urho3D::MakeVariantAttributeAccessor<ClassName>( \
 	[](const ClassName& self, Urho3D::Variant& value) { value = self.getFunction(); }, \
 	[](ClassName& self, const Urho3D::Variant& value) { self.setFunction(value.Get<typeName>()); })
 
-	//todo, 这里的 ClassName 从哪里传来的？？
+	//Note, 这里的 ClassName 从哪里传来的？？
+	//从 URHO3D_OBJECT 中来
 #define URHO3D_ACCESSOR_ATTRIBUTE(name, getFunction, setFunction, typeName, defaultValue, mode) context->RegisterAttribute<ClassName>(Urho3D::AttributeInfo( \
 	Urho3D::GetVariantType<typeName>(), name, URHO3D_MAKE_GET_SET_ATTRIBUTE_ACCESSOR(getFunction, setFunction, typeName), nullptr, defaultValue, mode))
 

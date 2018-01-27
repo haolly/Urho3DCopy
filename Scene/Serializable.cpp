@@ -8,6 +8,7 @@
 #include "../Core/Context.h"
 #include "../IO/Serializer.h"
 #include "../Resource/XMLElement.h"
+#include "SceneEvents.h"
 
 namespace Urho3D
 {
@@ -40,7 +41,6 @@ namespace Urho3D
 
 	}
 
-	//todo, usage
 	void Serializable::OnSetAttribute(const AttributeInfo &attr, const Variant &src)
 	{
 		if(attr.accessor_)
@@ -101,6 +101,23 @@ namespace Urho3D
 					dest = *(reinterpret_cast<int*>(src));
 				break;
 			case VAR_INT64:
+				dest = *(reinterpret_cast<const long long*>(src));
+				break;
+			case VAR_BOOL:
+				dest = *(reinterpret_cast<const bool*>(src));
+				break;
+			case VAR_FLOAT:
+				dest = *(reinterpret_cast<const float*>(src));
+				break;
+			case VAR_VECTOR2:
+				dest = *(reinterpret_cast<const Vector2*>(src));
+				break;
+			case VAR_VECTOR3:
+				dest = *(reinterpret_cast<const Vector3*>(src));
+				break;
+			case VAR_VECTOR4:
+				dest = *(reinterpret_cast<const Vector4*>(src));
+				break;
 				//todo
 		}
 	}
@@ -112,7 +129,7 @@ namespace Urho3D
 
 	const Vector<AttributeInfo> *Serializable::GetNetworkAttributes() const
 	{
-		return networkState_ ? networkState_->attributes : context_->GetNetworkAttributes(GetType());
+		return networkState_ ? networkState_->attributes_ : context_->GetNetworkAttributes(GetType());
 	}
 
 	bool Serializable::Load(Deserializer &source, bool setInstanceDefault)
@@ -243,9 +260,45 @@ namespace Urho3D
 		return true;
 	}
 
+	// Save attributes in here
 	bool Serializable::SaveXML(XMLElement &dest) const
 	{
-		//todo
+		if(dest.IsNull())
+		{
+			URHO3D_LOGERROR("Could not save " + GetTypeName() + ", null destination element");
+			return false;
+		}
+
+		const Vector<AttributeInfo>* attributes = GetAttributes();
+		if(!attributes)
+			return true;
+
+		Variant value;
+		for(unsigned i=0; i< attributes->Size(); ++i)
+		{
+			const AttributeInfo& attr = attributes->At(i);
+			if(!(attr.mode_ & AM_FILE) || (attr.mode_ & AM_FILEREADONLY) == AM_FILEREADONLY)
+				continue;
+
+			OnGetAttribute(attr, value);
+			Variant defaultValue(GetAttributeDefault(i));
+
+			if((value == defaultValue) && !SaveDefaultAttributes())
+				continue;
+
+			XMLElement attrElem = dest.CreateChild("attribute");
+			attrElem.SetAttribute("name", attr.name_);
+
+			// If enums specified, set as an enum string, Otherwise set directly as a Variant
+			if(attr.enumNames_)
+			{
+				int enumValues = value.GetInt();
+				attrElem.SetAttribute("value", attr.enumNames_[enumValues]);
+			}
+			else
+				attrElem.SetVariantValue(value);
+		}
+		return true;
 	}
 
 	bool Serializable::SetAttribute(unsigned index, const Variant &value)
@@ -348,12 +401,33 @@ namespace Urho3D
 
 	void Serializable::SetInterceptNewwrokUpdate(const String &attributeName, bool enable)
 	{
+		AllocateNetworkState();
 		//todo
 	}
 
 	void Serializable::AllocateNetworkState()
 	{
+		if(networkState_)
+			return;
 
+		const Vector<AttributeInfo>* networkStates = GetNetworkAttributes();
+		networkState_ = new NetworkState();
+		networkState_->attributes_ = networkStates;
+
+		if(!networkStates)
+			return;
+		unsigned numAttributes = networkStates->Size();
+		if(networkState_->currentValues_.Size() != numAttributes)
+		{
+			networkState_->currentValues_.Resize(numAttributes);
+			networkState_->previousValues_.Resize(numAttributes);
+
+			// Copy the default attribute values to the previous state as a starting point
+			for(unsigned i=0; i< numAttributes; ++i)
+			{
+				//todo
+			}
+		}
 	}
 
 	void
@@ -383,5 +457,63 @@ namespace Urho3D
 				return it->second_;
 		}
 		return Variant::EMPTY;
+	}
+
+	bool Serializable::ReadDeltaUpdate(Deserializer &source)
+	{
+		//todo
+	}
+
+	bool Serializable::ReadLatestDataUpdate(Deserializer &source)
+	{
+		return false;
+	}
+
+	Variant Serializable::GetAttribute(unsigned index) const
+	{
+		Variant ret;
+		const Vector<AttributeInfo>* attributes = GetAttributes();
+		if(!attributes)
+		{
+			URHO3D_LOGERROR(GetTypeName() + " has no attributes");
+			return ret;
+		}
+		if(index >= attributes->Size())
+		{
+			URHO3D_LOGERROR("Attribute index out of bounds");
+			return ret;
+		}
+		OnGetAttribute(attributes->At(index), ret);
+		return ret;
+	}
+
+	Variant Serializable::GetAttribute(const String &name) const
+	{
+		return Variant();
+	}
+
+	Variant Serializable::GetAttributeDefault(unsigned index) const
+	{
+		return Variant();
+	}
+
+	Variant Serializable::GetAttributeDefault(const String &name) const
+	{
+		return Variant();
+	}
+
+	unsigned Serializable::GetNumAttributes() const
+	{
+		return 0;
+	}
+
+	unsigned Serializable::GetNumNetworkAttributes() const
+	{
+		return 0;
+	}
+
+	bool Serializable::GetInterceptNetworkUpdate(const String &attributeName) const
+	{
+		return false;
 	}
 }

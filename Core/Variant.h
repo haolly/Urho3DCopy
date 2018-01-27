@@ -711,6 +711,32 @@ namespace Urho3D
 			return type_ == VAR_BUFFER ? value_.buffer_ : emptyBuffer;
 		}
 
+		VectorBuffer GetVectorBuffer() const;
+
+		void* GetVoidPtr() const
+		{
+			if(type_ == VAR_VOIDPTR)
+				return value_.voidPtr;
+			else if(type_ == VAR_PTR)
+				return value_.weakPtr_;
+			else
+				return nullptr;
+		}
+
+		const ResourceRef& GetResourceRef() const
+		{
+			return type_ == VAR_RESOURCEREF ? value_.resourceRef_ : emptyResourceRef;
+		}
+
+		const ResourceRefList& GetResourceRefList() const
+		{
+			return type_ == VAR_RESOURCEREFLIST ? value_.resourceRefList_ : emptyResourceRefList;
+		}
+
+		const VariantVector& GetVariantVector() const
+		{
+			return type_ == VAR_VARIANTVECTOR ? value_.variantVector_ : emptyVariantVector;
+		}
 		//todo
 
 		VariantType GetType() const { return type_; }

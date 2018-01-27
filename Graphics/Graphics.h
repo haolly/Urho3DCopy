@@ -17,6 +17,7 @@
 #include "Direct3D11/D3D11GraphicsImpl.h"
 #include "RenderSurface.h"
 #include "Texture2D.h"
+#include "../Math/Rect.h"
 
 namespace Urho3D
 {

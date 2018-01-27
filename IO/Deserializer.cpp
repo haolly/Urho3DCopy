@@ -194,4 +194,37 @@ namespace Urho3D
 	{
 		return Urho3D::VariantMap();
 	}
+
+	//Note, ref https://en.wikipedia.org/wiki/Variable-length_quantity
+	unsigned Deserializer::ReadVLE()
+	{
+		unsigned ret;
+		unsigned char byte;
+		// char is 8 bits, max value 0xff
+
+		byte = ReadUByte();
+		ret = (unsigned)(byte & 0x7f);
+		// 7 bits
+		if(byte < 0x80)
+			return ret;
+
+		byte = ReadUByte();
+		ret |= ((unsigned)(byte & 0x7f)) << 7;
+		if(byte < 0x80)
+			return ret;
+
+		byte = ReadUByte();
+		ret |= ((unsigned)(byte & 0x7f)) << 14;
+		if(byte < 0x80)
+			return ret;
+
+		byte = ReadUByte();
+		ret |= ((unsigned)byte) << 21;
+		return ret;
+	}
+
+	unsigned Deserializer::ReadNetID()
+	{
+		return 0;
+	}
 }

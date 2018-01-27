@@ -9,6 +9,10 @@
 
 namespace Urho3D
 {
+	/***
+	 * Memory area that can be read and written to as a stream
+	 * Note, the size is fixed
+	 */
 	class MemoryBuffer : public AbstractFile
 	{
 	public:

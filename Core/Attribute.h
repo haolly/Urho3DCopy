@@ -22,6 +22,7 @@ namespace Urho3D
 	// Attribute is a node ID and may need rewriting
 	static const unsigned AM_NODEID = 0x10;
 	static const unsigned AM_COMPONENTID = 0x20;
+	// Attribhute is a node ID vector where first element is the amount of modes
 	static const unsigned AM_NODEIDVECTOR = 0x40;
 	static const unsigned AM_FILEREADONLY = 0x81;
 

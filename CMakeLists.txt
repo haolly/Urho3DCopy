@@ -13,6 +13,8 @@ include_directories(ThirdParty/STB)
 add_definitions (-DURHO3D_FILEWATCHER)
 add_definitions (-DURHO3D_THREADING)
 add_definitions (-DDESKTOP_GRAPHICS)
+add_definitions (-DURHO3D_PHYSICS)
+add_definitions (-DURHO3D_URHO2D)
 
 add_executable(Urho3DCopy
         Container/Allocator.cpp
@@ -159,6 +161,12 @@ add_executable(Urho3DCopy
         Graphics/Texture2D.cpp Graphics/Texture2D.h
         Graphics/Direct3D11/D3D11Texture2D.cpp
         Graphics/GraphicsEvents.h
-        Math/Rect.cpp Math/Rect.h)
+        Math/Rect.cpp Math/Rect.h
         Scene/SceneEvents.cpp Scene/SceneEvents.h
-        Scene/Node.cpp Scene/Node.h)
+        Scene/Node.cpp Scene/Node.h
+        Scene/Component.cpp Scene/Component.h
+        Scene/SceneResolver.cpp Scene/SceneResolver.h
+        Scene/ReplicationState.cpp Scene/ReplicationState.h
+        Scene/Scene.cpp Scene/Scene.h
+        Scene/UnknownComponent.cpp Scene/UnknownComponent.h
+        Graphics/Octree.cpp Graphics/Octree.h)
