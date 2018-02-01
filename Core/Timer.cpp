@@ -133,6 +133,19 @@ namespace Urho3D
 #endif
 	}
 
+	void Time::SetTimerPeriod(unsigned mSec)
+	{
+#ifdef _WIN32
+		if(timerPeriod_ > 0)
+			timeEndPeriod(timerPeriod_);
+
+		timerPeriod_ = mSec;
+
+		if(timerPeriod_ > 0)
+			timeBeginPeriod(timerPeriod_);
+#endif
+	}
+
 	unsigned Timer::GetMSec(bool reset)
 	{
 		unsigned currentTime = Tick();

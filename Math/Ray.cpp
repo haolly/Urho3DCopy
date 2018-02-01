@@ -4,6 +4,7 @@
 
 #include "Ray.h"
 #include "MathDefs.h"
+#include "Vector4.h"
 
 namespace Urho3D
 {
@@ -44,6 +45,7 @@ namespace Urho3D
 		return M_INFINITY;
 	}
 
+	//todo, read
 	float Ray::HitDistance(const BoundingBox &box) const
 	{
 		if(!box.Defined())
@@ -151,6 +153,7 @@ namespace Urho3D
 	}
 
 	//Todo, return the distance from the ray origin ??
+	//Note, key algorithm
 	float Ray::HitDistance(const Vector3 &v0, const Vector3 &v1, const Vector3 &v2, Vector3 *outNormal,
 	                       Vector3 *outBary) const
 	{

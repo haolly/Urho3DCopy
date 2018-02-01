@@ -21,8 +21,24 @@ namespace Urho3D
 		URHO3D_PARAM(P_TIMESTEP, TimeStep);         // float
 	}
 
+	URHO3D_EVENT(E_RENDERUPDATE, RenderUpdate)
+	{
+		URHO3D_PARAM(P_TIMESTEP, TimeStep);
+	}
+
 	URHO3D_EVENT(E_ENDFRAME, EndFrame)
 	{
+	}
+
+	URHO3D_EVENT(E_WORKITEMCOMPLETED, WorkItemCompleted)
+	{
+		URHO3D_PARAM(P_ITEM, Item);
+	}
+
+	URHO3D_EVENT(E_SCENEDRAWABLEUPDATEFINISHED, SceneDrawableUpdateFinished)
+	{
+		URHO3D_PARAM(P_SCENE, Scene);
+		URHO3D_PARAM(P_TIMESTEP, TimeStep);
 	}
 }
 

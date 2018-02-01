@@ -24,6 +24,7 @@ namespace Urho3D
 		friend class Time;
 	public:
 		HiresTimer();
+		// Return elapsed microseconds and optionally reset
 		long long GetUSec(bool reset);
 		void Reset();
 		static bool IsSupported() { return supported; }

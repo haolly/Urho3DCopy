@@ -120,6 +120,11 @@ namespace Urho3D
             return ptr_;
         }
 
+	    void Swap(SharedPtr& rhs)
+	    {
+		    Urho3D::Swap(ptr_, rhs.ptr_);
+	    }
+
         void Reset()
         {
             ReleaseRef();

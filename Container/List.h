@@ -303,6 +303,36 @@ namespace Urho3D
 			}
 		}
 
+		void Resize(unsigned newSize)
+		{
+			while(size_ > newSize)
+				Pop();
+
+			while(size_ < newSize)
+				InsertNode(Tail(), T());
+		}
+
+		Iterator Find(const T& value)
+		{
+			Iterator it = Begin();
+			while(it != End() && *it != value)
+				++it;
+			return it;
+		}
+
+		ConstIterator Find(const T& value) const
+		{
+			ConstIterator it = Begin();
+			while(it != End() && *it != value)
+				++it;
+			return it;
+		}
+
+		bool Contains(const T& value) const
+		{
+			return Find(value) != End();
+		}
+
 		Iterator Begin() { return Iterator(Head()); }
 		ConstIterator Begin() const { return ConstIterator(Head()); }
 		Iterator End() { return Iterator(Tail()); }

@@ -9,6 +9,8 @@
 
 namespace Urho3D
 {
+	const char* LOGIC_CATEGORY = "Logic";
+	const char* SUBSYSTEM_CATEGORY = "Subsystem";
 
 	static const float DEFAULT_SMOOTHING_CONSTANT = 50.0f;
 	static const float DEFAULT_SNAP_THRESHOLD = 5.0F;
@@ -544,5 +546,60 @@ namespace Urho3D
 	float Scene::GetAsyncProgress() const
 	{
 		return 0;
+	}
+
+	const String &Scene::GetVarName(StringHash hash) const
+	{
+		return <#initializer#>;
+	}
+
+	void Scene::Update(float timeStep)
+	{
+
+	}
+
+	void Scene::BeginThreadedUpdate()
+	{
+		//todo
+	}
+
+	void Scene::EndThreadedUpdate()
+	{
+
+	}
+
+	void Scene::DelayedMarkedDirty(Component *component)
+	{
+
+	}
+
+	void Scene::NodeTagAdded(Node *node, const String &tag)
+	{
+
+	}
+
+	void Scene::NodeTagRemoved(Node *node, const String &tag)
+	{
+
+	}
+
+	void Scene::SetVarNameAttr(const String &value)
+	{
+
+	}
+
+	String Scene::GetVarNamesAttr() const
+	{
+		return String();
+	}
+
+	void Scene::PrepareNetworkUpdate()
+	{
+		Node::PrepareNetworkUpdate();
+	}
+
+	void Scene::CleanupConnection(Connection *connection)
+	{
+		Node::CleanupConnection(connection);
 	}
 }

@@ -177,7 +177,8 @@ namespace Urho3D
 			return INSIDE;
 		}
 
-		Intersection InInside(const BoundingBox& box) const
+		// Is box inside this box
+		Intersection IsInside(const BoundingBox& box) const
 		{
 			if(box.max_.x_ < min_.x_ || box.min_.x_ > max_.x_ ||
 				box.max_.y_ < min_.y_ || box.min_.y_ > max_.y_||

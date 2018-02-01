@@ -15,6 +15,7 @@ add_definitions (-DURHO3D_THREADING)
 add_definitions (-DDESKTOP_GRAPHICS)
 add_definitions (-DURHO3D_PHYSICS)
 add_definitions (-DURHO3D_URHO2D)
+add_definitions (-D_DEBUG)
 
 add_executable(Urho3DCopy
         Container/Allocator.cpp
@@ -169,4 +170,7 @@ add_executable(Urho3DCopy
         Scene/ReplicationState.cpp Scene/ReplicationState.h
         Scene/Scene.cpp Scene/Scene.h
         Scene/UnknownComponent.cpp Scene/UnknownComponent.h
-        Graphics/Octree.cpp Graphics/Octree.h)
+        Graphics/Octree.cpp Graphics/Octree.h
+        Graphics/Drawable.cpp Graphics/Drawable.h
+        Graphics/OctreeQuery.cpp Graphics/OctreeQuery.h
+        Core/WorkQueue.cpp Core/WorkQueue.h)

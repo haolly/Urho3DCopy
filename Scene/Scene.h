@@ -107,7 +107,16 @@ namespace Urho3D
 		float GetSnapThreshold() const { return snapThreshold_; }
 		int GetAsyncLoadingMs() const { return asyncLoadingMs_; }
 
-		//todo
+		const Vector<SharedPtr<PackageFile>>& GetRequiredPackageFiles() const { return requiredPackageFiles_; }
+
+		const String& GetVarName(StringHash hash) const;
+
+		void Update(float timeStep);
+		void BeginThreadedUpdate();
+		void EndThreadedUpdate();
+		void DelayedMarkedDirty(Component* component);
+
+		bool IsThreadedUpdate() const  { return threadedUpdate_; }
 
 		unsigned GetFreeNodeID(CreateMode mode);
 		unsigned GetFreeComponentID(CreateMode mode);

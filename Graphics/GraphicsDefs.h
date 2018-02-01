@@ -21,6 +21,21 @@ namespace Urho3D
 		TRIANGLE_FAN
 	};
 
+	// Geometry type for vertex shader geometry variations
+	enum GeometryType
+	{
+		GEOM_STATIC = 0,
+		GEOM_SKINNED = 1,
+		GEOM_INSTANCED = 2,
+		GEOM_BILLBOARD = 3,
+		GEOM_DIRBILLBOARD = 4,
+		GEOM_TRAIL_FACE_CAMERA = 5,
+		GEOM_TRAIL_BONE = 6,
+		GEOM_GEOMETRYTYPES = 7,
+		//todo
+		GEOM_STATIC_NOINSTANCING = 7,
+	};
+
 	enum BlendMode
 	{
 		BLEND_REPLACE = 0,
