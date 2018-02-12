@@ -85,37 +85,97 @@ namespace Urho3D
 
 	bool Scene::Save(Serializer &dest) const
 	{
-		return Node::Save(dest);
+		if(!dest.WriteFileID("USCN"))
+		{
+			URHO3D_LOGERROR("Could not save scene, writing to stream failed");
+			return false;
+		}
+
+		auto* ptr = dynamic_cast<Deserializer*>(&dest);
+		if(ptr)
+			URHO3D_LOGINFO("Saving scene to " + ptr->GetName());
+
+		if(Node::Save(dest))
+		{
+			FinishSaving(&dest);
+			return true;
+		}
+		else
+			return false;
 	}
 
 	bool Scene::LoadXML(const XMLElement &source, bool setInstanceDefault)
 	{
-		return Node::LoadXML(source, setInstanceDefault);
+		StopAsyncLoading();
+
+		// Load the whole scene, the perform post-load if successfully loaded
+		// Note, the scene name and checksum can not be set, as we only used an XMLElement
+		if(Node::LoadXML(source))
+		{
+			FinishLoading(nullptr);
+			return true;
+		}
+		else
+			return false;
 	}
 
 	void Scene::MarkNetworkUpdate()
 	{
-		Node::MarkNetworkUpdate();
+		if(!networkUpdate_)
+		{
+			MarkNetworkUpdate(this);
+			networkUpdate_ = true;
+		}
 	}
 
 	void Scene::AddReplicationState(NodeReplicationState *state)
 	{
-		Node::AddReplicationState(state);
 	}
 
 	bool Scene::LoadXML(Deserializer &source)
 	{
-		return false;
+		StopAsyncLoading();
+
+		SharedPtr<XMLFile> xml(new XMLFile(context_));
+		if(!xml->Load(source))
+			return false;
+
+		URHO3D_LOGINFO("Loading scene from " + source.GetName());
+
+		Clear();
+
+		if(Node::LoadXML(xml->GetRoot()))
+		{
+			FinishLoading(&source);
+			return true;
+		}
+		else
+			return false;
 	}
 
 	bool Scene::SaveXML(Serializer &dest, const String &identation) const
 	{
-		return Node::SaveXML(dest, identation);
+		SharedPtr<XMLFile> xml(new XMLFile(context_));
+		XMLElement rootElem = xml->CreateRoot("scene");
+		if(!Node::SaveXML(rootElem))
+			return false;
+
+		auto* ptr = dynamic_cast<Deserializer*>(&dest);
+		if(ptr)
+			URHO3D_LOGINFO("Saving scene to " + ptr->GetName());
+
+		if(xml->Save(dest, identation))
+		{
+			FinishSaving(&dest);
+			return true;
+		}
+		else
+			return false;
 	}
 
 	bool Scene::LoadAsync(File *file, LoadMode mode)
 	{
-		return false;
+		//todo
 	}
 
 	bool Scene::LoadAsyncXML(File *file, LoadMode mode)
@@ -242,7 +302,12 @@ namespace Urho3D
 
 	void Scene::FinishSaving(Serializer *dest) const
 	{
-
+		auto* ptr = dynamic_cast<Deserializer*>(dest);
+		if(ptr)
+		{
+			fileName_ = ptr->GetName();
+			checksum_ = ptr->GetChecksum();
+		}
 	}
 
 	void Scene::PreloadResources(File *file, bool isSceneFile)

@@ -476,7 +476,44 @@ namespace Urho3D
 
 	void Node::RotateAround(const Vector3 &point, const Quaternion &delta, TransformSpace space)
 	{
+		Vector3 parentSpacePoint;
+		Quaternion oldRotation = rotation_;
 
+		switch(space)
+		{
+			case TS_LOCAL:
+				//todo ? how to read ?
+				parentSpacePoint = GetTransform() * point;
+				rotation_ = (rotation_ * delta).Normalized();
+				break;
+
+			case TS_PARENT:
+				parentSpacePoint = point;
+				//todo, how to read?
+				rotation_ = (delta * rotation_).Normalized();
+				break;
+
+			case TS_WORLD:
+				if(parent_ == scene_ || !parent_)
+				{
+					parentSpacePoint = point;
+					rotation_ = (delta * rotation_).Normalized();
+				}
+				else
+				{
+					parentSpacePoint = parent_->GetWorldTransform().Inverse() * point;
+					Quaternion worldRotation = GetWorldRotation();
+					//todo, how to read ?
+					rotation_ = rotation_ * worldRotation.Inverse() * delta * worldRotation;
+				}
+				break;
+		}
+
+		Vector3 oldRelativePos = oldRotation.Inverse() * (position_ - parentSpacePoint);
+		position_ = rotation_ * oldRelativePos + parentSpacePoint;
+
+		MarkDirty();
+		MarkNetworkUpdate();
 	}
 
 	void Node::Pitch(float angle, TransformSpace space)
@@ -496,42 +533,74 @@ namespace Urho3D
 
 	bool Node::LookAt(const Vector3 &target, const Vector3 &up, TransformSpace space)
 	{
-		return false;
+		Vector3 worldSpaceTarget;
+
+		switch(space)
+		{
+			case TS_LOCAL:
+				worldSpaceTarget = GetWorldTransform() * target;
+				break;
+
+			case TS_PARENT:
+				worldSpaceTarget = (parent_ == scene_ || !parent_) ? target : parent_->GetWorldTransform() * target;
+				break;
+
+			case TS_WORLD:
+				worldSpaceTarget = target;
+				break;
+		}
+
+		Vector3 lookDir = worldSpaceTarget - GetWorldPosition();
+		// Check if target if very close, in that case can not reliably calculate lookat direction
+		if(lookDir.Equals(Vector3::ZERO))
+			return false;
+		Quaternion newRotation;
+		// Do nothing if setting look rotation failed
+		if(!newRotation.FromLookRotation(lookDir, up))
+			return false;
+
+		SetWorldRotation(newRotation);
+		return true;
 	}
 
 	void Node::Scale(float scale)
 	{
-
+		Scale(Vector3(scale, scale, scale));
 	}
 
 	void Node::Scale(const Vector3 &scale)
 	{
-
+		scale_ *= scale;
+		MarkDirty();
+		MarkNetworkUpdate();
 	}
 
 	void Node::SetEnabled(bool enable)
 	{
-
+		SetEnabled(enable, false, true);
 	}
 
 	void Node::SetDeepEnabled(bool enable)
 	{
-
+		SetEnabled(enable, true, false);
 	}
 
 	void Node::ResetDeepEnabled()
 	{
+		SetEnabled(enabledPrev_, false, false);
 
+		for(const auto& i = children_.Begin(); i != children_.End(); ++i)
+			(*i)->ResetDeepEnabled();
 	}
 
 	void Node::SetEnabledRecursive(bool enable)
 	{
-
+		SetEnabled(enable, true, true);
 	}
 
 	void Node::SetOwner(Connection *owner)
 	{
-
+		impl_->owner_ = owner;
 	}
 
 	void Node::MarkDirty()
@@ -714,17 +783,73 @@ namespace Urho3D
 
 	Component *Node::GetOrCreateComponent(StringHash type, CreateMode mode, unsigned int id)
 	{
-		return nullptr;
+		Component* oldComponent = GetComponent(type);
+		if(oldComponent)
+			return oldComponent;
+		else
+			return CreateComponent(type, mode, id);
 	}
 
 	Component *Node::CloneComponent(Component *component, unsigned int id)
 	{
-		return nullptr;
+		if(!component)
+		{
+			URHO3D_LOGERROR("Null source component given for CloneComponent");
+			return nullptr;
+		}
+		return CloneComponent(component, component->IsReplicated() ? REPLICATED : LOCAL, id);
 	}
 
 	Component *Node::CloneComponent(Component *component, CreateMode mode, unsigned int id)
 	{
-		return nullptr;
+		if(!component)
+		{
+			URHO3D_LOGERROR("Null source component given for CloneComponent");
+			return nullptr;
+		}
+
+		Component* cloneComponent = SafeCreateComponent(component->GetTypeName(), component->GetType(), mode, 0);
+		if(!cloneComponent)
+		{
+			URHO3D_LOGERROR("Could not clone component " + component->GetTypeName());
+			return nullptr;
+		}
+
+		const Vector<AttributeInfo>* compAttributes = component->GetAttributes();
+		const Vector<AttributeInfo>* cloneAttributes = cloneComponent->GetAttributes();
+
+		if(compAttributes)
+		{
+			//todo, there are chance that cloneAttributes is not the same size as the origin ??
+			for(unsigned i=0; i< compAttributes->Size() && i<cloneAttributes->Size(); ++i)
+			{
+				const AttributeInfo& attr = compAttributes->At(i);
+				const AttributeInfo& cloneAttr = cloneAttributes->At(i);
+				if(attr.mode_ & AM_FILE)
+				{
+					Variant value;
+					component->OnGetAttribute(attr, value);
+					// Note: when eg. a ScriptInstance component is cloned, its script object attributes are unique
+					// and therefore we can not simply refer to the source component's AttributeInfo
+					cloneComponent->OnSetAttribute(cloneAttr, value);
+				}
+			}
+			cloneComponent->ApplyAttributes();
+		}
+
+		if(scene_)
+		{
+			using namespace ComponentCloned;
+
+			VariantMap& eventData = GetEventDataMap();
+			eventData[P_SCENE] = scene_;
+			eventData[P_COMPONENT] = component;
+			eventData[P_CLONECOMPONENT] = cloneComponent;
+
+			scene_->SendEvent(E_COMPONENTCLONED, eventData);
+		}
+
+		return cloneComponent;
 	}
 
 	void Node::RemoveComponent(Component *component)
@@ -740,7 +865,7 @@ namespace Urho3D
 
 	void Node::RemoveComponent(StringHash type)
 	{
-
+		//todo
 	}
 
 	void Node::OnAttributeAnimationAdded()

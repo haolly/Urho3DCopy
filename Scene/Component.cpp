@@ -96,6 +96,11 @@ namespace Urho3D
 			node_->RemoveComponent(this);
 	}
 
+	bool Component::IsReplicated() const
+	{
+		return id_ < FIRST_LOCAL_ID;
+	}
+
 	Scene *Component::GetScene() const
 	{
 		return node_ ? node_->GetScene() : nullptr;

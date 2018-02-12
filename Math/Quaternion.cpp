@@ -121,6 +121,7 @@ namespace Urho3D
 		}
 	}
 
+	// Note, direction and upDirection is arbitrary, they are not need perpendicular to each other
 	bool Quaternion::FromLookRotation(const Vector3 &direction, const Vector3& upDirection)
 	{
 		Quaternion ret;

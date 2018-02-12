@@ -36,6 +36,7 @@ namespace Urho3D
 		void Remove();
 
 		unsigned GetID() const { return id_; }
+		bool IsReplicated() const;
 		Node* GetNode() const { return node_; }
 		Scene* GetScene() const ;
 		bool IsEnabled() const { return enabled_; }

@@ -113,9 +113,18 @@ namespace Urho3D
 	[](const ClassName& self, Urho3D::Variant& value) {value = self.variable;}, \
 	[](ClassName& self, const Urho3D::Variant& value) {self.variable = value.Get<typeName>();})
 
+#define URHO3D_MAKE_MEMBER_ATTRIBUTE_ACCESSOR_EX(typeName, variable, postSetCallback) Urho3D::MakeVariantAttributeAccessor<ClassName>( \
+	[](const ClassName& self, Urho3D::Variant& value) { value = self.variable;}, \
+	[](ClassName& self, const Urho3D::Variant& value) { self.variable = value.Get<typeName>(); self.postSetCallback(); })
+
+	//todo
 #define URHO3D_ATTRIBUTE(name, typeName, variable, defaultValue, mode) context->RegisterAttribute<ClassName>(Urho3D::AttributeInfo(\
 	Urho3D::GetVariantType<typeName>(), name, URHO3D_MAKE_MEMBER_ATTRIBUTE_ACCESSOR(typeName, variable), nullptr, defaultValue, mode))
 
+#define URHO3D_ATTRIBUTE_EX(name, typeName, variable, postSetCallback, defaultValue, mode) context->RegisterAttribute<ClassName>(Urho3D::AttributeInfo( \
+	Urho3D::GetVariantType<typeName>(), name, URHO3D_MAKE_MEMBER_ATTRIBUTE_ACCESSOR_EX(typeName, variable, postSetCallback), nullptr, defaultValue, mode))
+
+//todo
 #define URHO3D_MAKE_GET_SET_ATTRIBUTE_ACCESSOR(getFunction, setFunction, typeName) Urho3D::MakeVariantAttributeAccessor<ClassName>( \
 	[](const ClassName& self, Urho3D::Variant& value) { value = self.getFunction(); }, \
 	[](ClassName& self, const Urho3D::Variant& value) { self.setFunction(value.Get<typeName>()); })

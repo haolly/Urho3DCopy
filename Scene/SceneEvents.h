@@ -86,6 +86,13 @@ namespace Urho3D
 		URHO3D_PARAM(P_NODE, Node);
 		URHO3D_PARAM(P_COMPONENT, Component);
 	}
+
+	URHO3D_EVENT(E_COMPONENTCLONED, ComponentCloned)
+	{
+		URHO3D_PARAM(P_SCENE, Scene);
+		URHO3D_PARAM(P_COMPONENT, Component);
+		URHO3D_PARAM(P_CLONECOMPONENT, CloneComponent);
+	}
 }
 
 

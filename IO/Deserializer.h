@@ -10,6 +10,7 @@
 
 namespace Urho3D
 {
+	// Abstract stream for reading
 	class Deserializer
 	{
 	public:
