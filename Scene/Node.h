@@ -51,20 +51,20 @@ namespace Urho3D
 
 	public:
 		Node(Context* context);
-		virtual ~Node() override;
+		~Node() override;
 		static void RegisterObject(Context* context);
 
-		virtual bool Load(Deserializer& source, bool setInstanceDefault = false) override;
-		virtual bool LoadXML(const XMLElement& source, bool setInstanceDefault = false) override;
-		virtual bool Save(Serializer& dest) const override ;
-		virtual bool SaveXML(XMLElement& dest) const override ;
-		virtual void ApplyAttributes() override ;
+		bool Load(Deserializer& source) override;
+		bool LoadXML(const XMLElement& source) override;
+		bool Save(Serializer& dest) const override ;
+		bool SaveXML(XMLElement& dest) const override ;
+		void ApplyAttributes() override ;
 
-		virtual bool SaveDefaultAttributes() const override { return true; }
-		virtual void MarkNetworkUpdate() override ;
+		bool SaveDefaultAttributes() const override { return true; }
+		void MarkNetworkUpdate() override ;
 		virtual void AddReplicationState(NodeReplicationState* state);
 
-		virtual bool SaveXML(Serializer& dest, const String& indentation = "\t") const;
+		bool SaveXML(Serializer& dest, const String& indentation = "\t") const;
 		bool SetName(const String& name);
 
 		void SetTags(const StringVector& tags);

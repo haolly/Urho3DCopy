@@ -225,6 +225,8 @@ namespace Urho3D
 
 	unsigned Deserializer::ReadNetID()
 	{
-		return 0;
+		unsigned ret = 0;
+		Read(&ret, 3);
+		return ret;
 	}
 }

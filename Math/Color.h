@@ -128,6 +128,20 @@ namespace Urho3D
 
 		//todo
 
+		Color Lerp(const Color& rhs, float t) const;
+		Color Abs() const
+		{
+			return Color(Urho3D::Abs(r_), Urho3D::Abs(g_), Urho3D::Abs(b_), Urho3D::Abs(a_));
+		}
+
+		bool Equals(const Color& rhs) const
+		{
+			return Urho3D::Equals(r_, rhs.r_) && Urho3D::Equals(g_, rhs.g_) && Urho3D::Equals(b_, rhs.b_) && Urho3D::Equals(a_, rhs.a_);
+		}
+
+		String ToString() const;
+		unsigned ToHash() const { return ToUint(); }
+
 		float r_;
 		float g_;
 		float b_;

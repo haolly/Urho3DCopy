@@ -56,9 +56,9 @@ namespace Urho3D
 				ResourceRef, ResourceRef(ObjectAnimation::GetTypeStatic()), AM_DEFAULT);
 	}
 
-	bool Animatable::LoadXML(const XMLElement &source, bool setInstanceDefault)
+	bool Animatable::LoadXML(const XMLElement &source)
 	{
-		if(!Serializable::LoadXML(source, setInstanceDefault))
+		if(!Serializable::LoadXML(source))
 			return false;
 
 		SetObjectAnimation(nullptr);

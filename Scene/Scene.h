@@ -52,21 +52,26 @@ namespace Urho3D
 
 	class Scene : public Node
 	{
+		URHO3D_OBJECT(Scene, Node);
+
+		using Node::GetComponent;
+		using Node::SaveXML;
+//		using Node::SaveJSON;
 
 	public:
-		Scene(Context* context);
-		virtual ~Scene() override ;
+		explicit Scene(Context* context);
+		~Scene() override ;
 
 		static void RegisterObject(Context* context);
 
-		virtual bool Load(Deserializer& source, bool setInstanceDefault = false) override ;
-		virtual bool Save(Serializer& dest) const override;
-		virtual bool LoadXML(const XMLElement& source, bool setInstanceDefault = false) override ;
-		virtual void MarkNetworkUpdate() override ;
-		virtual void AddReplicationState(NodeReplicationState* state) override;
+		bool Load(Deserializer& source) override ;
+		bool Save(Serializer& dest) const override;
+		bool LoadXML(const XMLElement& source) override ;
+		void MarkNetworkUpdate() override ;
+		void AddReplicationState(NodeReplicationState* state) override;
 
 		bool LoadXML(Deserializer& source);
-		bool SaveXML(Serializer& dest, const String& identation = "\t") const override ;
+		bool SaveXML(Serializer& dest, const String& identation = "\t") const ;
 
 		bool LoadAsync(File* file, LoadMode mode = LOAD_SCENE_AND_RESOURCES);
 		bool LoadAsyncXML(File* file, LoadMode mode = LOAD_SCENE_AND_RESOURCES);
@@ -183,6 +188,7 @@ namespace Urho3D
 		bool threadedUpdate_;
 	};
 
+	// Register Scene library objects
 	void RegisterSceneLibrary(Context* context);
 }
 

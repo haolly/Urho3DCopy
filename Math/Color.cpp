@@ -19,12 +19,11 @@ namespace Urho3D
 
 	Vector3 Color::ToHSL() const
 	{
-		return nullptr;
+		//todo
 	}
 
 	Vector3 Color::ToHSV() const
 	{
-		return nullptr;
 	}
 
 	void Color::FromUInt(unsigned color)

@@ -132,7 +132,7 @@ namespace Urho3D
 		return networkState_ ? networkState_->attributes_ : context_->GetNetworkAttributes(GetType());
 	}
 
-	bool Serializable::Load(Deserializer &source, bool setInstanceDefault)
+	bool Serializable::Load(Deserializer &source)
 	{
 		const Vector<AttributeInfo>* attributes = GetAttributes();
 		if(!attributes)
@@ -151,8 +151,6 @@ namespace Urho3D
 
 			Variant varValue = source.ReadVariant(attr.type_);
 			OnSetAttribute(attr, varValue);
-			if(setInstanceDefault)
-				SetInstanceDefault(attr.name_, varValue);
 		}
 		return true;
 	}
@@ -180,7 +178,7 @@ namespace Urho3D
 		return true;
 	}
 
-	bool Serializable::LoadXML(const XMLElement &source, bool setInstanceDefault)
+	bool Serializable::LoadXML(const XMLElement &source)
 	{
 		if(source.IsNull())
 		{
@@ -235,8 +233,6 @@ namespace Urho3D
 					if(!varValue.IsEmpty())
 					{
 						OnSetAttribute(attr, varValue);
-						if(setInstanceDefault)
-							SetInstanceDefault(attr.name_, varValue);
 					}
 
 					startIndex = (i + 1) % attributes->Size();

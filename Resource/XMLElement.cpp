@@ -318,6 +318,11 @@ namespace Urho3D
 		return XMLElement();
 	}
 
+	const char *XMLElement::GetAttributeCString(const char *name) const
+	{
+		//todo haolly
+	}
+
 	XPathResultSet::XPathResultSet() :
 		resultSet_(nullptr)
 	{

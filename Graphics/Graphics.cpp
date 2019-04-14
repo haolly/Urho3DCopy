@@ -9,6 +9,7 @@
 namespace Urho3D
 {
 
+	//TODO liu
 	Graphics::~Graphics()
 	{
 
@@ -101,7 +102,7 @@ namespace Urho3D
 
 	}
 
-	void Graphics::Clear(unsigned flags, const Color &color, float depth, unsigned int stencil)
+	void Graphics::Clear(ClearTargetFlags flags, const Color &color, float depth, unsigned int stencil)
 	{
 
 	}
@@ -237,7 +238,7 @@ namespace Urho3D
 
 	bool Graphics::IsInitialized() const
 	{
-		return false;
+		//todo
 	}
 
 	IntVector2 Graphics::GetWindowPosition() const
@@ -564,6 +565,11 @@ namespace Urho3D
 	unsigned Graphics::GetFormat(CompressedFormat format) const
 	{
 		return 0;
+	}
+
+	void Graphics::SetShaderParameter(StringHash param, const Matrix4 &matrix)
+	{
+
 	}
 
 	void RegisterGraphicsLibrary(Context* context)

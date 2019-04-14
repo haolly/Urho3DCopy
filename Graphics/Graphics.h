@@ -18,6 +18,7 @@
 #include "RenderSurface.h"
 #include "Texture2D.h"
 #include "../Math/Rect.h"
+#include "../Math/Matrix4.hpp"
 
 namespace Urho3D
 {
@@ -69,7 +70,7 @@ namespace Urho3D
 
 		bool BeginFrame();
 		void EndFrame();
-		void Clear(unsigned flags, const Color& color = Color(0.0f, 0.0f, 0.0f, 0.0f), float depth = 1.0f, unsigned stencil = 0);
+		void Clear(ClearTargetFlags flags, const Color& color = Color(0.0f, 0.0f, 0.0f, 0.0f), float depth = 1.0f, unsigned stencil = 0);
 
 		bool ResolveToTexture(Texture2D* texture);
 		bool ResolveToTexture(TextureCube* texture);
@@ -101,6 +102,7 @@ namespace Urho3D
 		void SetShaderParameter(StringHash param, const Matrix3& matrix);
 		void SetShaderParameter(StringHash param, const Vector3& vector);
 		void SetShaderParameter(StringHash param, const Vector4& vector);
+		void SetShaderParameter(StringHash param, const Matrix4& matrix);
 		void SetShaderParameter(StringHash param, const Matrix3x4& matrix);
 		void SetShaderParameter(StringHash param, const Variant& value);
 
@@ -126,6 +128,16 @@ namespace Urho3D
 		void SetDepthStencil(RenderSurface* depthStencil);
 		void SetDepthStencil(Texture2D* texture);
 		void SetViewport(const IntRect& rect);
+		void SetBlendMode(BlendMode mode, bool alphaToCoverage = false);
+		void SetColorWrite(bool enable);
+		void SetCullMode(CullMode mode);
+		void SetDepthBias(float constantBias, float slopScaledBias);
+		void SetDepthTest(CompareMode mode);
+		void SetDepthWrite(bool enable);
+		void SetFillMode(FillMode mode);
+		void SetLineAntiAlias(bool enable);
+		void SetScissorTest(bool enable, const Rect& rect = Rect::FULL, bool borderInclusive = true);
+		void SetScissorTest(bool enable, const IntRect& rect);
 		//todo
 
 		bool IsInitialized() const;
@@ -207,6 +219,8 @@ namespace Urho3D
 
 		RenderSurface* GetDepthStencil() const { return depthStencil_; }
 
+		IntRect GetViewport() const { return viewport_; }
+
 		//todo
 		const String& GetShaderCacheDir() const { return shaderCacheDir_; }
 		IntVector2 GetRenderTargetDimensions() const;
@@ -237,6 +251,9 @@ namespace Urho3D
 		static unsigned GetRGBA16Format();
 		//todo
 
+		static const Vector2& GetPixelUVOffset() { return pixelUVOffset; }
+		static unsigned GetMaxBones();
+		static bool GetGL3Support();
 
 	private:
 		bool OpenWindow(int width, int height, bool resizable, bool borderless);

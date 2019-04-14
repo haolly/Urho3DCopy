@@ -70,7 +70,7 @@ namespace Urho3D
 
 	}
 
-	bool Node::Load(Deserializer &source, bool setInstanceDefault)
+	bool Node::Load(Deserializer &source)
 	{
 		SceneResolver resolver;
 
@@ -87,7 +87,7 @@ namespace Urho3D
 		return success;
 	}
 
-	bool Node::LoadXML(const XMLElement &source, bool setInstanceDefault)
+	bool Node::LoadXML(const XMLElement &source)
 	{
 		SceneResolver resolver;
 		unsigned nodeID = source.GetUInt("id");
@@ -1054,6 +1054,7 @@ namespace Urho3D
 
 	bool Node::IsChildOf(Node *node) const
 	{
+		//todo
 		return false;
 	}
 

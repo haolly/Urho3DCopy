@@ -21,8 +21,8 @@ namespace Urho3D
 	void UpdateDrawablesWork(const WorkItem* item, unsigned threadIndex)
 	{
 		const FrameInfo& frame = *(reinterpret_cast<FrameInfo*>(item->aux_));
-		Drawable** start = reinterpret_cast<Drawable**>(item->start_);
-		Drawable** end = reinterpret_cast<Drawable**>(item->end_);
+		auto** start = reinterpret_cast<Drawable**>(item->start_);
+		auto** end = reinterpret_cast<Drawable**>(item->end_);
 
 		while(start != end)
 		{

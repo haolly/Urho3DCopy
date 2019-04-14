@@ -6,6 +6,10 @@
 #include "../Core/CoreEvent.h"
 #include "../Resource/ResourceEvents.h"
 #include "../Scene/Component.h"
+#include "../IO/File.h"
+#include "../Resource/ResourceCache.h"
+#include "../Container/HashMap.h"
+#include "SceneEvents.h"
 
 namespace Urho3D
 {
@@ -57,10 +61,18 @@ namespace Urho3D
 		context->RegisterFactory<Scene>();
 
 		URHO3D_ACCESSOR_ATTRIBUTE("Name", GetName, SetName, String, String::EMPTY, AM_DEFAULT);
+		URHO3D_ACCESSOR_ATTRIBUTE("Time Scale", GetTimeScale, SetTimeScale, float, 1.0f, AM_DEFAULT);
+		URHO3D_ACCESSOR_ATTRIBUTE("Smoothing Constant", GetSmoothingConstant, SetSmoothingConstant, float, DEFAULT_SMOOTHING_CONSTANT,
+									AM_DEFAULT);
+		URHO3D_ACCESSOR_ATTRIBUTE("Snap Threshold", GetSnapThreshold, SetSnapThreshold, float, DEFAULT_SNAP_THRESHOLD, AM_DEFAULT);
+		URHO3D_ACCESSOR_ATTRIBUTE("Elapsed Time", GetElapsedTime, SetElapsedTime, float, 0.0f, AM_FILE);
+
+		URHO3D_ATTRIBUTE("Next Replicated Node ID", unsigned, replicatedNodeID_, FIRST_REPLICATED_ID, AM_FILE | AM_NOEDIT);
+
 		//todo
 	}
 
-	bool Scene::Load(Deserializer &source, bool setInstanceDefault)
+	bool Scene::Load(Deserializer &source)
 	{
 		StopAsyncLoading();
 
@@ -75,7 +87,7 @@ namespace Urho3D
 		Clear();
 
 		// Load the whole scene, then perform post-load if successfully loaded
-		if(Node::Load(source, setInstanceDefault))
+		if(Node::Load(source))
 		{
 			FinishLoading(&source);
 			return true;
@@ -104,7 +116,7 @@ namespace Urho3D
 			return false;
 	}
 
-	bool Scene::LoadXML(const XMLElement &source, bool setInstanceDefault)
+	bool Scene::LoadXML(const XMLElement &source)
 	{
 		StopAsyncLoading();
 
@@ -175,12 +187,136 @@ namespace Urho3D
 
 	bool Scene::LoadAsync(File *file, LoadMode mode)
 	{
-		//todo
+		if(!file)
+		{
+			URHO3D_LOGERROR("Null file for async loading");
+			return false;
+		}
+
+		StopAsyncLoading();
+
+		// Check ID
+		bool isSceneFile = file->ReadFileID() == "USCN";
+		if(!isSceneFile)
+		{
+			// In resource load mode can load also object prefabs, which have no identifier
+			if(mode > LOAD_RESOURCES_ONLY)
+			{
+				URHO3D_LOGERROR(file->GetName() + " is not a valid scene file");
+				return false;
+			}
+			else
+				file->Seek(0);
+		}
+
+		if(mode > LOAD_RESOURCES_ONLY)
+		{
+			URHO3D_LOGERROR("Loading scene from " + file->GetName());
+			Clear();
+		}
+
+		asyncLoading_ = true;
+		asyncProgress_.file_ = file;
+		asyncProgress_.mode_ = mode;
+		asyncProgress_.loadedNodes_ = asyncProgress_.totalNodes_ = asyncProgress_.loadedResources_ = asyncProgress_.totalResources_ = 0;
+		asyncProgress_.resources_.Clear();
+
+		if(mode > LOAD_RESOURCES_ONLY)
+		{
+			// Preload resources fi appropriate, then return to the original position for loading the scene content
+			// if mode == LOAD_SCENE_AND_RESOURCES
+			if(mode != LOAD_SCENE)
+			{
+				//todo profile
+				unsigned currentPos = file->GetPosition();
+				PreloadResources(file, isSceneFile);
+				file->Seek(currentPos);
+			}
+
+			// Store own old ID for resolving possible root node references
+			unsigned nodeID = file->ReadUInt();
+			resolver_.AddNode(nodeID, this);
+
+			//Load root level components first
+			if(!Node::Load(*file, resolver_, false))
+			{
+				StopAsyncLoading();
+				return false;
+			}
+
+			// Then prepare to load child nodes in the async updates
+			asyncProgress_.totalNodes_ = file->ReadVLE();
+		}
+		else
+		{
+			URHO3D_LOGINFO("Preloading resources from " + file->GetName());
+			PreloadResources(file, isSceneFile);
+		}
+		return true;
 	}
 
 	bool Scene::LoadAsyncXML(File *file, LoadMode mode)
 	{
-		return false;
+		if(!file)
+		{
+			URHO3D_LOGERROR("Null file for async loading");
+			return false;
+		}
+
+		StopAsyncLoading();
+
+		SharedPtr<XMLFile> xml(new XMLFile(context_));
+		if(!xml->Load(*file))
+			return false;
+
+		if(mode > LOAD_RESOURCES_ONLY)
+		{
+			URHO3D_LOGINFO("Loading scene from " + file->GetName());
+			Clear();
+		}
+
+		asyncLoading_ = true;
+		asyncProgress_.xmlFile_ = xml;
+		asyncProgress_.file_ = file;
+		asyncProgress_.mode_ = mode;
+		asyncProgress_.loadedNodes_ = asyncProgress_.totalNodes_ = asyncProgress_.loadedResources_ = asyncProgress_.totalResources_ = 0;
+		asyncProgress_.resources_.Clear();
+
+		if(mode > LOAD_RESOURCES_ONLY)
+		{
+			XMLElement rootElement = xml->GetRoot();
+
+			// Preload resources if appropriate
+			if(mode != LOAD_SCENE)
+			{
+				PreloadResourceXML(rootElement);
+			}
+
+			// Store own old ID for resolving possible root node references
+			unsigned nodeID = rootElement.GetUInt("id");
+			resolver_.AddNode(nodeID, this);
+
+			// Load the root level components first;
+			if(!Node::LoadXML(rootElement, resolver_, false))
+				return false;
+
+			// Then prepare for loading all root level child nodes in the async update
+			XMLElement childNodeElement = rootElement.GetChild("node");
+			asyncProgress_.xmlElement_ = childNodeElement;
+
+			// Count the amount of child nodes
+			while(childNodeElement)
+			{
+				asyncProgress_.totalNodes_++;
+				childNodeElement = childNodeElement.GetNext("node");
+			}
+		}
+		else
+		{
+			URHO3D_LOGINFO("Preloading resource from " + file->GetName());
+			PreloadResourceXML(xml->GetRoot());
+		}
+		return true;
 	}
 
 	void Scene::StopAsyncLoading()
@@ -283,7 +419,11 @@ namespace Urho3D
 
 	void Scene::UpdateAsyncLoading()
 	{
-
+		{
+			// Profile
+		}
+		// If resource left to load, do not load nodes yet
+		//todo
 	}
 
 	void Scene::FinishAsyncLoading()
@@ -312,12 +452,84 @@ namespace Urho3D
 
 	void Scene::PreloadResources(File *file, bool isSceneFile)
 	{
+#ifdef URHO3D_THREADING
+		auto* cache = GetSubsystem<ResourceCache>();
 
+		// Read node ID (not needed)
+		file->ReadUInt();
+
+		// Read Node or Scene attributes; these do not include any resource
+		const Vector<AttributeInfo>* attributes = context_->GetAttributes(isSceneFile ?  Scene::GetTypeStatic() : Node::GetTypeStatic());
+		assert(attributes);
+
+		for(unsigned i = 0; i< attributes->Size(); ++i)
+		{
+			const AttributeInfo& attr = attributes->At(i);
+			if(!(attr.mode_ & AM_FILE))
+				continue;
+			file->ReadVariant(attr.type_);
+		}
+
+		// Read component attributes
+		unsigned numComponents = file->ReadVLE();
+		for(unsigned i=0; i< numComponents; ++i)
+		{
+			VectorBuffer compBuffer(*file, file->ReadVLE());
+			StringHash compType = compBuffer.ReadStringHash();
+			compBuffer.ReadUInt();
+
+			attributes = context_->GetAttributes(compType);
+			if(attributes)
+			{
+				for(unsigned k = 0; k< attributes->Size(); ++k)
+				{
+					const auto& attr = attributes->At(k);
+					if(!(attr.mode_ & AM_FILE))
+						continue;
+
+					Variant varValue = compBuffer.ReadVariant(attr.type_);
+					if(attr.type_ == VAR_RESOURCEREF)
+					{
+						const ResourceRef& ref = varValue.GetResourceRef();
+						// Sanitate resource name beforehand so that when we get the background load event, the name matches exactly.
+						String name = cache->SanitateResourceName(ref.name_);
+						bool success = cache->BackgroundLoadResource(ref.type_, name);
+						if(success)
+						{
+							asyncProgress_.totalResources_++;
+							asyncProgress_.resources_.Insert(StringHash(name));
+						}
+					}
+					else if(attr.type_ == VAR_RESOURCEREFLIST)
+					{
+						const ResourceRefList& refList = varValue.GetResourceRefList();
+						for(unsigned kk = 0; kk < refList.names_.Size(); ++kk)
+						{
+							String name = cache->SanitateResourceName(refList.names_[kk]);
+							bool success = cache->BackgroundLoadResource(refList.type_, name);
+							if(success)
+							{
+								asyncProgress_.totalResources_++;
+								asyncProgress_.resources_.Insert(StringHash(name));
+							}
+						}
+					}
+				}
+			}
+		}
+
+		// Read child nodes
+		unsigned numChildren = file->ReadVLE();
+		for(unsigned i = 0; i< numChildren; ++i)
+		{
+			PreloadResources(file, false);
+		}
+#endif
 	}
 
 	void Scene::PreloadResourceXML(const XMLElement &element)
 	{
-
+		//todo
 	}
 
 	void Scene::NodeAdded(Node *node)
@@ -571,22 +783,31 @@ namespace Urho3D
 
 	void Scene::RegisterVar(const String &name)
 	{
-
+		varNames_[name] = name;
 	}
 
 	void Scene::UnregisterVar(const String &name)
 	{
-
+		varNames_.Erase(name);
 	}
 
 	void Scene::UnregisterAllVars()
 	{
-
+		varNames_.Clear();
 	}
 
 	Node *Scene::GetNode(unsigned id) const
 	{
-		return nullptr;
+		if(id < FIRST_LOCAL_ID)
+		{
+			const auto it = replicatedNodes_.Find(id);
+			return it != replicatedNodes_.End() ? it->second_ : nullptr;
+		}
+		else
+		{
+			const auto it = localNodes_.Find(id);
+			return it != localNodes_.End() ? it->second_ : nullptr;
+		}
 	}
 
 	Component *Scene::GetComponent(unsigned id) const
@@ -605,22 +826,73 @@ namespace Urho3D
 
 	bool Scene::GetNodeWithTag(PODVector<Node *> &dest, const String &tag) const
 	{
-		return false;
+		dest.Clear();
+		const auto it = taggedNodes_.Find(tag);
+		if(it != taggedNodes_.End())
+		{
+			dest = it->second_;
+			return true;
+		}
+		else
+			return false;
 	}
 
 	float Scene::GetAsyncProgress() const
 	{
-		return 0;
+		return !asyncLoading_ || asyncProgress_.totalNodes_ + asyncProgress_.totalResources_ == 0 ? 1.0f :
+		       (float)(asyncProgress_.loadedNodes_ + asyncProgress_.loadedResources_ ) /
+				       (float)(asyncProgress_.totalResources_ + asyncProgress_.totalNodes_);
 	}
 
 	const String &Scene::GetVarName(StringHash hash) const
 	{
-		return <#initializer#>;
 	}
 
 	void Scene::Update(float timeStep)
 	{
+		if(asyncLoading_)
+		{
+			UpdateAsyncLoading();
+			// If only preloading resources, scene update can continue
+			// todo, why?
+			if(asyncProgress_.mode_ > LOAD_RESOURCES_ONLY)
+				return;
+		}
 
+		timeStep *= timeScale_;
+		using namespace SceneUpdate;
+		VariantMap& eventData = GetEventDataMap();
+		eventData[P_SCENE] = this;
+		eventData[P_TIMESTEP] = timeStep;
+
+		// Update variable timestep logic
+		SendEvent(E_SCENEUPDATE, eventData);
+
+		// Update scene attribute animation
+		SendEvent(E_ATTRIBUTEANIMATIONUPDATE, eventData);
+
+		// Update scene subsystems. If a physics world is present, it will be updated,
+		// triggering fixed timestep logic updates
+		// todo, physics update should not happen in this update
+		SendEvent(E_SCENESUBSYSTEMUPDATE, eventData);
+
+		// Update transform smoothing
+		{
+			float constant = 1.0f - Clamp(powf(2.0f, -timeStep * smoothingConstant_), 0.0f, 1.0f);
+			float squaredSnapThreshold = snapThreshold_ * snapThreshold_;
+
+			using namespace UpdateSmoothing;
+			smoothingData_[P_CONSTANT] = constant;
+			smoothingData_[P_SQUAREDSNAPTHRESHOLD] = squaredSnapThreshold;
+			SendEvent(E_UPDATESMOOTHING, smoothingData_);
+		}
+
+		// Post update variable timestep logic
+		SendEvent(E_SCENEPOSTUPDATE, eventData);
+		// Note: using a float for elapsed time accumulation is inherently inaccurate
+		// The purpose of this value is primarily to update material animation effects,
+		// as it is available to shaders. It can be reset by calling SetElapsedTime()
+		elapsedTime_ += timeStep;
 	}
 
 	void Scene::BeginThreadedUpdate()
@@ -667,4 +939,14 @@ namespace Urho3D
 	{
 		Node::CleanupConnection(connection);
 	}
+
+	void RegisterSceneLibrary(Context *context)
+	{
+		ValueAnimation::RegisterObject(context);
+		ObjectAnimation::RegisterObject(context);
+		Node::RegisterObject(context);
+		Scene::RegisterObject(context);
+		//todo
+	}
+
 }

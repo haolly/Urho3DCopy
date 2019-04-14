@@ -131,7 +131,7 @@ namespace Urho3D
         {
         }
 
-        explicit RandomAccessConstIterator(const RandomAccessIterator<T>& rhs) :
+        RandomAccessConstIterator(const RandomAccessIterator<T>& rhs) :
             ptr_(rhs.ptr_)
         {
         }

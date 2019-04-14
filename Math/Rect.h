@@ -11,6 +11,12 @@ namespace Urho3D
 {
 	class Rect
 	{
+	public:
+		//todo
+
+		static const Rect FULL;
+		static const Rect POSITIVE;
+		static const Rect ZERO;
 
 	};
 
@@ -79,6 +85,11 @@ namespace Urho3D
 		}
 
 		//todo
+
+		IntVector2 Size() { return IntVector2(Width(), Height()); }
+
+		int Width() const { return right_ - left_; }
+		int Height() const { return bottom_ - top_; }
 
 		int left_;
 		int top_;

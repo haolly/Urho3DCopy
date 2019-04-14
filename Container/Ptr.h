@@ -384,7 +384,8 @@ namespace Urho3D
 		    return ptr_ < rhs.ptr_;
 	    }
 
-	    operator T*()
+	    /// implicit convert to a raw pointer
+	    operator T*() const
 	    {
 		    return Get();
 	    }

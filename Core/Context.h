@@ -178,7 +178,7 @@ namespace Urho3D
 
 	    HashMap<StringHash, SharedPtr<ObjectFactory> > factories_;
 	    HashMap<StringHash, SharedPtr<Object> > subSystems_;
-		//todo, 这些 attribute 是什么时候添加的
+		//todo, 这些 attribute 是什么时候添加的, CopyBaseAttributes ??
 	    HashMap<StringHash, Vector<AttributeInfo> > attributes_;
 	    HashMap<StringHash, Vector<AttributeInfo> > networkAttributes_;
 

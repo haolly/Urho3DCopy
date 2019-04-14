@@ -12,6 +12,7 @@
 namespace Urho3D
 {
 	static const unsigned AM_EDIT = 0x0;
+	// Attribute used for file serialization
 	static const unsigned AM_FILE = 0x1;
 	static const unsigned AM_NET = 0x2;
 	static const unsigned AM_DEFAULT = 0x3;
@@ -71,6 +72,7 @@ namespace Urho3D
 		const char** enumNames_ = nullptr;
 		SharedPtr<AttributeAccessor> accessor_;
 		Variant defaultValue_;
+		// todo, 啥时候设置的？ 例如 Scene 文件， ref: Scene:PreloadResources
 		unsigned mode_ = AM_DEFAULT;
 		VariantMap metadata_;
 		void* ptr_ = nullptr;

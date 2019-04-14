@@ -173,4 +173,10 @@ add_executable(Urho3DCopy
         Graphics/Octree.cpp Graphics/Octree.h
         Graphics/Drawable.cpp Graphics/Drawable.h
         Graphics/OctreeQuery.cpp Graphics/OctreeQuery.h
-        Core/WorkQueue.cpp Core/WorkQueue.h)
+        Core/WorkQueue.cpp Core/WorkQueue.h
+        UI/UIBatch.cpp UI/UIBatch.hpp
+        UI/UIElement.cpp UI/UIElement.hpp
+        Container/FlagSet.cpp Container/FlagSet.hpp
+        UI/UIEvents.hpp UI/Sprite.cpp
+        UI/Sprite.hpp
+        UI/UI.cpp UI/UI.hpp Math/Matrix4.cpp Math/Matrix4.hpp)

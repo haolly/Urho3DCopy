@@ -35,12 +35,12 @@ namespace Urho3D
 	{
 		URHO3D_OBJECT(Animatable, Serializable);
 	public:
-		Animatable(Context* context);
-		virtual ~Animatable() override ;
+		explicit Animatable(Context* context);
+		~Animatable() override ;
 		static void RegisterObject(Context* context);
 
-		virtual bool LoadXML(const XMLElement& source, bool setInstanceDefault = false) override ;
-		virtual bool SaveXML(XMLElement& dest) const override ;
+		bool LoadXML(const XMLElement& source) override ;
+		bool SaveXML(XMLElement& dest) const override ;
 
 		void SetAnimationEnabled(bool enable);
 		void SetAnimationTime(float time);

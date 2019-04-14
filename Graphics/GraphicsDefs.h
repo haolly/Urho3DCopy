@@ -6,6 +6,7 @@
 #define URHO3DCOPY_GRAPHICSDEFS_H
 
 #include "../Math/StringHash.h"
+#include "../Container/FlagSet.hpp"
 
 namespace Urho3D
 {
@@ -105,7 +106,12 @@ namespace Urho3D
 	enum ShaderParameterGroup
 	{
 		SP_FRAME = 0,
-		//todo
+		SP_CAMERA,
+		SP_ZONE,
+		SP_LIGHT,
+		SP_MATERIAL,
+		SP_OBJECT,
+		SP_CUSTOM,
 		MAX_SHADER_PARAMETER_GROUPS
 	};
 
@@ -293,11 +299,49 @@ namespace Urho3D
 	static const int MAX_CONSTANT_REGISTERS = 256;
 
 
-	// Inbuilt shader parameters
-	extern const StringHash VSP_AMBIENTSTARTCOLOR;
-	//TODO
-	extern const StringHash PSP_MATSPECCOLOR;
 
+
+	enum ClearTarget : unsigned
+	{
+		CLEAR_COLOR = 0x1;
+		CLEAR_DEPTH = 0x2;
+		CLEAR_STENCIL = 0x4;
+	};
+
+	URHO3D_FLAGSET(ClearTarget, ClearTargetFlags);
+
+	// Inbuilt shader paramter
+	extern const StringHash VSP_AMBIENTSTARTCOLOR;
+	extern const StringHash VSP_AMBIENTENDCOLOR;
+	//todo
+	extern const StringHash VSP_ELAPSEDTIME;
+	//todo
+	extern const StringHash VSP_MODEL;
+	extern const StringHash VSP_VIEW;
+	extern const StringHash VSP_VIEWINV;
+	extern const StringHash VSP_VIEWPROJ;
+	extern const StringHash VSP_UOFFSET;
+	extern const StringHash VSP_VOFFSET;
+	extern const StringHash VSP_ZONE;
+	extern const StringHash VSP_LIGHTMATRICES;
+	extern const StringHash VSP_SKINMATRICES;
+	extern const StringHash VSP_VERTEXLIGHTS;
+
+	extern const StringHash PSP_AMBIENTCOLOR;
+	extern const StringHash PSP_CAMERAPOS;
+	extern const StringHash PSP_DELTATIME;
+	extern const StringHash PSP_DEPTHRECONSTRUCT;
+	extern const StringHash PSP_ELAPSEDTIME;
+	extern const StringHash PSP_FOGCOLOR;
+	//todo
+
+	extern const StringHash PSP_MATDIFFCOLOR;
+	extern const StringHash PSP_MATEMISSIVECOLOR;
+	extern const StringHash PSP_MATENVMAPCOLOR;
+	extern const StringHash PSP_MATSPECCOLOR;
+	extern const StringHash PSP_NEARCLIP;
+	extern const StringHash PSP_FARCLIP;
+	//todo
 }
 
 #endif //URHO3DCOPY_GRAPHICSDEFS_H

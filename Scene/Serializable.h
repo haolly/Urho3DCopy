@@ -29,10 +29,10 @@ namespace Urho3D
 		virtual const Vector<AttributeInfo>* GetAttributes() const;
 		virtual const Vector<AttributeInfo>* GetNetworkAttributes() const;
 
-		virtual bool Load(Deserializer& source, bool setInstanceDefault = false);
+		virtual bool Load(Deserializer& source);
 		virtual bool Save(Serializer& dest) const;
 
-		virtual bool LoadXML(const XMLElement& source, bool setInstanceDefault = false);
+		virtual bool LoadXML(const XMLElement& source);
 		virtual bool SaveXML(XMLElement& dest) const;
 
 		virtual void ApplyAttributes() {}

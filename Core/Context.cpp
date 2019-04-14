@@ -352,7 +352,12 @@ namespace Urho3D
 	Object *Context::GetSubsystem(StringHash type) const
 	{
 		auto iter = subSystems_.Find(type);
-		return iter != subSystems_.End() ? iter->second_ : nullptr;
+		if(iter != subSystems_.End())
+		{
+			return iter->second_;
+		}
+		else
+			return nullptr;
 	}
 
 	const String &Context::GetTypeName(StringHash objectType) const

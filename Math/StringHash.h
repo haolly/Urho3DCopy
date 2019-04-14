@@ -36,7 +36,7 @@ namespace Urho3D
 
 	    explicit StringHash(const char* str);
 
-	    StringHash(const String& str);
+        explicit StringHash(const String& str);
 
         StringHash&operator=(const StringHash& rhs)
         {
