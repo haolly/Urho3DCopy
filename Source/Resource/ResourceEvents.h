@@ -1,0 +1,56 @@
+//
+// Created by LIUHAO on 2017/12/16.
+//
+
+#ifndef URHO3DCOPY_RESOURCEEVENTS_H
+#define URHO3DCOPY_RESOURCEEVENTS_H
+
+#include "../Core/Object.h"
+
+namespace Urho3D
+{
+	URHO3D_EVENT(E_RELOADSTARTED, ReloadStarted)
+	{
+
+	}
+
+	URHO3D_EVENT(E_RELOADFINISHED, ReloadFinished)
+	{
+
+	}
+
+	URHO3D_EVENT(E_RELOADFAILED, ReloadFailed)
+	{
+
+	}
+
+	URHO3D_EVENT(E_FILECHANGED, FileChanged)
+	{
+		URHO3D_PARAM(P_FILENAME, FileName);
+		URHO3D_PARAM(P_RESOURCENAME, ResourceName);
+	}
+
+	URHO3D_EVENT(E_LOADFAILED, LoadFailed)
+	{
+		URHO3D_PARAM(P_RESOURCENAME, ResourceName);
+	}
+
+	URHO3D_EVENT(E_RESOURCENOTFOUND, ResourceNotFound)
+	{
+		URHO3D_PARAM(P_RESOURCENAME, ResourceName);
+	}
+
+	URHO3D_EVENT(E_UNKNOWRESOURCETYPE, UnknowResourceType)
+	{
+		URHO3D_PARAM(P_RESOURCETYPE, ResourceType);
+	}
+
+	URHO3D_EVENT(E_RESOURCEBACKGROUNDLOADED, ResourceBackgroundLoaded)
+	{
+		URHO3D_PARAM(P_RESOURCENAME, ResourceName);
+		URHO3D_PARAM(P_SUCCESS, Success);
+		URHO3D_PARAM(P_RESOURCE, Resource);
+	}
+}
+
+#endif //URHO3DCOPY_RESOURCEEVENTS_H

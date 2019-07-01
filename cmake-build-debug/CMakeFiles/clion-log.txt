@@ -1,0 +1,7 @@
+/Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -DCMAKE_BUILD_TYPE=Debug -DURHO3D_OPENGL=true -G "CodeBlocks - Unix Makefiles" /Users/liuhao/dev/Urho3DCopy
+d3d11 is/Users/liuhao/dev/Urho3DCopy/Source/Graphics/Direct3D11/D3D11ConstantBuffer.cpp/Users/liuhao/dev/Urho3DCopy/Source/Graphics/Direct3D11/D3D11Graphics.cpp/Users/liuhao/dev/Urho3DCopy/Source/Graphics/Direct3D11/D3D11GraphicsImpl.cpp/Users/liuhao/dev/Urho3DCopy/Source/Graphics/Direct3D11/D3D11GraphicsImpl.h/Users/liuhao/dev/Urho3DCopy/Source/Graphics/Direct3D11/D3D11IndexBuffer.cpp/Users/liuhao/dev/Urho3DCopy/Source/Graphics/Direct3D11/D3D11RenderSurface.cpp/Users/liuhao/dev/Urho3DCopy/Source/Graphics/Direct3D11/D3D11ShaderProgram.h/Users/liuhao/dev/Urho3DCopy/Source/Graphics/Direct3D11/D3D11ShaderVariation.cpp/Users/liuhao/dev/Urho3DCopy/Source/Graphics/Direct3D11/D3D11Texture.cpp/Users/liuhao/dev/Urho3DCopy/Source/Graphics/Direct3D11/D3D11Texture2D.cpp/Users/liuhao/dev/Urho3DCopy/Source/Graphics/Direct3D11/D3D11Texture3D.cpp/Users/liuhao/dev/Urho3DCopy/Source/Graphics/Direct3D11/D3D11VertexBuffer.cpp
+aaaa
+open gl
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /Users/liuhao/dev/Urho3DCopy/cmake-build-debug
